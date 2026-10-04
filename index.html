@@ -346,25 +346,67 @@ document.getElementById("search").addEventListener("input", function() {
 
 });
 
-</script><!-- DUCATTO PREMIUM -->
+<!-- DUCATTO PREMIUM -->
 <section id="premium" style="padding:30px 20px; text-align:center;">
     <h2>DUCATTO Premium</h2>
-    <p>Accede a las funciones Premium de DUCATTO.</p>
 
-    <div class="card" style="max-width:400px; margin:20px auto;">
+    <p>Descubre todas las funciones Premium de DUCATTO.</p>
+
+    <div class="card" style="max-width:420px; margin:20px auto;">
         <h3>Premium</h3>
-        <p style="font-size:28px; font-weight:bold;">7,99 € / mes</p>
-        <p>Pago mediante Bizum</p>
+
+        <p style="font-size:30px; font-weight:bold;">
+            7,99 € / mes
+        </p>
 
         <p>
-            <strong>Para activar Premium:</strong><br>
-            Realiza el pago por Bizum y después solicita la activación.
+            Accede a las funciones exclusivas de DUCATTO.
         </p>
 
-        <p style="font-size:14px;">
-            La activación se realizará manualmente después de comprobar el pago.
-        </p>
+        <button
+            onclick="explorarPremium()"
+            style="padding:12px 24px; border:0; border-radius:10px; cursor:pointer;"
+        >
+            Seguir explorando
+        </button>
+    </div>
+
+    <div id="premiumFunciones"
+         style="display:none; max-width:420px; margin:25px auto;">
+
+        <div class="card">
+            <h3>📅 Agenda</h3>
+            <p>Organiza y consulta tu agenda.</p>
+            <button onclick="abrirFuncion('Agenda')">
+                Entrar
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>👤 Perfil</h3>
+            <p>Consulta y personaliza tu perfil.</p>
+            <button onclick="abrirFuncion('Perfil')">
+                Entrar
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>⭐ Funciones Premium</h3>
+            <p>Más herramientas exclusivas de DUCATTO.</p>
+            <button onclick="abrirFuncion('Funciones Premium')">
+                Explorar
+            </button>
+        </div>
+
     </div>
 </section>
-</body>
-</html>
+
+<script>
+function explorarPremium() {
+    document.getElementById("premiumFunciones").style.display = "block";
+}
+
+function abrirFuncion(nombre) {
+    alert(nombre + " estará disponible en tu área Premium.");
+}
+</script>
