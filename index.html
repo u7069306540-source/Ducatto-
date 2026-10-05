@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<title>Ducatto</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+}
+header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    background: #121212;
+    z-index: 10;
+}
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #00FFB4;
+    text-shadow: 0 0 15px #00FFB4;
+}
+.container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+main {
+    padding-bottom: 100px;
+}
+h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+.subtitle {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+.location-box {
+    background: #181818;
+    border: 1px solid #292929;
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+.location-title {
+    color: #00FFB4;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+.location-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+.location-info {
+    color: #888;
+    font-size: 13px;
+    margin-top: 6px;
+}
+.search {
+    width: 100%;
+    padding: 16px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    background: #1c1c1c;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+    outline: none;
+}
+.search:focus {
+    border-color: #00FFB4;
+}
+.buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+button {
+    border: 1px solid #00FFB4;
+    background: #121212;
+    color: #00FFB4;
+    padding: 12px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+}
+button:hover {
+    background: #00FFB4;
+    color: #121212;
+    box-shadow: 0 0 18px #00FFB4;
+}
+.map {
+    min-height: 220px;
+    border-radius: 22px;
+    border: 1px solid #00FFB4;
+    background:
+        linear-gradient(rgba(0,255,180,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,180,.08) 1px, transparent 1px),
+        #181818;
+    background-size: 45px 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    box-shadow:
+        0 0 20px rgba(0,255,180,.15);
+}
+.map-content {
+    text-align: center;
+    padding: 20px;
+}
+.map-text {
+    color: #00FFB4;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.map-location {
+    color: #aaa;
+}
+.section-title {
+    margin: 30px 0 15px;
+    font-size: 24px;
+}
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+.card,
+.media-card {
+    background: #1b1b1b;
+    border: 1px solid #292929;
+    border-radius: 18px;
+    padding: 18px;
+}
+.card h3,
+.media-card h3 {
+    margin-bottom: 8px;
+}
+.card p,
+.media-card p {
+    color: #aaa;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+.premium {
+    border: 1px solid #00FFB4;
+    box-shadow:
+        0 0 15px rgba(0,255,180,.15);
+}
+.premium-badge,
+.media-tag {
+    display: inline-block;
+    color: #00FFB4;
+    font-size: 12px;
+    border: 1px solid #00FFB4;
+    border-radius: 20px;
+    padding: 5px 9px;
+    margin-bottom: 10px;
+}
+.user-box {
+    background: #181818;
+    border: 1px solid #292929;
+    border-radius: 18px;
+    padding: 18px;
+    margin-top: 20px;
+}
+.user-name {
+    color: #00FFB4;
+    font-weight: bold;
+}
+.premium-status {
+    margin-top: 8px;
+    color: #00FFB4;
+    font-size: 14px;
+}
+.premium-section {
+    margin-top: 30px;
+    padding: 25px 0;
+}
+.price {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 12px 0;
+    color: #00FFB4;
+}
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.popup-box {
+    width: 90%;
+    max-width: 420px;
+    background: #181818;
+    border: 1px solid #00FFB4;
+    border-radius: 22px;
+    padding: 28px;
+    text-align: center;
+    box-shadow:
+        0 0 30px rgba(0,255,180,.3);
+}
+.popup-box h2 {
+    color: #00FFB4;
+    margin-bottom: 12px;
+}
+.popup-box p {
+    color: #bbb;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+.close {
+    border-color: #555;
+    color: white;
+}
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: #151515;
+    border-top: 1px solid #292929;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 20;
+}
+nav button {
+    border: none;
+    padding: 8px;
+    background: transparent;
+}
+.hidden {
+    display: none !important;
+}
+.notice {
+    padding: 15px;
+    border-radius: 14px;
+    background: #202020;
+    color: #aaa;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        Ducatto
+    </div>
+</header>
+<main>
+<div class="container">
+    <h1>
+        Encuentra tu próximo plan
+    </h1>
+    <p class="subtitle">
+        Descubre lugares, libros y series cerca de ti.
+    </p>
+    <!-- USUARIO -->
+    <div class="user-box">
+        <p>
+            👤 Usuario:
+            <span
+                class="user-name"
+                id="usuarioActual"
+            >
+                Invitado
+            </span>
+        </p>
+        <p
+            class="premium-status"
+            id="estadoPremium"
+        >
+            Cuenta normal
+        </p>
+    </div>
+    <!-- UBICACIÓN -->
+    <div class="location-box">
+        <div class="location-title">
+            📍 TU UBICACIÓN
+        </div>
+        <div
+            class="location-name"
+            id="locationName"
+        >
+            Buscando ubicación...
+        </div>
+        <div
+            class="location-info"
+            id="locationInfo"
+        >
+            Permite el acceso a tu ubicación para
+            mostrar lugares de tu zona.
+        </div>
+    </div>
+    <!-- BUSCADOR -->
+    <input
+        class="search"
+        id="search"
+        type="text"
+        placeholder="🔎 Busca un lugar, libro o serie..."
+    >
+    <!-- FILTROS -->
+    <div class="buttons">
+        <button onclick="filterPlans('todos')">
+            Todos
+        </button>
+        <button onclick="filterPlans('comida')">
+            🍴 Comida
+        </button>
+        <button onclick="filterPlans('ocio')">
+            🎮 Ocio
+        </button>
+        <button onclick="mostrarSeccion('libros')">
+            📚 Libros
+        </button>
+        <button onclick="mostrarSeccion('series')">
+            📺 Series
+        </button>
+        <button onclick="abrirPremium()">
+            ⭐ Premium
+        </button>
+    </div>
+    <!-- MAPA -->
+    <div class="map">
+        <div class="map-content">
+            <div class="map-text">
+                📍 Mapa de Ducatto
+            </div>
+            <div
+                class="map-location"
+                id="mapLocation"
+            >
+                Detectando tu zona...
+            </div>
+        </div>
+    </div>
+    <!-- PLANES -->
+    <h2 class="section-title">
+        Planes cerca de ti
+    </h2>
+    <div
+        class="cards"
+        id="cards"
+    >
+        <div
+            class="card"
+            data-type="comida"
+        >
+            <h3>
+                🍝 Restaurantes
+            </h3>
+            <p>
+                Descubre restaurantes y lugares
+                para comer cerca de ti.
+            </p>
+            <button onclick="verPlan('restaurantes')">
+                Ver opciones
+            </button>
+        </div>
+        <div
+            class="card"
+            data-type="ocio"
+        >
+            <h3>
+                🎮 Ocio
+            </h3>
+            <p>
+                Planes para pasar el tiempo
+                con amigos.
+            </p>
+            <button onclick="verPlan('ocio')">
+                Ver opciones
+            </button>
+        </div>
+        <div class="card premium">
+            <span class="premium-badge">
+                ⭐ PREMIUM
+            </span>
+            <h3>
+                🤫 Sitios tranquilos
+            </h3>
+            <p>
+                Lugares especiales y tranquilos
+                disponibles para Premium.
+            </p>
+            <button onclick="verUbicacionPremium()">
+                Ver sitios
+            </button>
+        </div>
+    </div>
+    <!-- LIBROS -->
+    <section id="libros">
+        <h2 class="section-title">
+            📚 Libros
+        </h2>
+        <div class="cards">
+            <div class="media-card">
+                <span class="media-tag">
+                    📚 LIBRO
+                </span>
+                <h3>
+                    El principito
+                </h3>
+                <p>
+                    Una historia clásica sobre
+                    amistad e imaginación.
+                </p>
+                <button onclick="abrirLibro('El principito')">
+                    Ver libro
+                </button>
+            </div>
+            <div class="media-card">
+                <span class="media-tag">
+                    📚 LIBRO
+                </span>
+                <h3>
+                    Harry Potter
+                </h3>
+                <p>
+                    Fantasía, aventuras y nuevos
+                    mundos por descubrir.
+                </p>
+                <button onclick="abrirLibro('Harry Potter')">
+                    Ver libro
+                </button>
+            </div>
+            <div class="media-card premium">
+                <span class="premium-badge">
+                    ⭐ PREMIUM
+                </span>
+                <h3>
+                    📖 Biblioteca Premium
+                </h3>
+                <p>
+                    Recomendaciones y contenido
+                    exclusivo para usuarios Premium.
+                </p>
+                <button onclick="abrirContenidoPremium('libros')">
+                    Acceder
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- SERIES -->
+    <section id="series">
+        <h2 class="section-title">
+            📺 Series
+        </h2>
+        <div class="cards">
+            <div class="media-card">
+                <span class="media-tag">
+                    📺 SERIE
+                </span>
+                <h3>
+                    Stranger Things
+                </h3>
+                <p>
+                    Misterio, aventuras y amistad.
+                </p>
+                <button onclick="abrirSerie('Stranger Things')">
+                    Ver serie
+                </button>
+            </div>
+            <div class="media-card">
+                <span class="media-tag">
+                    📺 SERIE
+                </span>
+                <h3>
+                    Wednesday
+                </h3>
+                <p>
+                    Misterio y humor oscuro.
+                </p>
+                <button onclick="abrirSerie('Wednesday')">
+                    Ver serie
+                </button>
+            </div>
+            <div class="media-card premium">
+                <span class="premium-badge">
+                    ⭐ PREMIUM
+                </span>
+                <h3>
+                    🎬 Series Premium
+                </h3>
+                <p>
+                    Recomendaciones y contenido
+                    exclusivo para usuarios Premium.
+                </p>
+                <button onclick="abrirContenidoPremium('series')">
+                    Acceder
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- PREMIUM -->
+    <section
+        id="zonaPremium"
+        class="premium-section"
+    >
+        <h2>
+            ⭐ Ducatto Premium
+        </h2>
+        <p style="color:#aaa; margin-top:10px;">
+            Desbloquea las funciones exclusivas de Ducatto.
+        </p>
+        <div
+            id="premiumNoActivo"
+            class="card"
+            style="max-width:450px; margin:20px auto;"
+        >
+            <h3>
+                Premium
+            </h3>
+            <p class="price">
+                7,99 € / mes
+            </p>
+            <p>
+                Accede a sitios tranquilos,
+                ubicaciones Premium, contenido
+                exclusivo y más.
+            </p>
+            <button onclick="irAPremium()">
+                ⭐ Conseguir Premium
+            </button>
+        </div>
+        <div
+            id="premiumActivo"
+            class="card premium hidden"
+            style="max-width:450px; margin:20px auto;"
+        >
+            <span class="premium-badge">
+                ⭐ PREMIUM ACTIVO
+            </span>
+            <h3>
+                ¡Bienvenido a Premium!
+            </h3>
+            <p>
+                Tu cuenta tiene acceso a las
+                funciones Premium de Ducatto.
+            </p>
+            <button onclick="verUbicacionPremium()">
+                📍 Ver sitios Premium
+            </button>
+        </div>
+    </section>
+    <!-- AGENDA -->
+    <h2 class="section-title">
+        📅 Tu agenda
+    </h2>
+    <div class="card">
+        <h3>
+            Mi agenda
+        </h3>
+        <p>
+            Organiza tus planes y guárdalos
+            para más tarde.
+        </p>
+        <button onclick="abrirAgenda()">
+            Abrir agenda
+        </button>
+    </div>
+    <!-- ZONA PREMIUM REAL -->
+    <section
+        id="ubicacionesPremium"
+        class="hidden"
+    >
+        <h2 class="section-title">
+            ⭐ Ubicaciones Premium
+        </h2>
+        <div class="cards">
+            <div class="card premium">
+                <span class="premium-badge">
+                    PREMIUM
+                </span>
+                <h3>
+                    🤫 Sitios tranquilos
+                </h3>
+                <p>
+                    Lugares especiales de tu zona
+                    para disfrutar con tranquilidad.
+                </p>
+                <button onclick="mostrarSitio('Sitio tranquilo')">
+                    Ver ubicación
+                </button>
+            </div>
+            <div class="card premium">
+                <span class="premium-badge">
+                    PREMIUM
+                </span>
+                <h3>
+                    🌅 Lugares especiales
+                </h3>
+                <p>
+                    Descubre lugares exclusivos
+                    seleccionados para Premium.
+                </p>
+                <button onclick="mostrarSitio('Lugar especial')">
+                    Ver ubicación
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
+</main>
+<!-- NAVEGACIÓN -->
+<nav>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        🗺️ Mapa
+    </button>
+    <button onclick="enfocarBuscador()">
+        🔎 Buscar
+    </button>
+    <button onclick="abrirFavoritos()">
+        ⭐ Favoritos
+    </button>
+    <button onclick="mostrarPerfil()">
+        👤 Perfil
+    </button>
+</nav>
+<!-- POPUP PREMIUM -->
+<div
+    class="popup"
+    id="premiumPopup"
+>
+    <div class="popup-box">
+        <h2>
+            ⭐ Ducatto Premium
+        </h2>
+        <p id="premiumMensaje">
+            Esta función pertenece a Premium.
+        </p>
+        <button
+            id="botonPopupPremium"
+            onclick="irAPremium()"
+        >
+            ⭐ Conseguir Premium
+        </button>
+        <button
+            class="close"
+            onclick="cerrarPremium()"
+        >
+            Cerrar
+        </button>
+    </div>
+</div>
+<!-- IMPORTANTE:
+     ESTE ES EL ARCHIVO NUEVO
+     QUE CONTROLA EL ACCESO PREMIUM
+-->
+<script src="acceso-premium.js"></script>
+<script>
+/* =========================================
+   USUARIO
+========================================= */
+const usuarioActual =
+    localStorage.getItem(
+        "ducattoUsuario"
+    );
+const usuarioElemento =
+    document.getElementById(
+        "usuarioActual"
+    );
+if (usuarioActual) {
+    usuarioElemento.textContent =
+        usuarioActual;
+} else {
+    usuarioElemento.textContent =
+        "Invitado";
+}
+/* =========================================
+   PREMIUM
+========================================= */
+let esPremium = false;
+if (
+    usuarioActual &&
+    typeof tieneAccesoPremium === "function"
+) {
+    esPremium =
+        tieneAccesoPremium(
+            usuarioActual
+        );
+}
+actualizarPantallaPremium();
+function actualizarPantallaPremium() {
+    const estado =
+        document.getElementById(
+            "estadoPremium"
+        );
+    const premiumActivo =
+        document.getElementById(
+            "premiumActivo"
+        );
+    const premiumNoActivo =
+        document.getElementById(
+            "premiumNoActivo"
+        );
+    const ubicaciones =
+        document.getElementById(
+            "ubicacionesPremium"
+        );
+    if (esPremium) {
+        estado.textContent =
+            "⭐ Premium activo";
+        premiumActivo.classList.remove(
+            "hidden"
+        );
+        premiumNoActivo.classList.add(
+            "hidden"
+        );
+        ubicaciones.classList.remove(
+            "hidden"
+        );
+    } else {
+        estado.textContent =
+            "Cuenta normal";
+        premiumActivo.classList.add(
+            "hidden"
+        );
+        premiumNoActivo.classList.remove(
+            "hidden"
+        );
+        ubicaciones.classList.add(
+            "hidden"
+        );
+    }
+}
+/* =========================================
+   PREMIUM
+========================================= */
+function abrirPremium() {
+    const popup =
+        document.getElementById(
+            "premiumPopup"
+        );
+    const mensaje =
+        document.getElementById(
+            "premiumMensaje"
+        );
+    const boton =
+        document.getElementById(
+            "botonPopupPremium"
+        );
+    if (esPremium) {
+        mensaje.textContent =
+            "⭐ Tu cuenta tiene Premium activo. Puedes utilizar las funciones exclusivas.";
+        boton.textContent =
+            "📍 Ver sitios Premium";
+        boton.onclick =
+            verUbicacionPremium;
+    } else {
+        mensaje.textContent =
+            "Esta función está disponible para usuarios Premium.";
+        boton.textContent =
+            "⭐ Conseguir Premium";
+        boton.onclick =
+            irAPremium;
+    }
+    popup.style.display =
+        "flex";
+}
+function cerrarPremium() {
+    document.getElementById(
+        "premiumPopup"
+    ).style.display =
+        "none";
+}
+function irAPremium() {
+    window.location.href =
+        "premium.html";
+}
+/* =========================================
+   SITIOS PREMIUM
+========================================= */
+function verUbicacionPremium() {
+    if (!esPremium) {
+        irAPremium();
+        return;
+    }
+    document.getElementById(
+        "ubicacionesPremium"
+    ).classList.remove(
+        "hidden"
+    );
+    document.getElementById(
+        "ubicacionesPremium"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
+}
+function mostrarSitio(nombre) {
+    if (!esPremium) {
+        irAPremium();
+        return;
+    }
+    const ciudad =
+        localStorage.getItem(
+            "ducattoCiudad"
+        ) || "tu zona";
+    alert(
+        "⭐ " +
+        nombre +
+        "\n\n" +
+        "Zona: " +
+        ciudad
+    );
+}
+/* =========================================
+   CONTENIDO PREMIUM
+========================================= */
+function abrirContenidoPremium(tipo) {
+    if (!esPremium) {
+        irAPremium();
+        return;
+    }
+    if (tipo === "libros") {
+        alert(
+            "📚 Biblioteca Premium desbloqueada."
+        );
+    }
+    if (tipo === "series") {
+        alert(
+            "📺 Series Premium desbloqueadas."
+        );
+    }
+}
+/* =========================================
+   LIBROS
+========================================= */
+function abrirLibro(nombre) {
+    alert(
+        "📚 " +
+        nombre +
+        "\n\n" +
+        "Información del libro disponible próximamente."
+    );
+}
+/* =========================================
+   SERIES
+========================================= */
+function abrirSerie(nombre) {
+    alert(
+        "📺 " +
+        nombre +
+        "\n\n" +
+        "Información de la serie disponible próximamente."
+    );
+}
+/* =========================================
+   FILTROS
+========================================= */
+function filterPlans(tipo) {
+    const cards =
+        document.querySelectorAll(
+            "#cards .card"
+        );
+    cards.forEach(function(card) {
+        if (tipo === "todos") {
+            card.style.display =
+                "block";
+            return;
+        }
+        if (
+            card.dataset.type === tipo
+        ) {
+            card.style.display =
+                "block";
+        } else if (
+            card.classList.contains("premium")
+        ) {
+            card.style.display =
+                "block";
+        } else {
+            card.style.display =
+                "none";
+        }
+    });
+}
+/* =========================================
+   SECCIONES
+========================================= */
+function mostrarSeccion(id) {
+    const elemento =
+        document.getElementById(id);
+    if (!elemento) {
+        return;
+    }
+    elemento.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+/* =========================================
+   BUSCADOR
+========================================= */
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        function() {
+            const texto =
+                this.value
+                    .toLowerCase()
+                    .trim();
+            const elementos =
+                document.querySelectorAll(
+                    ".card, .media-card"
+                );
+            elementos.forEach(function(elemento) {
+                const contenido =
+                    elemento.innerText
+                        .toLowerCase();
+                if (
+                    contenido.includes(texto)
+                ) {
+                    elemento.style.display =
+                        "block";
+                } else {
+                    elemento.style.display =
+                        "none";
+                }
+            });
+        }
+    );
+/* =========================================
+   UBICACIÓN
+========================================= */
+function detectarUbicacion() {
+    const nombre =
+        document.getElementById(
+            "locationName"
+        );
+    const info =
+        document.getElementById(
+            "locationInfo"
+        );
+    const mapa =
+        document.getElementById(
+            "mapLocation"
+        );
+    if (!navigator.geolocation) {
+        nombre.textContent =
+            "Ubicación no disponible";
+        info.textContent =
+            "Tu navegador no permite detectar la ubicación.";
+        mapa.textContent =
+            "Ubicación no disponible";
+        return;
+    }
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            const lat =
+                position.coords.latitude;
+            const lon =
+                position.coords.longitude;
+            localStorage.setItem(
+                "ducattoLatitud",
+                lat
+            );
+            localStorage.setItem(
+                "ducattoLongitud",
+                lon
+            );
+            nombre.textContent =
+                "📍 Ubicación detectada";
+            info.textContent =
+                "Buscando tu zona...";
+            mapa.textContent =
+                "📍 Ubicación detectada";
+            obtenerCiudad(
+                lat,
+                lon
+            );
+        },
+        function() {
+            nombre.textContent =
+                "Ubicación no permitida";
+            info.textContent =
+                "Puedes permitir la ubicación desde los ajustes del navegador.";
+            mapa.textContent =
+                "Activa la ubicación para buscar tu zona.";
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 300000
+        }
+    );
+}
+/* =========================================
+   CIUDAD
+========================================= */
+function obtenerCiudad(lat, lon) {
+    const url =
+        "https://nominatim.openstreetmap.org/reverse" +
+        "?format=json" +
+        "&lat=" +
+        encodeURIComponent(lat) +
+        "&lon=" +
+        encodeURIComponent(lon) +
+        "&zoom=10" +
+        "&addressdetails=1";
+    fetch(url)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error(
+                    "Error de ubicación"
+                );
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            const address =
+                data.address || {};
+            const ciudad =
+                address.city ||
+                address.town ||
+                address.village ||
+                address.municipality ||
+                address.county ||
+                "Tu zona";
+            const provincia =
+                address.state || "";
+            const texto =
+                provincia
+                    ? ciudad + ", " + provincia
+                    : ciudad;
+            document.getElementById(
+                "locationName"
+            ).textContent =
+                "📍 " + texto;
+            document.getElementById(
+                "mapLocation"
+            ).textContent =
+                "📍 " + texto;
+            document.getElementById(
+                "locationInfo"
+            ).textContent =
+                "Ducatto está usando tu zona para preparar recomendaciones.";
+            localStorage.setItem(
+                "ducattoCiudad",
+                ciudad
+            );
+            localStorage.setItem(
+                "ducattoProvincia",
+                provincia
+            );
+        })
+        .catch(function() {
+            document.getElementById(
+                "locationName"
+            ).textContent =
+                "📍 Tu zona";
+            document.getElementById(
+                "mapLocation"
+            ).textContent =
+                "📍 Tu ubicación";
+        });
+}
+/* =========================================
+   AGENDA
+========================================= */
+function abrirAgenda() {
+    if (!esPremium) {
+        alert(
+            "⭐ La agenda Premium estará disponible para usuarios Premium."
+        );
+        irAPremium();
+        return;
+    }
+    alert(
+        "📅 Agenda Premium desbloqueada."
+    );
+}
+/* =========================================
+   PLANES
+========================================= */
+function verPlan(tipo) {
+    const ciudad =
+        localStorage.getItem(
+            "ducattoCiudad"
+        ) || "tu zona";
+    alert(
+        "📍 " +
+        tipo +
+        "\n\n" +
+        "Buscando opciones en " +
+        ciudad +
+        "."
+    );
+}
+/* =========================================
+   FAVORITOS
+========================================= */
+function abrirFavoritos() {
+    alert(
+        "⭐ Los favoritos estarán disponibles próximamente."
+    );
+}
+/* =========================================
+   PERFIL
+========================================= */
+function mostrarPerfil() {
+    if (!usuarioActual) {
+        window.location.href =
+            "login.html";
+        return;
+    }
+    const estado =
+        esPremium
+            ? "⭐ Premium activo"
+            : "Cuenta normal";
+    alert(
+        "👤 Usuario: " +
+        usuarioActual +
+        "\n\n" +
+        estado
+    );
+}
+/* =========================================
+   BUSCADOR
+========================================= */
+function enfocarBuscador() {
+    const buscador =
+        document.getElementById(
+            "search"
+        );
+    buscador.focus();
+    window.scrollTo({
+        top:
+            buscador.offsetTop - 100,
+        behavior:
+            "smooth"
+    });
+}
+/* =========================================
+   INICIAR
+========================================= */
+detectarUbicacion();
+</script>
+</body>
+</html>
