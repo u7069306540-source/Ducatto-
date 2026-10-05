@@ -9,3 +9,6 @@ const usuariosPremium = [
 function tienePremium(usuario) {
     return usuariosPremium.includes(usuario);
 }
+const usuariosPremium = [
+    "nombreDelUsuario"
+];
