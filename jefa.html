@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<title>Ducatto - Modo Jefa</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+}
+.container {
+    max-width: 650px;
+    margin: 30px auto;
+}
+.logo {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #00FFB4;
+    text-shadow: 0 0 15px #00FFB4;
+    margin-bottom: 25px;
+}
+.panel {
+    background: #181818;
+    border: 1px solid #00FFB4;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow:
+        0 0 30px rgba(0,255,180,.2);
+}
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.subtitulo {
+    text-align: center;
+    color: #aaa;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+.estado {
+    text-align: center;
+    background: #202020;
+    border-radius: 15px;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid #00FFB4;
+}
+.estado strong {
+    display: block;
+    color: #00FFB4;
+    font-size: 22px;
+    margin-bottom: 7px;
+}
+.cuenta {
+    background: #202020;
+    border-radius: 15px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+.cuenta span {
+    color: #00FFB4;
+    font-weight: bold;
+}
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #00FFB4;
+    background: #121212;
+    color: #00FFB4;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+button:hover {
+    background: #00FFB4;
+    color: #121212;
+    box-shadow: 0 0 18px #00FFB4;
+}
+.funciones {
+    margin-top: 25px;
+}
+.funcion {
+    background: #202020;
+    border-radius: 15px;
+    padding: 18px;
+    margin-top: 12px;
+    border: 1px solid #292929;
+}
+.funcion h3 {
+    margin-bottom: 7px;
+}
+.funcion p {
+    color: #aaa;
+    line-height: 1.4;
+}
+.aviso {
+    margin-top: 25px;
+    padding: 15px;
+    background: #252525;
+    border-radius: 12px;
+    color: #888;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        Ducatto
+    </div>
+    <div class="panel">
+        <h1>
+            👑 Modo Jefa
+        </h1>
+        <p class="subtitulo">
+            Esta página sirve para probar cómo se ve
+            Ducatto con Premium activado.
+        </p>
+        <div class="estado">
+            <strong>
+                ⭐ PREMIUM ACTIVO
+            </strong>
+            Tu cuenta está viendo la versión
+            Premium de prueba.
+        </div>
+        <div class="cuenta">
+            👤 Cuenta:
+            <span id="usuario">
+                Cargando...
+            </span>
+        </div>
+        <button onclick="entrarDucatto()">
+            🚀 Entrar en Ducatto
+        </button>
+        <button onclick="verPremium()">
+            ⭐ Ver Premium
+        </button>
+        <div class="funciones">
+            <div class="funcion">
+                <h3>
+                    📍 Ubicaciones Premium
+                </h3>
+                <p>
+                    Puedes comprobar cómo se muestran
+                    las funciones exclusivas de ubicación.
+                </p>
+            </div>
+            <div class="funcion">
+                <h3>
+                    🤫 Sitios tranquilos
+                </h3>
+                <p>
+                    Acceso de prueba a las funciones
+                    Premium de Ducatto.
+                </p>
+            </div>
+            <div class="funcion">
+                <h3>
+                    📅 Agenda Premium
+                </h3>
+                <p>
+                    Prueba la zona de agenda exclusiva.
+                </p>
+            </div>
+            <div class="funcion">
+                <h3>
+                    📚 Libros Premium
+                </h3>
+                <p>
+                    Comprueba cómo quedará el contenido
+                    Premium de libros.
+                </p>
+            </div>
+            <div class="funcion">
+                <h3>
+                    📺 Series Premium
+                </h3>
+                <p>
+                    Comprueba la sección Premium
+                    de series.
+                </p>
+            </div>
+        </div>
+        <div class="aviso">
+            👑 Esta página es solamente para pruebas
+            de la propietaria de Ducatto.
+            No la utilices como sistema de pago.
+        </div>
+    </div>
+</div>
+<script>
+/*
+=========================================
+   MODO JEFA
+=========================================
+*/
+const usuario =
+    localStorage.getItem(
+        "ducattoUsuario"
+    );
+const elemento =
+    document.getElementById(
+        "usuario"
+    );
+if (usuario) {
+    elemento.textContent =
+        usuario;
+} else {
+    elemento.textContent =
+        "Cuenta de prueba";
+}
+/*
+=========================================
+   ENTRAR EN DUCATTO
+=========================================
+*/
+function entrarDucatto() {
+    window.location.href =
+        "index.html";
+}
+/*
+=========================================
+   VER PREMIUM
+=========================================
+*/
+function verPremium() {
+    window.location.href =
+        "premium.html";
+}
+</script>
+</body>
+</html>
