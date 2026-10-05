@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DUCATTO</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0b0b12;
+  color:#fff
+}
+header{
+  padding:18px;
+  background:#151522;
+  border-bottom:1px solid #29293a;
+  position:sticky;
+  top:0;
+  z-index:10
+}
+.logo{font-size:26px;font-weight:bold}
+.badge{
+  display:inline-block;
+  margin-top:8px;
+  padding:6px 10px;
+  border-radius:20px;
+  background:#e5b84b;
+  color:#111;
+  font-size:12px;
+  font-weight:bold
+}
+main{padding:20px;max-width:900px;margin:auto}
+.view{display:none}
+.view.active{display:block}
+.hero{
+  background:linear-gradient(135deg,#2c2140,#171725);
+  padding:22px;
+  border-radius:18px;
+  margin-bottom:20px
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px
+}
+.card{
+  background:#171722;
+  border:1px solid #29293a;
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:12px
+}
+.tile{
+  min-height:120px;
+  cursor:pointer
+}
+.icon{font-size:32px;margin-bottom:10px}
+.card p{color:#aaa}
+button{
+  border:0;
+  border-radius:10px;
+  padding:11px 15px;
+  cursor:pointer;
+  font-weight:bold
+}
+.primary{background:#e5b84b;color:#111}
+.secondary{background:#29293a;color:white}
+.back{margin-bottom:18px}
+input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #333344;
+  background:#11111a;
+  color:#fff;
+  margin:7px 0
+}
+.user{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap
+}
+.status{
+  padding:5px 8px;
+  border-radius:15px;
+  font-size:12px
+}
+.on{background:#214d32}
+.off{background:#512626}
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#151522;
+  border-top:1px solid #29293a;
+  display:flex;
+  justify-content:space-around;
+  padding:9px;
+  z-index:20
+}
+nav button{
+  background:none;
+  color:#aaa;
+  padding:5px
+}
+nav span{display:block;font-size:20px}
+.notice{
+  padding:13px;
+  background:#20202d;
+  border-radius:12px;
+  margin-bottom:15px;
+  color:#ccc
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">DUCATTO</div>
+  <div id="estado" class="badge">👑 JEFA · PREMIUM ACTIVO</div>
+</header>
+<main>
+<section id="inicio" class="view active">
+  <div class="hero">
+    <h1>Bienvenida a DUCATTO</h1>
+    <p>Tu espacio de entretenimiento, agenda y lugares.</p>
+  </div>
+  <div class="grid">
+    <div class="card tile" onclick="abrirPremium('peliculas')">
+      <div class="icon">🎬</div>
+      <h3>Películas</h3>
+      <p>Contenido Premium</p>
+    </div>
+    <div class="card tile" onclick="abrirPremium('series')">
+      <div class="icon">📺</div>
+      <h3>Series</h3>
+      <p>Contenido Premium</p>
+    </div>
+    <div class="card tile" onclick="abrirPremium('libros')">
+      <div class="icon">📚</div>
+      <h3>Libros</h3>
+      <p>Biblioteca</p>
+    </div>
+    <div class="card tile" onclick="abrirPremium('ubicaciones')">
+      <div class="icon">📍</div>
+      <h3>Ubicaciones</h3>
+      <p>Lugares y mapas</p>
+    </div>
+    <div class="card tile" onclick="abrir('agenda')">
+      <div class="icon">📅</div>
+      <h3>Agenda</h3>
+      <p>Organiza tus eventos</p>
+    </div>
+    <div class="card tile" onclick="abrir('perfil')">
+      <div class="icon">👤</div>
+      <h3>Perfil</h3>
+      <p>Cuenta y Premium</p>
+    </div>
+  </div>
+</section>
+<section id="peliculas" class="view">
+  <button class="secondary back" onclick="inicio()">← Volver</button>
+  <h2>🎬 Películas</h2>
+  <div class="notice">
+    Esta sección está preparada para conectar un catálogo autorizado.
+  </div>
+  <div class="card">
+    <h3>Catálogo DUCATTO</h3>
+    <p>Aquí aparecerán las películas disponibles cuando conectes tu fuente de contenido.</p>
+  </div>
+</section>
+<section id="series" class="view">
+  <button class="secondary back" onclick="inicio()">← Volver</button>
+  <h2>📺 Series</h2>
+  <div class="notice">
+    Esta sección está preparada para conectar un catálogo autorizado.
+  </div>
+  <div class="card">
+    <h3>Series DUCATTO</h3>
+    <p>Aquí aparecerán las series disponibles.</p>
+  </div>
+</section>
+<section id="libros" class="view">
+  <button class="secondary back" onclick="inicio()">← Volver</button>
+  <h2>📚 Libros</h2>
+  <input id="busquedaLibro" placeholder="Busca un libro...">
+  <button class="primary" onclick="buscarLibro()">
+    Buscar
+  </button>
+  <div id="resultadosLibro"></div>
+</section>
+<section id="ubicaciones" class="view">
+  <button class="secondary back" onclick="inicio()">← Volver</button>
+  <h2>📍 Ubicaciones</h2>
+  <div class="card">
+    <h3>Buscar lugar</h3>
+    <input id="lugar" placeholder="Ej.: Fuengirola">
+    <button class="primary" onclick="buscarLugar()">
+      Abrir mapa
+    </button>
+    <div id="resultadoLugar"></div>
+  </div>
+</section>
+<section id="agenda" class="view">
+  <button class="secondary back" onclick="inicio()">← Volver</button>
+  <h2>📅 Agenda</h2>
+  <div class="card">
+    <input id="evento" placeholder="Nuevo evento">
+    <button class="primary" onclick="guardarEvento()">
+      Guardar
+    </button>
+  </div>
+  <div id="listaAgenda"></div>
+</section>
+<section id="perfil" class="view">
+  <button class="secondary back" onclick="inicio()">← Volver</button>
+  <h2>👤 Perfil</h2>
+  <div class="card">
+    <h3>👑 Jefa</h3>
+    <p>Estado: <strong>Premium activo</strong></p>
+  </div>
+  <div class="card">
+    <h3>🛠️ Panel de Jefa</h3>
+    <p>Modo demostración para administrar usuarios.</p>
+    <input id="nuevoUsuario" placeholder="Nombre del usuario">
+    <button class="primary" onclick="crearUsuario()">
+      Añadir usuario
+    </button>
+  </div>
+  <div id="usuarios"></div>
+</section>
+</main>
+<nav>
+  <button onclick="inicio()">
+    <span>🏠</span>Inicio
+  </button>
+  <button onclick="abrir('peliculas')">
+    <span>🎬</span>Películas
+  </button>
+  <button onclick="abrir('series')">
+    <span>📺</span>Series
+  </button>
+  <button onclick="abrir('libros')">
+    <span>📚</span>Libros
+  </button>
+  <button onclick="abrir('perfil')">
+    <span>👤</span>Perfil
+  </button>
+</nav>
+<script>
+const JEFA = true;
+let usuarios =
+  JSON.parse(localStorage.getItem("ducattoUsuarios") || "[]");
+let agenda =
+  JSON.parse(localStorage.getItem("ducattoAgenda") || "[]");
+function abrir(id){
+  document.querySelectorAll(".view")
+    .forEach(v => v.classList.remove("active"));
+  document.getElementById(id)
+    .classList.add("active");
+  window.scrollTo(0,0);
+}
+function inicio(){
+  abrir("inicio");
+}
+function abrirPremium(id){
+  if(!JEFA){
+    alert("🔒 Esta función requiere Premium.");
+    return;
+  }
+  abrir(id);
+}
+async function buscarLibro(){
+  const texto =
+    document.getElementById("busquedaLibro").value.trim();
+  const resultado =
+    document.getElementById("resultadosLibro");
+  if(!texto){
+    resultado.innerHTML =
+      "<div class='card'>Escribe un libro para buscar.</div>";
+    return;
+  }
+  resultado.innerHTML =
+    "<div class='card'>🔎 Buscando...</div>";
+  try{
+    const url =
+      "https://openlibrary.org/search.json?q=" +
+      encodeURIComponent(texto) +
+      "&limit=8";
+    const respuesta = await fetch(url);
+    const datos = await respuesta.json();
+    resultado.innerHTML = "";
+    datos.docs.forEach(libro => {
+      const div =
+        document.createElement("div");
+      div.className = "card";
+      const titulo =
+        libro.title || "Sin título";
+      const autor =
+        libro.author_name
+        ? libro.author_name.join(", ")
+        : "Autor desconocido";
+      div.innerHTML =
+        "<h3>" + escapar(titulo) + "</h3>" +
+        "<p>" + escapar(autor) + "</p>";
+      resultado.appendChild(div);
+    });
+  }catch(e){
+    resultado.innerHTML =
+      "<div class='card'>No se pudo cargar la búsqueda.</div>";
+  }
+}
+function buscarLugar(){
+  const lugar =
+    document.getElementById("lugar").value.trim();
+  if(!lugar) return;
+  const url =
+    "https://www.openstreetmap.org/search?query=" +
+    encodeURIComponent(lugar);
+  document.getElementById("resultadoLugar").innerHTML =
+    "<div class='card'>" +
+    "<h3>📍 " + escapar(lugar) + "</h3>" +
+    "<a href='" + url +
+    "' target='_blank' style='color:#e5b84b'>" +
+    "Abrir ubicación →</a>" +
+    "</div>";
+}
+function guardarEvento(){
+  const input =
+    document.getElementById("evento");
+  const texto =
+    input.value.trim();
+  if(!texto) return;
+  agenda.push(texto);
+  localStorage.setItem(
+    "ducattoAgenda",
+    JSON.stringify(agenda)
+  );
+  input.value = "";
+  mostrarAgenda();
+}
+function mostrarAgenda(){
+  const lista =
+    document.getElementById("listaAgenda");
+  lista.innerHTML = "";
+  agenda.forEach((evento,i) => {
+    lista.innerHTML +=
+      "<div class='card'>" +
+      "📅 " + escapar(evento) +
+      " <button class='secondary' " +
+      "onclick='borrarEvento(" + i + ")'>" +
+      "Borrar</button></div>";
+  });
+}
+function borrarEvento(i){
+  agenda.splice(i,1);
+  localStorage.setItem(
+    "ducattoAgenda",
+    JSON.stringify(agenda)
+  );
+  mostrarAgenda();
+}
+function crearUsuario(){
+  const input =
+    document.getElementById("nuevoUsuario");
+  const nombre =
+    input.value.trim();
+  if(!nombre) return;
+  usuarios.push({
+    nombre:nombre,
+    premium:false
+  });
+  localStorage.setItem(
+    "ducattoUsuarios",
+    JSON.stringify(usuarios)
+  );
+  input.value="";
+  mostrarUsuarios();
+}
+function cambiarPremium(i){
+  usuarios[i].premium =
+    !usuarios[i].premium;
+  localStorage.setItem(
+    "ducattoUsuarios",
+    JSON.stringify(usuarios)
+  );
+  mostrarUsuarios();
+}
+function eliminarUsuario(i){
+  usuarios.splice(i,1);
+  localStorage.setItem(
+    "ducattoUsuarios",
+    JSON.stringify(usuarios)
+  );
+  mostrarUsuarios();
+}
+function mostrarUsuarios(){
+  const contenedor =
+    document.getElementById("usuarios");
+  contenedor.innerHTML =
+    "<h3>Usuarios</h3>";
+  usuarios.forEach((u,i) => {
+    contenedor.innerHTML +=
+      "<div class='card user'>" +
+      "<div>" +
+      "<strong>" +
+      escapar(u.nombre) +
+      "</strong><br>" +
+      "<span class='status " +
+      (u.premium ? "on" : "off") +
+      "'>" +
+      (u.premium
+        ? "PREMIUM ACTIVO"
+        : "SIN PREMIUM") +
+      "</span>" +
+      "</div>" +
+      "<div>" +
+      "<button class='primary' " +
+      "onclick='cambiarPremium(" + i + ")'>" +
+      (u.premium
+        ? "Quitar Premium"
+        : "Dar Premium") +
+      "</button> " +
+      "<button class='secondary' " +
+      "onclick='eliminarUsuario(" + i + ")'>" +
+      "Eliminar" +
+      "</button>" +
+      "</div>" +
+      "</div>";
+  });
+}
+function escapar(texto){
+  return String(texto)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+mostrarAgenda();
+mostrarUsuarios();
+</script>
+</body>
+</html>
