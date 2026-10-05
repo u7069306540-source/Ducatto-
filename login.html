@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ducatto - Iniciar sesión</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-box {
+    width: 90%;
+    max-width: 420px;
+    background: #181818;
+    border: 1px solid #00FFB4;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(0,255,180,.2);
+}
+.logo {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #00FFB4;
+    margin-bottom: 25px;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 25px;
+}
+input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    background: #222;
+    color: white;
+    font-size: 16px;
+}
+button {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #00FFB4;
+    border-radius: 12px;
+    background: #121212;
+    color: #00FFB4;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background: #00FFB4;
+    color: #121212;
+}
+#mensaje {
+    text-align: center;
+    margin-top: 15px;
+    color: #aaa;
+}
+</style>
+</head>
+<body>
+<div class="login-box">
+<div class="logo">Ducatto</div>
+<h1>Crear cuenta</h1>
+<p class="subtitle">
+    Crea tu cuenta para acceder a Ducatto Premium.
+</p>
+<input
+    type="email"
+    id="email"
+    placeholder="Tu correo electrónico"
+>
+<input
+    type="password"
+    id="password"
+    placeholder="Contraseña"
+>
+<button onclick="crearCuenta()">
+    Crear cuenta
+</button>
+<p id="mensaje"></p>
+</div>
+<script>
+function crearCuenta() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const mensaje = document.getElementById("mensaje");
+    if (!email || !password) {
+        mensaje.textContent = "Completa todos los campos.";
+        return;
+    }
+    mensaje.textContent =
+        "La conexión de cuentas se activará en el siguiente paso.";
+}
+</script>
+</body>
+</html>
