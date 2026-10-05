@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<title>Ducatto - Administración</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+}
+.logo {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #00FFB4;
+    text-shadow:
+        0 0 15px #00FFB4;
+    margin-bottom: 30px;
+}
+.panel {
+    background: #181818;
+    border: 1px solid #00FFB4;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow:
+        0 0 25px rgba(0,255,180,.15);
+}
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.descripcion {
+    text-align: center;
+    color: #aaa;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 12px;
+}
+input:focus {
+    border-color: #00FFB4;
+}
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #00FFB4;
+    background: #121212;
+    color: #00FFB4;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+button:hover {
+    background: #00FFB4;
+    color: #121212;
+}
+.danger {
+    border-color: #ff5555;
+    color: #ff5555;
+}
+.danger:hover {
+    background: #ff5555;
+    color: white;
+}
+#mensaje {
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.5;
+    color: #00FFB4;
+}
+.lista {
+    margin-top: 30px;
+}
+.lista h2 {
+    margin-bottom: 15px;
+}
+.usuario {
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.usuario span {
+    color: #00FFB4;
+    font-weight: bold;
+    word-break: break-word;
+}
+.vacio {
+    color: #777;
+    text-align: center;
+}
+.volver {
+    margin-top: 20px;
+    text-align: center;
+}
+.volver a {
+    color: #00FFB4;
+    text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        Ducatto
+    </div>
+    <div class="panel">
+        <h1>
+            🔐 Administración
+        </h1>
+        <p class="descripcion">
+            Comprueba primero el Bizum recibido
+            y después activa Premium para el
+            usuario correspondiente.
+        </p>
+        <input
+            type="text"
+            id="usuario"
+            placeholder="Nombre de usuario"
+            maxlength="30"
+        >
+        <button onclick="activarPremium()">
+            ✅ Activar Premium
+        </button>
+        <button
+            class="danger"
+            onclick="desactivarPremium()"
+        >
+            ❌ Desactivar Premium
+        </button>
+        <p id="mensaje"></p>
+        <div class="lista">
+            <h2>
+                ⭐ Usuarios Premium
+            </h2>
+            <div id="listaUsuarios">
+                <p class="vacio">
+                    No hay usuarios Premium.
+                </p>
+            </div>
+        </div>
+        <div class="volver">
+            <a href="index.html">
+                ← Volver a Ducatto
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+/*
+=========================================
+  ADMINISTRACIÓN PREMIUM
+=========================================
+*/
+function obtenerUsuarios() {
+    const guardados =
+        localStorage.getItem(
+            "ducattoUsuariosPremium"
+        );
+    if (!guardados) {
+        return [];
+    }
+    try {
+        return JSON.parse(guardados);
+    } catch (error) {
+        return [];
+    }
+}
+function guardarUsuarios(usuarios) {
+    localStorage.setItem(
+        "ducattoUsuariosPremium",
+        JSON.stringify(usuarios)
+    );
+}
+function activarPremium() {
+    const input =
+        document.getElementById(
+            "usuario"
+        );
+    const mensaje =
+        document.getElementById(
+            "mensaje"
+        );
+    const usuario =
+        input.value.trim();
+    if (!usuario) {
+        mensaje.textContent =
+            "Escribe el nombre de usuario.";
+        return;
+    }
+    let usuarios =
+        obtenerUsuarios();
+    if (
+        usuarios.includes(usuario)
+    ) {
+        mensaje.textContent =
+            "⭐ Ese usuario ya tiene Premium.";
+        mostrarUsuarios();
+        return;
+    }
+    usuarios.push(usuario);
+    guardarUsuarios(usuarios);
+    mensaje.textContent =
+        "✅ Premium activado para " +
+        usuario;
+    input.value = "";
+    mostrarUsuarios();
+}
+function desactivarPremium() {
+    const input =
+        document.getElementById(
+            "usuario"
+        );
+    const mensaje =
+        document.getElementById(
+            "mensaje"
+        );
+    const usuario =
+        input.value.trim();
+    if (!usuario) {
+        mensaje.textContent =
+            "Escribe el nombre de usuario.";
+        return;
+    }
+    let usuarios =
+        obtenerUsuarios();
+    const nuevosUsuarios =
+        usuarios.filter(function(nombre) {
+            return nombre !== usuario;
+        });
+    if (
+        nuevosUsuarios.length ===
+        usuarios.length
+    ) {
+        mensaje.textContent =
+            "Ese usuario no tiene Premium.";
+        return;
+    }
+    guardarUsuarios(
+        nuevosUsuarios
+    );
+    mensaje.textContent =
+        "❌ Premium desactivado para " +
+        usuario;
+    input.value = "";
+    mostrarUsuarios();
+}
+function mostrarUsuarios() {
+    const contenedor =
+        document.getElementById(
+            "listaUsuarios"
+        );
+    const usuarios =
+        obtenerUsuarios();
+    if (usuarios.length === 0) {
+        contenedor.innerHTML =
+            '<p class="vacio">No hay usuarios Premium.</p>';
+        return;
+    }
+    contenedor.innerHTML = "";
+    usuarios.forEach(function(usuario) {
+        const elemento =
+            document.createElement(
+                "div"
+            );
+        elemento.className =
+            "usuario";
+        elemento.innerHTML =
+            "<span>⭐ " +
+            escaparHTML(usuario) +
+            "</span>" +
+            "<button " +
+            "class='danger' " +
+            "style='width:auto; margin:0;' " +
+            "onclick=\"eliminarUsuario('" +
+            escaparAtributo(usuario) +
+            "')\">" +
+            "Eliminar" +
+            "</button>";
+        contenedor.appendChild(
+            elemento
+        );
+    });
+}
+function eliminarUsuario(usuario) {
+    if (
+        !confirm(
+            "¿Seguro que quieres quitar Premium a " +
+            usuario +
+            "?"
+        )
+    ) {
+        return;
+    }
+    let usuarios =
+        obtenerUsuarios();
+    usuarios =
+        usuarios.filter(function(nombre) {
+            return nombre !== usuario;
+        });
+    guardarUsuarios(usuarios);
+    document.getElementById(
+        "mensaje"
+    ).textContent =
+        "❌ Premium eliminado para " +
+        usuario;
+    mostrarUsuarios();
+}
+function escaparHTML(texto) {
+    return texto
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+function escaparAtributo(texto) {
+    return texto
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
+}
+mostrarUsuarios();
+</script>
+</body>
+</html>
