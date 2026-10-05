@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ducatto Premium</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+}
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.logo {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #00FFB4;
+    text-shadow: 0 0 15px #00FFB4;
+    margin-bottom: 30px;
+}
+.box {
+    background: #181818;
+    border: 1px solid #00FFB4;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 0 25px rgba(0,255,180,.15);
+}
+h1 {
+    text-align: center;
+    color: #00FFB4;
+    margin-bottom: 10px;
+}
+.subtitle {
+    text-align: center;
+    color: #aaa;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+.price {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+.features {
+    margin: 20px 0;
+}
+.feature {
+    background: #202020;
+    border-radius: 12px;
+    padding: 13px;
+    margin-bottom: 10px;
+}
+.bizum {
+    margin-top: 25px;
+    padding: 20px;
+    background: #202020;
+    border-radius: 16px;
+    text-align: center;
+}
+.bizum-title {
+    color: #00FFB4;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.bizum-number {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+    letter-spacing: 1px;
+}
+.warning {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+.user-box {
+    margin-top: 20px;
+}
+label {
+    display: block;
+    color: #aaa;
+    margin-bottom: 8px;
+}
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+input:focus {
+    border-color: #00FFB4;
+}
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border: 1px solid #00FFB4;
+    border-radius: 12px;
+    background: #121212;
+    color: #00FFB4;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background: #00FFB4;
+    color: #121212;
+    box-shadow: 0 0 18px #00FFB4;
+}
+.back {
+    text-align: center;
+    margin-top: 20px;
+}
+.back a {
+    color: #00FFB4;
+    text-decoration: none;
+}
+#mensaje {
+    text-align: center;
+    margin-top: 15px;
+    color: #aaa;
+    line-height: 1.5;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        Ducatto
+    </div>
+    <div class="box">
+        <h1>
+            ⭐ Ducatto Premium
+        </h1>
+        <p class="subtitle">
+            Desbloquea las funciones exclusivas
+            de Ducatto.
+        </p>
+        <div class="price">
+            7,99 € / mes
+        </div>
+        <div class="features">
+            <div class="feature">
+                📍 Ubicaciones Premium
+            </div>
+            <div class="feature">
+                🤫 Sitios tranquilos
+            </div>
+            <div class="feature">
+                📅 Funciones Premium de agenda
+            </div>
+            <div class="feature">
+                ⭐ Herramientas exclusivas
+            </div>
+        </div>
+        <div class="bizum">
+            <div class="bizum-title">
+                💚 Pagar con Bizum
+            </div>
+            <p>
+                Realiza un Bizum de
+                <strong>7,99 €</strong>
+                al número indicado:
+            </p>
+            <div class="bizum-number">
+                TU_NUMERO_BIZUM
+            </div>
+            <p class="warning">
+                Después de realizar el pago,
+                introduce tu nombre de usuario
+                de Ducatto para poder identificar
+                tu solicitud.
+            </p>
+        </div>
+        <div class="user-box">
+            <label for="usuario">
+                Tu nombre de usuario de Ducatto
+            </label>
+            <input
+                type="text"
+                id="usuario"
+                placeholder="Ejemplo: usuario123"
+                maxlength="30"
+            >
+            <button onclick="avisarPago()">
+                He realizado el pago
+            </button>
+            <p id="mensaje"></p>
+        </div>
+    </div>
+    <div class="back">
+        <a href="index.html">
+            ← Volver a Ducatto
+        </a>
+    </div>
+</div>
+<script>
+function avisarPago() {
+    const usuario =
+        document.getElementById("usuario")
+        .value
+        .trim();
+    const mensaje =
+        document.getElementById("mensaje");
+    if (!usuario) {
+        mensaje.textContent =
+            "Escribe tu nombre de usuario.";
+        return;
+    }
+    localStorage.setItem(
+        "ducattoSolicitudPremium",
+        usuario
+    );
+    mensaje.textContent =
+        "Solicitud registrada. El Premium se activará después de comprobar el pago.";
+}
+</script>
+</body>
+</html>
