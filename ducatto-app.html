@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DUCATTO — Premium</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b12;
+      color: white;
+      min-height: 100vh;
+    }
+    header {
+      padding: 18px;
+      background: #151522;
+      border-bottom: 1px solid #29293a;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .premium {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #e5b84b;
+      color: #111;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    main {
+      padding: 20px;
+      padding-bottom: 100px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #29203d, #171725);
+      padding: 22px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      margin-bottom: 8px;
+    }
+    .hero p {
+      color: #bbb;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .card {
+      background: #171722;
+      border: 1px solid #29293a;
+      border-radius: 16px;
+      padding: 20px;
+      min-height: 120px;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    .icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      margin-bottom: 6px;
+    }
+    .card p {
+      color: #999;
+      font-size: 13px;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+    .back {
+      border: 0;
+      background: #29293a;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      cursor: pointer;
+    }
+    .item {
+      background: #171722;
+      border: 1px solid #29293a;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .item h3 {
+      margin-bottom: 5px;
+    }
+    .item p {
+      color: #aaa;
+      font-size: 14px;
+    }
+    .map {
+      height: 280px;
+      background:
+        linear-gradient(45deg, #1a1a25 25%, transparent 25%),
+        linear-gradient(-45deg, #1a1a25 25%, transparent 25%),
+        #101018;
+      background-size: 40px 40px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #151522;
+      border-top: 1px solid #29293a;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      z-index: 20;
+    }
+    nav button {
+      background: none;
+      border: 0;
+      color: #aaa;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    nav button span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+    .active-nav {
+      color: #e5b84b !important;
+    }
+    .profile {
+      text-align: center;
+      padding: 25px;
+      background: #171722;
+      border-radius: 18px;
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+      margin: auto auto 15px;
+      border-radius: 50%;
+      background: #e5b84b;
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 35px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">DUCATTO</div>
+  <div class="premium">👑 JEFA · PREMIUM ACTIVO</div>
+</header>
+<main>
+  <!-- INICIO -->
+  <section id="inicio" class="section active">
+    <div class="hero">
+      <h1>Bienvenida a DUCATTO</h1>
+      <p>Tu espacio personal de entretenimiento, agenda y lugares.</p>
+    </div>
+    <div class="grid">
+      <div class="card" onclick="openSection('peliculas')">
+        <div class="icon">🎬</div>
+        <h3>Películas</h3>
+        <p>Tu sección de películas.</p>
+      </div>
+      <div class="card" onclick="openSection('series')">
+        <div class="icon">📺</div>
+        <h3>Series</h3>
+        <p>Tu sección de series.</p>
+      </div>
+      <div class="card" onclick="openSection('libros')">
+        <div class="icon">📚</div>
+        <h3>Libros</h3>
+        <p>Tu biblioteca.</p>
+      </div>
+      <div class="card" onclick="openSection('ubicaciones')">
+        <div class="icon">📍</div>
+        <h3>Ubicaciones</h3>
+        <p>Consulta tus lugares.</p>
+      </div>
+      <div class="card" onclick="openSection('agenda')">
+        <div class="icon">📅</div>
+        <h3>Agenda</h3>
+        <p>Organiza tus cosas.</p>
+      </div>
+      <div class="card" onclick="openSection('perfil')">
+        <div class="icon">👤</div>
+        <h3>Perfil</h3>
+        <p>Tu cuenta DUCATTO.</p>
+      </div>
+    </div>
+  </section>
+  <!-- PELÍCULAS -->
+  <section id="peliculas" class="section">
+    <button class="back" onclick="goHome()">← Volver</button>
+    <h2>🎬 Películas</h2>
+    <br>
+    <div class="item">
+      <h3>Tu catálogo</h3>
+      <p>Aquí puedes añadir películas que tengas derecho a ofrecer.</p>
+    </div>
+    <div class="item">
+      <h3>Favoritas</h3>
+      <p>Guarda tus películas favoritas.</p>
+    </div>
+  </section>
+  <!-- SERIES -->
+  <section id="series" class="section">
+    <button class="back" onclick="goHome()">← Volver</button>
+    <h2>📺 Series</h2>
+    <br>
+    <div class="item">
+      <h3>Tu catálogo</h3>
+      <p>Aquí puedes añadir tus series y contenido autorizado.</p>
+    </div>
+    <div class="item">
+      <h3>Continuar viendo</h3>
+      <p>Tus series guardadas aparecerán aquí.</p>
+    </div>
+  </section>
+  <!-- LIBROS -->
+  <section id="libros" class="section">
+    <button class="back" onclick="goHome()">← Volver</button>
+    <h2>📚 Libros</h2>
+    <br>
+    <div class="item">
+      <h3>Mi biblioteca</h3>
+      <p>Añade libros de dominio público o contenido que tengas autorizado.</p>
+    </div>
+  </section>
+  <!-- UBICACIONES -->
+  <section id="ubicaciones" class="section">
+    <button class="back" onclick="goHome()">← Volver</button>
+    <h2>📍 Ubicaciones</h2>
+    <br>
+    <div class="map">
+      🗺️<br><br>
+      Aquí puedes integrar posteriormente un mapa real
+      mediante una API de mapas.
+    </div>
+  </section>
+  <!-- AGENDA -->
+  <section id="agenda" class="section">
+    <button class="back" onclick="goHome()">← Volver</button>
+    <h2>📅 Agenda</h2>
+    <br>
+    <div class="item">
+      <h3>Mi agenda</h3>
+      <p id="fecha"></p>
+    </div>
+  </section>
+  <!-- PERFIL -->
+  <section id="perfil" class="section">
+    <button class="back" onclick="goHome()">← Volver</button>
+    <br>
+    <div class="profile">
+      <div class="avatar">👑</div>
+      <h2>Jefa</h2>
+      <br>
+      <div class="premium">
+        PREMIUM ACTIVO
+      </div>
+      <br><br>
+      <p style="color:#aaa;">
+        Acceso administrativo de DUCATTO
+      </p>
+    </div>
+  </section>
+</main>
+<nav>
+  <button class="active-nav" onclick="goHome()">
+    <span>🏠</span>
+    Inicio
+  </button>
+  <button onclick="openSection('peliculas')">
+    <span>🎬</span>
+    Películas
+  </button>
+  <button onclick="openSection('series')">
+    <span>📺</span>
+    Series
+  </button>
+  <button onclick="openSection('libros')">
+    <span>📚</span>
+    Libros
+  </button>
+  <button onclick="openSection('perfil')">
+    <span>👤</span>
+    Perfil
+  </button>
+</nav>
+<script>
+  function openSection(id) {
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.remove('active');
+    });
+    const section = document.getElementById(id);
+    if (section) {
+      section.classList.add('active');
+    }
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+  function goHome() {
+    openSection('inicio');
+  }
+  function actualizarFecha() {
+    const fecha = new Date();
+    document.getElementById('fecha').textContent =
+      fecha.toLocaleDateString('es-ES', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+  }
+  actualizarFecha();
+</script>
+</body>
+</html>
