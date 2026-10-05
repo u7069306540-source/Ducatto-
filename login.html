@@ -3,112 +3,333 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ducatto - Iniciar sesión</title>
+
+<title>Ducatto - Crear cuenta</title>
+
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 body {
     font-family: Arial, sans-serif;
     background: #121212;
     color: white;
+
     min-height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    padding: 20px;
 }
+
 .login-box {
-    width: 90%;
+
+    width: 100%;
     max-width: 420px;
+
     background: #181818;
+
     border: 1px solid #00FFB4;
+
     border-radius: 22px;
+
     padding: 30px;
-    box-shadow: 0 0 30px rgba(0,255,180,.2);
+
+    box-shadow:
+        0 0 30px rgba(0,255,180,.2);
 }
+
 .logo {
+
     text-align: center;
+
     font-size: 30px;
+
     font-weight: bold;
+
     color: #00FFB4;
+
     margin-bottom: 25px;
+
+    text-shadow:
+        0 0 15px #00FFB4;
 }
+
 h1 {
+
     text-align: center;
+
     margin-bottom: 10px;
+
+    font-size: 25px;
 }
+
 .subtitle {
+
     text-align: center;
+
     color: #aaa;
+
     margin-bottom: 25px;
+
+    line-height: 1.5;
 }
+
 input {
+
     width: 100%;
+
     padding: 14px;
+
     margin-bottom: 12px;
+
     border-radius: 12px;
+
     border: 1px solid #333;
+
     background: #222;
+
     color: white;
+
     font-size: 16px;
+
+    outline: none;
 }
+
+input:focus {
+
+    border-color: #00FFB4;
+
+    box-shadow:
+        0 0 10px rgba(0,255,180,.15);
+}
+
 button {
+
     width: 100%;
+
     padding: 14px;
+
     border: 1px solid #00FFB4;
+
     border-radius: 12px;
+
     background: #121212;
+
     color: #00FFB4;
+
     font-size: 16px;
+
     cursor: pointer;
+
+    transition: .2s;
 }
+
 button:hover {
+
     background: #00FFB4;
+
     color: #121212;
+
+    box-shadow:
+        0 0 18px #00FFB4;
 }
+
 #mensaje {
+
     text-align: center;
+
     margin-top: 15px;
+
     color: #aaa;
+
+    line-height: 1.4;
 }
+
+.info {
+
+    margin-top: 20px;
+
+    padding: 14px;
+
+    background: #202020;
+
+    border-radius: 12px;
+
+    color: #888;
+
+    font-size: 13px;
+
+    text-align: center;
+
+    line-height: 1.5;
+}
+
 </style>
 </head>
+
 <body>
+
 <div class="login-box">
-<div class="logo">Ducatto</div>
-<h1>Crear cuenta</h1>
-<p class="subtitle">
-    Crea tu cuenta para acceder a Ducatto Premium.
-</p>
-<input
-    type="email"
-    id="email"
-    placeholder="Tu correo electrónico"
->
-<input
-    type="password"
-    id="password"
-    placeholder="Contraseña"
->
-<button onclick="crearCuenta()">
-    Crear cuenta
-</button>
-<p id="mensaje"></p>
+
+    <div class="logo">
+        Ducatto
+    </div>
+
+    <h1>
+        Crear cuenta
+    </h1>
+
+    <p class="subtitle">
+        Crea tu cuenta para entrar en Ducatto
+        y poder acceder a Premium.
+    </p>
+
+    <input
+        type="text"
+        id="usuario"
+        placeholder="Nombre de usuario"
+        maxlength="30"
+        autocomplete="username"
+    >
+
+    <input
+        type="email"
+        id="email"
+        placeholder="Tu correo electrónico"
+        autocomplete="email"
+    >
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Contraseña"
+        autocomplete="new-password"
+    >
+
+    <button onclick="crearCuenta()">
+        Entrar en Ducatto
+    </button>
+
+    <p id="mensaje"></p>
+
+    <div class="info">
+        Tu nombre de usuario se utilizará para
+        identificar tu cuenta y gestionar las
+        funciones Premium.
+    </div>
+
 </div>
+
+
 <script>
+
 function crearCuenta() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const mensaje = document.getElementById("mensaje");
-    if (!email || !password) {
-        mensaje.textContent = "Completa todos los campos.";
+
+    const usuario =
+        document.getElementById("usuario").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const mensaje =
+        document.getElementById("mensaje");
+
+
+    if (!usuario) {
+
+        mensaje.textContent =
+            "Escribe un nombre de usuario.";
+
         return;
     }
+
+
+    if (!email) {
+
+        mensaje.textContent =
+            "Escribe tu correo electrónico.";
+
+        return;
+    }
+
+
+    if (!email.includes("@")) {
+
+        mensaje.textContent =
+            "Escribe un correo electrónico válido.";
+
+        return;
+    }
+
+
+    if (!password) {
+
+        mensaje.textContent =
+            "Escribe una contraseña.";
+
+        return;
+    }
+
+
+    if (password.length < 6) {
+
+        mensaje.textContent =
+            "La contraseña debe tener al menos 6 caracteres.";
+
+        return;
+    }
+
+
+    /*
+        GUARDAMOS LOS DATOS EN EL NAVEGADOR.
+
+        IMPORTANTE:
+        Esta versión es un prototipo.
+        No es un sistema de cuentas seguro
+        porque Ducatto está funcionando sin servidor.
+    */
+
+    localStorage.setItem(
+        "ducattoUsuario",
+        usuario
+    );
+
+    localStorage.setItem(
+        "ducattoEmail",
+        email
+    );
+
+
+    localStorage.setItem(
+        "ducattoCuentaCreada",
+        "true"
+    );
+
+
     mensaje.textContent =
-        "La conexión de cuentas se activará en el siguiente paso.";
+        "Cuenta creada. Entrando en Ducatto...";
+
+
+    setTimeout(function() {
+
+        window.location.href =
+            "index.html";
+
+    }, 700);
+
 }
+
 </script>
+
 </body>
 </html>
