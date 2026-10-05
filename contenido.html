@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DUCATTO - Contenido</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b12;
+  color: white;
+}
+header {
+  padding: 18px;
+  background: #151522;
+  border-bottom: 1px solid #29293a;
+}
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+.premium {
+  display: inline-block;
+  margin-top: 8px;
+  background: #e5b84b;
+  color: #111;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+main {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+h1, h2 {
+  margin-top: 0;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 15px;
+  cursor: pointer;
+}
+.menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.menu button {
+  background: #191925;
+  color: white;
+  border: 1px solid #2c2c3b;
+  padding: 20px 10px;
+}
+.menu button:hover {
+  background: #272737;
+}
+.panel {
+  display: none;
+}
+.panel.active {
+  display: block;
+}
+.search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.search input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #333344;
+  background: #171722;
+  color: white;
+}
+.search button {
+  background: #e5b84b;
+  color: #111;
+}
+.card {
+  background: #171722;
+  border: 1px solid #29293a;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.card h3 {
+  margin: 0 0 7px;
+}
+.card p {
+  color: #aaa;
+  margin: 5px 0;
+}
+.link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #e5b84b;
+  text-decoration: none;
+}
+.back {
+  background: #29293a;
+  color: white;
+  margin-bottom: 18px;
+}
+.loading {
+  color: #aaa;
+}
+.error {
+  background: #3a2020;
+  padding: 15px;
+  border-radius: 10px;
+}
+.locationBox {
+  background: #171722;
+  border-radius: 15px;
+  padding: 20px;
+}
+.locationBox input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #333344;
+  background: #0e0e16;
+  color: white;
+}
+.locationBox button {
+  background: #e5b84b;
+  color: #111;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">DUCATTO</div>
+  <div class="premium">👑 JEFA · PREMIUM ACTIVO</div>
+</header>
+<main>
+<h1>Tu contenido</h1>
+<div class="menu">
+  <button onclick="mostrar('peliculas')">🎬<br>Películas</button>
+  <button onclick="mostrar('series')">📺<br>Series</button>
+  <button onclick="mostrar('libros')">📚<br>Libros</button>
+  <button onclick="mostrar('ubicaciones')">📍<br>Ubicaciones</button>
+</div>
+<section id="peliculas" class="panel">
+  <button class="back" onclick="inicio()">← Volver</button>
+  <h2>🎬 Películas</h2>
+  <div class="card">
+    <h3>Tu catálogo</h3>
+    <p>Aquí puedes añadir películas que tengas autorizadas para mostrar.</p>
+  </div>
+  <div class="card">
+    <h3>Ejemplo de ficha</h3>
+    <p>La interfaz está preparada para conectar un catálogo autorizado.</p>
+  </div>
+</section>
+<section id="series" class="panel">
+  <button class="back" onclick="inicio()">← Volver</button>
+  <h2>📺 Series</h2>
+  <div class="card">
+    <h3>Tu catálogo</h3>
+    <p>Aquí puedes añadir series que tengas autorizadas para mostrar.</p>
+  </div>
+  <div class="card">
+    <h3>Ejemplo de ficha</h3>
+    <p>La interfaz está preparada para conectar un catálogo autorizado.</p>
+  </div>
+</section>
+<section id="libros" class="panel">
+  <button class="back" onclick="inicio()">← Volver</button>
+  <h2>📚 Libros</h2>
+  <div class="search">
+    <input id="libroBusqueda"
+           placeholder="Busca un libro...">
+    <button onclick="buscarLibros()">
+      Buscar
+    </button>
+  </div>
+  <div id="librosResultados">
+    <p class="loading">
+      Escribe el nombre de un libro para buscarlo.
+    </p>
+  </div>
+</section>
+<section id="ubicaciones" class="panel">
+  <button class="back" onclick="inicio()">← Volver</button>
+  <h2>📍 Ubicaciones</h2>
+  <div class="locationBox">
+    <p>
+      Busca una ciudad, calle o lugar.
+    </p>
+    <input id="lugar"
+           placeholder="Ejemplo: Málaga">
+    <button onclick="buscarLugar()">
+      🔎 Buscar ubicación
+    </button>
+    <br><br>
+    <div id="mapa">
+      <p class="loading">
+        Escribe una ubicación para abrirla en el mapa.
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+<script>
+function ocultarTodo() {
+  document.querySelectorAll(".panel").forEach(panel => {
+    panel.classList.remove("active");
+  });
+}
+function mostrar(id) {
+  ocultarTodo();
+  const panel = document.getElementById(id);
+  if (panel) {
+    panel.classList.add("active");
+  }
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+function inicio() {
+  ocultarTodo();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+/* LIBROS */
+async function buscarLibros() {
+  const texto =
+    document.getElementById("libroBusqueda").value.trim();
+  const resultados =
+    document.getElementById("librosResultados");
+  if (!texto) {
+    resultados.innerHTML =
+      "<p class='error'>Escribe el nombre de un libro.</p>";
+    return;
+  }
+  resultados.innerHTML =
+    "<p class='loading'>Buscando libros...</p>";
+  try {
+    const url =
+      "https://openlibrary.org/search.json?q=" +
+      encodeURIComponent(texto) +
+      "&limit=10";
+    const respuesta = await fetch(url);
+    if (!respuesta.ok) {
+      throw new Error("No se pudo consultar Open Library.");
+    }
+    const datos = await respuesta.json();
+    if (!datos.docs || datos.docs.length === 0) {
+      resultados.innerHTML =
+        "<p class='error'>No encontramos libros con esa búsqueda.</p>";
+      return;
+    }
+    resultados.innerHTML = "";
+    datos.docs.forEach(libro => {
+      const titulo =
+        libro.title || "Sin título";
+      const autor =
+        libro.author_name
+          ? libro.author_name.join(", ")
+          : "Autor desconocido";
+      const año =
+        libro.first_publish_year || "Año desconocido";
+      const key =
+        libro.key || "";
+      const div =
+        document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <h3>${escapeHTML(titulo)}</h3>
+        <p>Autor: ${escapeHTML(autor)}</p>
+        <p>Primera publicación: ${escapeHTML(String(año))}</p>
+        ${
+          key
+          ? `<a class="link"
+                href="https://openlibrary.org${key}"
+                target="_blank"
+                rel="noopener">
+                Ver libro
+             </a>`
+          : ""
+        }
+      `;
+      resultados.appendChild(div);
+    });
+  } catch (error) {
+    resultados.innerHTML =
+      "<p class='error'>" +
+      "No se pudo cargar la biblioteca. " +
+      "Comprueba tu conexión a Internet." +
+      "</p>";
+  }
+}
+/* UBICACIONES */
+function buscarLugar() {
+  const lugar =
+    document.getElementById("lugar").value.trim();
+  const mapa =
+    document.getElementById("mapa");
+  if (!lugar) {
+    mapa.innerHTML =
+      "<p class='error'>Escribe una ubicación.</p>";
+    return;
+  }
+  const url =
+    "https://www.openstreetmap.org/search?query=" +
+    encodeURIComponent(lugar);
+  mapa.innerHTML = `
+    <div class="card">
+      <h3>📍 ${escapeHTML(lugar)}</h3>
+      <p>
+        Pulsa para abrir la búsqueda en OpenStreetMap.
+      </p>
+      <a class="link"
+         href="${url}"
+         target="_blank"
+         rel="noopener">
+         Abrir mapa →
+      </a>
+    </div>
+  `;
+}
+/* SEGURIDAD */
+function escapeHTML(texto) {
+  return String(texto)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+</script>
+</body>
+</html>
