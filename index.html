@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ducatto</title>
-
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: Arial, sans-serif;
     background: #121212;
     color: white;
 }
-
 header {
     height: 75px;
     display: flex;
@@ -32,30 +26,25 @@ header {
     background: #121212;
     z-index: 10;
 }
-
 .logo {
     font-size: 30px;
     font-weight: bold;
     color: #00FFB4;
     text-shadow: 0 0 15px #00FFB4;
 }
-
 .container {
     padding: 20px;
     max-width: 1000px;
     margin: auto;
 }
-
 h1 {
     font-size: 32px;
     margin-bottom: 8px;
 }
-
 .subtitle {
     color: #aaa;
     margin-bottom: 20px;
 }
-
 .location-box {
     background: #181818;
     border: 1px solid #292929;
@@ -63,24 +52,20 @@ h1 {
     padding: 18px;
     margin-bottom: 20px;
 }
-
 .location-title {
     color: #00FFB4;
     font-size: 14px;
     margin-bottom: 7px;
 }
-
 .location-name {
     font-size: 20px;
     font-weight: bold;
 }
-
 .location-info {
     color: #888;
     font-size: 13px;
     margin-top: 6px;
 }
-
 .search {
     width: 100%;
     padding: 16px;
@@ -92,18 +77,15 @@ h1 {
     margin-bottom: 20px;
     outline: none;
 }
-
 .search:focus {
     border-color: #00FFB4;
 }
-
 .buttons {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 25px;
 }
-
 button {
     border: 1px solid #00FFB4;
     background: #121212;
@@ -113,86 +95,68 @@ button {
     cursor: pointer;
     font-size: 15px;
 }
-
 button:hover {
     background: #00FFB4;
     color: #121212;
     box-shadow: 0 0 18px #00FFB4;
 }
-
 .map {
     min-height: 220px;
     border-radius: 22px;
     border: 1px solid #00FFB4;
-
     background:
         linear-gradient(rgba(0,255,180,.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,255,180,.08) 1px, transparent 1px),
         #181818;
-
     background-size: 45px 45px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin-bottom: 30px;
-
     box-shadow:
         0 0 20px rgba(0,255,180,.15);
 }
-
 .map-content {
     text-align: center;
     padding: 20px;
 }
-
 .map-text {
     color: #00FFB4;
     font-size: 22px;
     margin-bottom: 10px;
 }
-
 .map-location {
     color: #aaa;
 }
-
 .section-title {
-    margin: 25px 0 15px;
+    margin: 30px 0 15px;
     font-size: 24px;
 }
-
 .cards {
     display: grid;
     grid-template-columns:
         repeat(auto-fit, minmax(220px, 1fr));
-
     gap: 15px;
 }
-
 .card {
     background: #1b1b1b;
     border: 1px solid #292929;
     border-radius: 18px;
     padding: 18px;
 }
-
 .card h3 {
     margin-bottom: 8px;
 }
-
 .card p {
     color: #aaa;
     margin-bottom: 12px;
     line-height: 1.4;
 }
-
 .premium {
     border: 1px solid #00FFB4;
     box-shadow:
         0 0 15px rgba(0,255,180,.15);
 }
-
 .premium-badge {
     display: inline-block;
     color: #00FFB4;
@@ -202,96 +166,93 @@ button:hover {
     padding: 5px 9px;
     margin-bottom: 10px;
 }
-
+.media-card {
+    background: #1b1b1b;
+    border: 1px solid #292929;
+    border-radius: 18px;
+    padding: 18px;
+}
+.media-card h3 {
+    margin-bottom: 8px;
+}
+.media-card p {
+    color: #aaa;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+.media-tag {
+    display: inline-block;
+    font-size: 12px;
+    color: #00FFB4;
+    border: 1px solid #00FFB4;
+    border-radius: 20px;
+    padding: 5px 9px;
+    margin-bottom: 10px;
+}
 nav {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-
     height: 70px;
-
     background: #151515;
-
     border-top: 1px solid #292929;
-
     display: flex;
     justify-content: space-around;
     align-items: center;
-
     z-index: 20;
 }
-
 nav button {
     border: none;
     padding: 8px;
     background: transparent;
 }
-
 main {
     padding-bottom: 100px;
 }
-
 .popup {
     display: none;
-
     position: fixed;
     inset: 0;
-
     background: rgba(0,0,0,.75);
-
     align-items: center;
     justify-content: center;
-
     z-index: 100;
 }
-
 .popup-box {
     width: 90%;
     max-width: 420px;
-
     background: #181818;
-
     border: 1px solid #00FFB4;
-
     border-radius: 22px;
-
     padding: 28px;
-
     text-align: center;
-
     box-shadow:
         0 0 30px rgba(0,255,180,.3);
 }
-
 .popup-box h2 {
     color: #00FFB4;
     margin-bottom: 12px;
 }
-
 .popup-box p {
     color: #bbb;
     margin-bottom: 20px;
     line-height: 1.5;
 }
-
 .close {
     border-color: #555;
     color: white;
 }
-
 .premium-section {
     margin-top: 30px;
     padding: 25px 0;
 }
-
 .price {
     font-size: 30px;
     font-weight: bold;
     margin: 12px 0;
     color: #00FFB4;
 }
-
 .user-box {
     background: #181818;
     border: 1px solid #292929;
@@ -299,45 +260,28 @@ main {
     padding: 18px;
     margin-top: 20px;
 }
-
 .user-name {
     color: #00FFB4;
     font-weight: bold;
 }
-
 </style>
-
 </head>
-
-
 <body>
-
 <header>
-
     <div class="logo">
         Ducatto
     </div>
-
 </header>
-
-
 <main>
-
 <div class="container">
-
     <h1>
         Encuentra tu próximo plan
     </h1>
-
     <p class="subtitle">
-        Descubre lugares y planes cerca de ti.
+        Descubre lugares, libros y series cerca de ti.
     </p>
-
-
     <!-- USUARIO -->
-
     <div class="user-box">
-
         <p>
             👤 Usuario:
             <span
@@ -347,25 +291,18 @@ main {
                 Cargando...
             </span>
         </p>
-
     </div>
-
-
     <!-- UBICACIÓN -->
-
     <div class="location-box">
-
         <div class="location-title">
             📍 TU UBICACIÓN
         </div>
-
         <div
             class="location-name"
             id="locationName"
         >
             Buscando ubicación...
         </div>
-
         <div
             class="location-info"
             id="locationInfo"
@@ -373,787 +310,666 @@ main {
             Permite el acceso a tu ubicación para
             mostrar lugares de tu zona.
         </div>
-
     </div>
-
-
     <!-- BUSCADOR -->
-
     <input
         class="search"
         id="search"
         type="text"
-        placeholder="🔎 Busca un restaurante, plan o lugar..."
+        placeholder="🔎 Busca un lugar, libro o serie..."
     >
-
-
     <!-- FILTROS -->
-
     <div class="buttons">
-
-        <button
-            onclick="filterPlans('todos')"
-        >
+        <button onclick="filterPlans('todos')">
             Todos
         </button>
-
-        <button
-            onclick="filterPlans('comida')"
-        >
+        <button onclick="filterPlans('comida')">
             🍴 Comida
         </button>
-
-        <button
-            onclick="filterPlans('ocio')"
-        >
+        <button onclick="filterPlans('ocio')">
             🎮 Ocio
         </button>
-
-        <button
-            onclick="openPremium()"
-        >
-            🤫 Sitios tranquilos 🔒
+        <button onclick="mostrarSeccion('libros')">
+            📚 Libros
         </button>
-
+        <button onclick="mostrarSeccion('series')">
+            📺 Series
+        </button>
+        <button onclick="openPremium()">
+            🤫 Premium 🔒
+        </button>
     </div>
-
-
     <!-- MAPA -->
-
     <div class="map">
-
         <div class="map-content">
-
             <div class="map-text">
                 📍 Mapa de Ducatto
             </div>
-
             <div
                 class="map-location"
                 id="mapLocation"
             >
                 Detectando tu zona...
             </div>
-
         </div>
-
     </div>
-
-
     <!-- PLANES -->
-
     <h2 class="section-title">
         Planes cerca de ti
     </h2>
-
-
     <div
         class="cards"
         id="cards"
     >
-
         <div
             class="card"
             data-type="comida"
         >
-
             <h3>
                 🍝 Restaurante
             </h3>
-
             <p>
                 Restaurantes y lugares para disfrutar
                 de una comida cerca de tu zona.
             </p>
-
             <strong>
                 Ver opciones
             </strong>
-
         </div>
-
-
         <div
             class="card"
             data-type="ocio"
         >
-
             <h3>
                 🎮 Zona de ocio
             </h3>
-
             <p>
                 Planes para pasar la tarde con amigos.
             </p>
-
             <strong>
                 Ver opciones
             </strong>
-
         </div>
-
-
-        <div
-            class="card premium"
-            data-type="tranquilo"
-        >
-
+        <div class="card premium">
             <span class="premium-badge">
                 PREMIUM
             </span>
-
             <h3>
                 🤫 Sitios tranquilos
             </h3>
-
             <p>
                 Lugares con un ambiente más tranquilo
                 y opciones exclusivas.
             </p>
-
-            <button
-                onclick="openPremium()"
-            >
-                Abrir Premium
+            <button onclick="irAPremium()">
+                ⭐ Quiero Premium
             </button>
-
         </div>
-
     </div>
-
-
+    <!-- LIBROS -->
+    <section id="libros">
+        <h2 class="section-title">
+            📚 Libros
+        </h2>
+        <div class="cards">
+            <div
+                class="media-card"
+                data-media="libro"
+            >
+                <span class="media-tag">
+                    📚 LIBRO
+                </span>
+                <h3>
+                    El principito
+                </h3>
+                <p>
+                    Una historia clásica sobre amistad,
+                    imaginación y descubrir lo importante.
+                </p>
+                <button
+                    onclick="verLibro('El principito')"
+                >
+                    Ver libro
+                </button>
+            </div>
+            <div
+                class="media-card"
+                data-media="libro"
+            >
+                <span class="media-tag">
+                    📚 LIBRO
+                </span>
+                <h3>
+                    Harry Potter
+                </h3>
+                <p>
+                    Una saga de fantasía y aventuras
+                    para descubrir nuevos mundos.
+                </p>
+                <button
+                    onclick="verLibro('Harry Potter')"
+                >
+                    Ver libro
+                </button>
+            </div>
+            <div
+                class="media-card"
+                data-media="libro"
+            >
+                <span class="media-tag">
+                    📚 LIBRO
+                </span>
+                <h3>
+                    Los juegos del hambre
+                </h3>
+                <p>
+                    Una historia de aventura, decisiones
+                    y supervivencia.
+                </p>
+                <button
+                    onclick="verLibro('Los juegos del hambre')"
+                >
+                    Ver libro
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- SERIES -->
+    <section id="series">
+        <h2 class="section-title">
+            📺 Series
+        </h2>
+        <div class="cards">
+            <div
+                class="media-card"
+                data-media="serie"
+            >
+                <span class="media-tag">
+                    📺 SERIE
+                </span>
+                <h3>
+                    Stranger Things
+                </h3>
+                <p>
+                    Misterio, aventuras y amistad en
+                    una historia ambientada en Hawkins.
+                </p>
+                <button
+                    onclick="verSerie('Stranger Things')"
+                >
+                    Ver serie
+                </button>
+            </div>
+            <div
+                class="media-card"
+                data-media="serie"
+            >
+                <span class="media-tag">
+                    📺 SERIE
+                </span>
+                <h3>
+                    Wednesday
+                </h3>
+                <p>
+                    Misterio y humor oscuro alrededor
+                    de una estudiante muy peculiar.
+                </p>
+                <button
+                    onclick="verSerie('Wednesday')"
+                >
+                    Ver serie
+                </button>
+            </div>
+            <div
+                class="media-card"
+                data-media="serie"
+            >
+                <span class="media-tag">
+                    📺 SERIE
+                </span>
+                <h3>
+                    The Mandalorian
+                </h3>
+                <p>
+                    Aventuras de ciencia ficción
+                    ambientadas en el universo de Star Wars.
+                </p>
+                <button
+                    onclick="verSerie('The Mandalorian')"
+                >
+                    Ver serie
+                </button>
+            </div>
+        </div>
+    </section>
     <!-- UBICACIONES PREMIUM -->
-
     <section
         id="ubicacionesPremium"
         style="display:none;"
     >
-
         <h2 class="section-title">
             📍 Ubicaciones Premium
         </h2>
-
         <p
             id="premiumLocationText"
             style="color:#aaa; margin-bottom:15px;"
         >
             Lugares exclusivos de tu zona.
         </p>
-
-
         <div class="cards">
-
-
             <div class="card premium">
-
                 <span class="premium-badge">
                     PREMIUM
                 </span>
-
                 <h3>
                     🌿 Lugar tranquilo
                 </h3>
-
                 <p>
                     Lugar recomendado para desconectar
                     y disfrutar de un ambiente tranquilo.
                 </p>
-
                 <button
                     onclick="verUbicacion('Lugar tranquilo')"
                 >
                     Ver ubicación
                 </button>
-
             </div>
-
-
             <div class="card premium">
-
                 <span class="premium-badge">
                     PREMIUM
                 </span>
-
                 <h3>
                     🌅 Mirador especial
                 </h3>
-
                 <p>
                     Descubre lugares especiales de tu
                     zona.
                 </p>
-
                 <button
                     onclick="verUbicacion('Mirador especial')"
                 >
                     Ver ubicación
                 </button>
-
             </div>
-
-
         </div>
-
     </section>
-
-
     <!-- AGENDA -->
-
     <h2 class="section-title">
         Tu agenda
     </h2>
-
-
     <div class="card">
-
         <h3>
             📅 Mi agenda
         </h3>
-
         <p>
             Aquí podrás organizar tus planes y
             guardarlos para más tarde.
         </p>
-
-        <button
-            onclick="abrirAgenda()"
-        >
+        <button onclick="abrirAgenda()">
             Abrir agenda
         </button>
-
     </div>
-
-
     <!-- PREMIUM -->
-
     <section
         class="premium-section"
         id="premium"
     >
-
         <h2>
             DUCATTO Premium
         </h2>
-
         <p style="color:#aaa; margin-top:10px;">
             Desbloquea funciones exclusivas de Ducatto.
         </p>
-
-
         <div
             class="card"
             style="max-width:420px; margin:20px auto;"
         >
-
             <h3>
                 ⭐ Premium
             </h3>
-
             <p class="price">
                 7,99 € / mes
             </p>
-
             <p>
                 Accede a ubicaciones exclusivas,
                 funciones Premium y más herramientas.
             </p>
-
-            <button
-                onclick="abrirPremiumFunciones()"
-            >
-                Ver funciones Premium
+            <button onclick="irAPremium()">
+                ⭐ Quiero Premium
             </button>
-
         </div>
-
-
         <div
             id="premiumFunciones"
             style="display:none; max-width:420px; margin:25px auto;"
         >
-
             <div class="card">
-
                 <h3>
                     📅 Agenda
                 </h3>
-
                 <p>
                     Organiza tus planes.
                 </p>
-
-                <button
-                    onclick="abrirFuncion('Agenda')"
-                >
+                <button onclick="abrirFuncion('Agenda')">
                     Entrar
                 </button>
-
             </div>
-
-
             <div
                 class="card"
                 style="margin-top:15px;"
             >
-
                 <h3>
                     👤 Perfil
                 </h3>
-
                 <p>
                     Consulta tu perfil.
                 </p>
-
-                <button
-                    onclick="abrirFuncion('Perfil')"
-                >
+                <button onclick="abrirFuncion('Perfil')">
                     Entrar
                 </button>
-
             </div>
-
-
             <div
                 class="card"
                 style="margin-top:15px;"
             >
-
                 <h3>
                     ⭐ Funciones Premium
                 </h3>
-
                 <p>
                     Explora las herramientas exclusivas
                     de Ducatto.
                 </p>
-
                 <button
                     onclick="abrirFuncion('Funciones Premium')"
                 >
                     Explorar
                 </button>
-
             </div>
-
         </div>
-
     </section>
-
 </div>
-
 </main>
-
-
 <!-- NAVEGACIÓN -->
-
 <nav>
-
-    <button
-        onclick="location.reload()"
-    >
+    <button onclick="location.reload()">
         🗺️ Mapa
     </button>
-
-    <button
-        onclick="enfocarBuscador()"
-    >
+    <button onclick="enfocarBuscador()">
         🔎 Buscar
     </button>
-
     <button
         onclick="alert('Los favoritos estarán disponibles próximamente.')"
     >
         ⭐ Favoritos
     </button>
-
-    <button
-        onclick="mostrarPerfil()"
-    >
+    <button onclick="mostrarPerfil()">
         👤 Perfil
     </button>
-
 </nav>
-
-
 <!-- POPUP PREMIUM -->
-
 <div
     class="popup"
     id="premiumPopup"
 >
-
     <div class="popup-box">
-
         <h2>
             🤫 Ducatto Premium
         </h2>
-
         <p id="premiumMensaje">
-
             Esta función está disponible
             para usuarios Premium.
-
         </p>
-
+        <button onclick="irAPremium()">
+            ⭐ Ver Premium
+        </button>
         <button
+            class="close"
             onclick="closePremium()"
         >
             Cerrar
         </button>
-
     </div>
-
 </div>
-
-
-<!--
-    IMPORTANTE:
-    Este archivo carga premium-users.js.
-
-    Los dos archivos deben estar en la misma
-    carpeta del proyecto.
--->
-
 <script src="premium-users.js"></script>
-
-
 <script>
-
 /* =========================================
    USUARIO ACTUAL
 ========================================= */
-
 const usuarioActual =
     localStorage.getItem("ducattoUsuario");
-
-
 const usuarioElemento =
     document.getElementById("usuarioActual");
-
-
 if (usuarioActual) {
-
     usuarioElemento.textContent =
         usuarioActual;
-
 } else {
-
     usuarioElemento.textContent =
         "Invitado";
-
 }
-
-
 /* =========================================
    PREMIUM
 ========================================= */
-
 let esPremium = false;
-
-
 if (
     usuarioActual &&
     typeof tienePremium === "function"
 ) {
-
     esPremium =
         tienePremium(usuarioActual);
-
 }
-
-
-/* =========================================
-   MOSTRAR PREMIUM
-========================================= */
-
+actualizarPremium();
 function actualizarPremium() {
-
     const ubicaciones =
         document.getElementById(
             "ubicacionesPremium"
         );
-
     const texto =
         document.getElementById(
             "premiumLocationText"
         );
-
-
     if (esPremium) {
-
         ubicaciones.style.display =
             "block";
-
         texto.textContent =
             "✨ Ubicaciones Premium disponibles en tu zona.";
-
     } else {
-
         ubicaciones.style.display =
             "none";
-
     }
-
 }
-
-
-/* Ejecutar al cargar */
-
-actualizarPremium();
-
-
+/* =========================================
+   IR A PREMIUM
+========================================= */
+function irAPremium() {
+    window.location.href =
+        "premium.html";
+}
 /* =========================================
    POPUP PREMIUM
 ========================================= */
-
 function openPremium() {
-
     const popup =
         document.getElementById(
             "premiumPopup"
         );
-
     const mensaje =
         document.getElementById(
             "premiumMensaje"
         );
-
-
     if (esPremium) {
-
         mensaje.textContent =
             "⭐ Tu cuenta tiene Premium activo. Ya puedes acceder a las ubicaciones exclusivas.";
-
     } else {
-
         mensaje.textContent =
-            "Esta función está disponible para usuarios Premium. Si has realizado el pago, tu cuenta debe ser activada manualmente.";
-
+            "Esta función está disponible para usuarios Premium.";
     }
-
-
     popup.style.display =
         "flex";
-
 }
-
-
 function closePremium() {
-
     document.getElementById(
         "premiumPopup"
     ).style.display =
         "none";
-
 }
-
-
 /* =========================================
    FILTROS
 ========================================= */
-
 function filterPlans(type) {
-
     const cards =
         document.querySelectorAll(
             "#cards .card"
         );
-
-
     cards.forEach(function(card) {
-
         if (type === "todos") {
-
             card.style.display =
                 "block";
-
         }
-
         else if (
             card.dataset.type === type
         ) {
-
             card.style.display =
                 "block";
-
         }
-
         else {
-
             card.style.display =
                 "none";
-
         }
-
     });
-
 }
-
-
+/* =========================================
+   MOSTRAR LIBROS Y SERIES
+========================================= */
+function mostrarSeccion(seccion) {
+    const elemento =
+        document.getElementById(seccion);
+    if (!elemento) {
+        return;
+    }
+    elemento.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+/* =========================================
+   LIBROS
+========================================= */
+function verLibro(nombre) {
+    alert(
+        "📚 " +
+        nombre +
+        "\n\n" +
+        "La información completa del libro estará disponible próximamente."
+    );
+}
+/* =========================================
+   SERIES
+========================================= */
+function verSerie(nombre) {
+    alert(
+        "📺 " +
+        nombre +
+        "\n\n" +
+        "La información completa de la serie estará disponible próximamente."
+    );
+}
 /* =========================================
    BUSCADOR
 ========================================= */
-
 document
     .getElementById("search")
     .addEventListener(
         "input",
         function() {
-
             const text =
                 this.value
                     .toLowerCase()
                     .trim();
-
-
             const cards =
                 document.querySelectorAll(
-                    "#cards .card"
+                    ".card, .media-card"
                 );
-
-
             cards.forEach(function(card) {
-
                 const contenido =
                     card.innerText
                         .toLowerCase();
-
-
                 if (
                     contenido.includes(text)
                 ) {
-
                     card.style.display =
                         "block";
-
                 } else {
-
                     card.style.display =
                         "none";
-
                 }
-
             });
-
         }
     );
-
-
 /* =========================================
-   UBICACIÓN DEL USUARIO
+   UBICACIÓN
 ========================================= */
-
 function detectarUbicacion() {
-
     const locationName =
         document.getElementById(
             "locationName"
         );
-
     const locationInfo =
         document.getElementById(
             "locationInfo"
         );
-
     const mapLocation =
         document.getElementById(
             "mapLocation"
         );
-
-
     if (!navigator.geolocation) {
-
         locationName.textContent =
             "Ubicación no disponible";
-
         locationInfo.textContent =
             "Tu navegador no permite detectar la ubicación.";
-
         mapLocation.textContent =
             "Ubicación no disponible";
-
         return;
-
     }
-
-
     navigator.geolocation.getCurrentPosition(
-
         function(position) {
-
             const lat =
                 position.coords.latitude;
-
             const lon =
                 position.coords.longitude;
-
-
             locationName.textContent =
                 "📍 Ubicación detectada";
-
             locationInfo.textContent =
                 "Ducatto puede utilizar tu ubicación para buscar lugares de tu zona.";
-
             mapLocation.textContent =
                 "📍 Ubicación detectada";
-
-
-            /*
-                Guardamos las coordenadas solamente
-                en este navegador para poder utilizarlas
-                en futuras funciones del mapa.
-            */
-
             localStorage.setItem(
                 "ducattoLatitud",
                 lat
             );
-
             localStorage.setItem(
                 "ducattoLongitud",
                 lon
             );
-
-
-            /*
-                Intentamos obtener el nombre de la
-                ciudad mediante OpenStreetMap.
-            */
-
             obtenerCiudad(lat, lon);
-
         },
-
         function() {
-
             locationName.textContent =
                 "Ubicación no permitida";
-
             locationInfo.textContent =
                 "Puedes permitir la ubicación desde los ajustes del navegador.";
-
             mapLocation.textContent =
                 "Activa la ubicación para buscar tu zona.";
-
         },
-
         {
             enableHighAccuracy: true,
             timeout: 10000,
             maximumAge: 300000
         }
-
     );
-
 }
-
-
 /* =========================================
-   OBTENER CIUDAD
+   CIUDAD
 ========================================= */
-
 function obtenerCiudad(lat, lon) {
-
     const url =
         "https://nominatim.openstreetmap.org/reverse" +
         "?format=json" +
@@ -1161,26 +977,16 @@ function obtenerCiudad(lat, lon) {
         "&lon=" + encodeURIComponent(lon) +
         "&zoom=10" +
         "&addressdetails=1";
-
-
     fetch(url)
-
         .then(function(response) {
-
             if (!response.ok) {
                 throw new Error("Error de ubicación");
             }
-
             return response.json();
-
         })
-
         .then(function(data) {
-
             const address =
                 data.address || {};
-
-
             const ciudad =
                 address.city ||
                 address.town ||
@@ -1188,81 +994,52 @@ function obtenerCiudad(lat, lon) {
                 address.municipality ||
                 address.county ||
                 "Tu zona";
-
-
             const provincia =
                 address.state || "";
-
-
             const textoCiudad =
                 provincia
                     ? ciudad + ", " + provincia
                     : ciudad;
-
-
             document.getElementById(
                 "locationName"
             ).textContent =
                 "📍 " + textoCiudad;
-
-
             document.getElementById(
                 "mapLocation"
             ).textContent =
                 "📍 " + textoCiudad;
-
-
             localStorage.setItem(
                 "ducattoCiudad",
                 ciudad
             );
-
-
             localStorage.setItem(
                 "ducattoProvincia",
                 provincia
             );
-
         })
-
         .catch(function() {
-
             document.getElementById(
                 "locationName"
             ).textContent =
                 "📍 Tu zona";
-
             document.getElementById(
                 "mapLocation"
             ).textContent =
                 "📍 Tu ubicación";
-
         });
-
 }
-
-
 /* =========================================
-   UBICACIONES
+   UBICACIONES PREMIUM
 ========================================= */
-
 function verUbicacion(nombre) {
-
     if (!esPremium) {
-
-        openPremium();
-
+        irAPremium();
         return;
-
     }
-
-
     const ciudad =
         localStorage.getItem(
             "ducattoCiudad"
         ) || "tu zona";
-
-
     alert(
         nombre +
         " en " +
@@ -1270,131 +1047,78 @@ function verUbicacion(nombre) {
         ".\n\n" +
         "La ubicación concreta estará disponible cuando conectemos el mapa con lugares reales."
     );
-
 }
-
-
 /* =========================================
-   PREMIUM
+   FUNCIONES PREMIUM
 ========================================= */
-
 function abrirPremiumFunciones() {
-
     const funciones =
         document.getElementById(
             "premiumFunciones"
         );
-
-
     funciones.style.display =
         "block";
-
 }
-
-
 function abrirFuncion(nombre) {
-
     if (!esPremium) {
-
-        openPremium();
-
+        irAPremium();
         return;
-
     }
-
-
     alert(
         nombre +
         " estará disponible en tu área Premium."
     );
-
 }
-
-
 /* =========================================
    AGENDA
 ========================================= */
-
 function abrirAgenda() {
-
     alert(
         "La agenda estará disponible próximamente."
     );
-
 }
-
-
 /* =========================================
    BUSCADOR
 ========================================= */
-
 function enfocarBuscador() {
-
     const buscador =
         document.getElementById(
             "search"
         );
-
-
     buscador.focus();
-
-
     window.scrollTo({
-
         top: buscador.offsetTop - 100,
-
         behavior: "smooth"
-
     });
-
 }
-
-
 /* =========================================
    PERFIL
 ========================================= */
-
 function mostrarPerfil() {
-
     const usuario =
         localStorage.getItem(
             "ducattoUsuario"
         );
-
-
     if (!usuario) {
-
         window.location.href =
             "login.html";
-
         return;
-
     }
-
-
     const premiumTexto =
         esPremium
             ? "Premium activo ⭐"
             : "Cuenta normal";
-
-
     alert(
         "👤 Usuario: " +
         usuario +
         "\n\n" +
         premiumTexto
     );
-
 }
-
-
 /* =========================================
    INICIAR UBICACIÓN
 ========================================= */
-
 detectarUbicacion();
-
 </script>
-
 </body>
 </html>
