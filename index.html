@@ -4,14 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DUCATTO</title>
+
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#0b0b12;
-  color:#fff
+  color:#fff;
+  padding-bottom:80px
 }
+
 header{
   padding:18px;
   background:#151522;
@@ -20,7 +24,12 @@ header{
   top:0;
   z-index:10
 }
-.logo{font-size:26px;font-weight:bold}
+
+.logo{
+  font-size:26px;
+  font-weight:bold
+}
+
 .badge{
   display:inline-block;
   margin-top:8px;
@@ -31,20 +40,34 @@ header{
   font-size:12px;
   font-weight:bold
 }
-main{padding:20px;max-width:900px;margin:auto}
-.view{display:none}
-.view.active{display:block}
+
+main{
+  padding:20px;
+  max-width:900px;
+  margin:auto
+}
+
+.view{
+  display:none
+}
+
+.view.active{
+  display:block
+}
+
 .hero{
   background:linear-gradient(135deg,#2c2140,#171725);
   padding:22px;
   border-radius:18px;
   margin-bottom:20px
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:12px
 }
+
 .card{
   background:#171722;
   border:1px solid #29293a;
@@ -52,12 +75,21 @@ main{padding:20px;max-width:900px;margin:auto}
   padding:18px;
   margin-bottom:12px
 }
+
 .tile{
   min-height:120px;
   cursor:pointer
 }
-.icon{font-size:32px;margin-bottom:10px}
-.card p{color:#aaa}
+
+.icon{
+  font-size:32px;
+  margin-bottom:10px
+}
+
+.card p{
+  color:#aaa
+}
+
 button{
   border:0;
   border-radius:10px;
@@ -65,9 +97,26 @@ button{
   cursor:pointer;
   font-weight:bold
 }
-.primary{background:#e5b84b;color:#111}
-.secondary{background:#29293a;color:white}
-.back{margin-bottom:18px}
+
+.primary{
+  background:#e5b84b;
+  color:#111
+}
+
+.secondary{
+  background:#29293a;
+  color:white
+}
+
+.danger{
+  background:#642b2b;
+  color:white
+}
+
+.back{
+  margin-bottom:18px
+}
+
 input{
   width:100%;
   padding:12px;
@@ -77,6 +126,7 @@ input{
   color:#fff;
   margin:7px 0
 }
+
 .user{
   display:flex;
   justify-content:space-between;
@@ -84,13 +134,26 @@ input{
   gap:10px;
   flex-wrap:wrap
 }
+
 .status{
   padding:5px 8px;
   border-radius:15px;
   font-size:12px
 }
-.on{background:#214d32}
-.off{background:#512626}
+
+.on{
+  background:#214d32
+}
+
+.off{
+  background:#512626
+}
+
+.pending{
+  background:#5b4a20;
+  color:#fff
+}
+
 nav{
   position:fixed;
   bottom:0;
@@ -103,12 +166,18 @@ nav{
   padding:9px;
   z-index:20
 }
+
 nav button{
   background:none;
   color:#aaa;
   padding:5px
 }
-nav span{display:block;font-size:20px}
+
+nav span{
+  display:block;
+  font-size:20px
+}
+
 .notice{
   padding:13px;
   background:#20202d;
@@ -116,333 +185,1072 @@ nav span{display:block;font-size:20px}
   margin-bottom:15px;
   color:#ccc
 }
+
+.small{
+  color:#999;
+  font-size:13px
+}
+
+.request-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px
+}
+
+.request-actions button{
+  flex:1;
+  min-width:120px
+}
+
 </style>
 </head>
+
 <body>
+
 <header>
-  <div class="logo">DUCATTO</div>
-  <div id="estado" class="badge">👑 JEFA · PREMIUM ACTIVO</div>
+
+  <div class="logo">
+    DUCATTO
+  </div>
+
+  <div id="estado" class="badge">
+    👑 JEFA · PREMIUM ACTIVO
+  </div>
+
 </header>
+
 <main>
+
+<!-- INICIO -->
+
 <section id="inicio" class="view active">
+
   <div class="hero">
-    <h1>Bienvenida a DUCATTO</h1>
-    <p>Tu espacio de entretenimiento, agenda y lugares.</p>
+
+    <h1>
+      Bienvenida a DUCATTO
+    </h1>
+
+    <p>
+      Tu espacio de entretenimiento,
+      agenda y lugares.
+    </p>
+
   </div>
+
   <div class="grid">
-    <div class="card tile" onclick="abrirPremium('peliculas')">
+
+    <div
+      class="card tile"
+      onclick="abrirPremium('peliculas')"
+    >
       <div class="icon">🎬</div>
+
       <h3>Películas</h3>
-      <p>Contenido Premium</p>
+
+      <p>
+        Contenido Premium
+      </p>
     </div>
-    <div class="card tile" onclick="abrirPremium('series')">
+
+    <div
+      class="card tile"
+      onclick="abrirPremium('series')"
+    >
       <div class="icon">📺</div>
+
       <h3>Series</h3>
-      <p>Contenido Premium</p>
+
+      <p>
+        Contenido Premium
+      </p>
     </div>
-    <div class="card tile" onclick="abrirPremium('libros')">
+
+    <div
+      class="card tile"
+      onclick="abrirPremium('libros')"
+    >
       <div class="icon">📚</div>
+
       <h3>Libros</h3>
-      <p>Biblioteca</p>
+
+      <p>
+        Biblioteca
+      </p>
     </div>
-    <div class="card tile" onclick="abrirPremium('ubicaciones')">
+
+    <div
+      class="card tile"
+      onclick="abrirPremium('ubicaciones')"
+    >
       <div class="icon">📍</div>
+
       <h3>Ubicaciones</h3>
-      <p>Lugares y mapas</p>
+
+      <p>
+        Lugares y mapas
+      </p>
     </div>
-    <div class="card tile" onclick="abrir('agenda')">
+
+    <div
+      class="card tile"
+      onclick="abrir('agenda')"
+    >
       <div class="icon">📅</div>
+
       <h3>Agenda</h3>
-      <p>Organiza tus eventos</p>
+
+      <p>
+        Organiza tus eventos
+      </p>
     </div>
-    <div class="card tile" onclick="abrir('perfil')">
+
+    <div
+      class="card tile"
+      onclick="abrir('perfil')"
+    >
       <div class="icon">👤</div>
+
       <h3>Perfil</h3>
-      <p>Cuenta y Premium</p>
+
+      <p>
+        Cuenta y Premium
+      </p>
     </div>
+
   </div>
+
 </section>
+
+
+<!-- PELÍCULAS -->
+
 <section id="peliculas" class="view">
-  <button class="secondary back" onclick="inicio()">← Volver</button>
+
+  <button
+    class="secondary back"
+    onclick="inicio()"
+  >
+    ← Volver
+  </button>
+
   <h2>🎬 Películas</h2>
+
   <div class="notice">
-    Esta sección está preparada para conectar un catálogo autorizado.
+    Esta sección está preparada para
+    conectar un catálogo autorizado.
   </div>
+
   <div class="card">
-    <h3>Catálogo DUCATTO</h3>
-    <p>Aquí aparecerán las películas disponibles cuando conectes tu fuente de contenido.</p>
+
+    <h3>
+      Catálogo DUCATTO
+    </h3>
+
+    <p>
+      Aquí aparecerán las películas
+      disponibles cuando conectes tu
+      fuente de contenido.
+    </p>
+
   </div>
+
 </section>
+
+
+<!-- SERIES -->
+
 <section id="series" class="view">
-  <button class="secondary back" onclick="inicio()">← Volver</button>
+
+  <button
+    class="secondary back"
+    onclick="inicio()"
+  >
+    ← Volver
+  </button>
+
   <h2>📺 Series</h2>
+
   <div class="notice">
-    Esta sección está preparada para conectar un catálogo autorizado.
+    Esta sección está preparada para
+    conectar un catálogo autorizado.
   </div>
+
   <div class="card">
-    <h3>Series DUCATTO</h3>
-    <p>Aquí aparecerán las series disponibles.</p>
+
+    <h3>
+      Series DUCATTO
+    </h3>
+
+    <p>
+      Aquí aparecerán las series
+      disponibles.
+    </p>
+
   </div>
+
 </section>
+
+
+<!-- LIBROS -->
+
 <section id="libros" class="view">
-  <button class="secondary back" onclick="inicio()">← Volver</button>
+
+  <button
+    class="secondary back"
+    onclick="inicio()"
+  >
+    ← Volver
+  </button>
+
   <h2>📚 Libros</h2>
-  <input id="busquedaLibro" placeholder="Busca un libro...">
-  <button class="primary" onclick="buscarLibro()">
+
+  <input
+    id="busquedaLibro"
+    placeholder="Busca un libro..."
+  >
+
+  <button
+    class="primary"
+    onclick="buscarLibro()"
+  >
     Buscar
   </button>
+
   <div id="resultadosLibro"></div>
+
 </section>
+
+
+<!-- UBICACIONES -->
+
 <section id="ubicaciones" class="view">
-  <button class="secondary back" onclick="inicio()">← Volver</button>
+
+  <button
+    class="secondary back"
+    onclick="inicio()"
+  >
+    ← Volver
+  </button>
+
   <h2>📍 Ubicaciones</h2>
+
   <div class="card">
-    <h3>Buscar lugar</h3>
-    <input id="lugar" placeholder="Ej.: Fuengirola">
-    <button class="primary" onclick="buscarLugar()">
+
+    <h3>
+      Buscar lugar
+    </h3>
+
+    <input
+      id="lugar"
+      placeholder="Ej.: Fuengirola"
+    >
+
+    <button
+      class="primary"
+      onclick="buscarLugar()"
+    >
       Abrir mapa
     </button>
+
     <div id="resultadoLugar"></div>
+
   </div>
+
 </section>
+
+
+<!-- AGENDA -->
+
 <section id="agenda" class="view">
-  <button class="secondary back" onclick="inicio()">← Volver</button>
+
+  <button
+    class="secondary back"
+    onclick="inicio()"
+  >
+    ← Volver
+  </button>
+
   <h2>📅 Agenda</h2>
+
   <div class="card">
-    <input id="evento" placeholder="Nuevo evento">
-    <button class="primary" onclick="guardarEvento()">
+
+    <input
+      id="evento"
+      placeholder="Nuevo evento"
+    >
+
+    <button
+      class="primary"
+      onclick="guardarEvento()"
+    >
       Guardar
     </button>
+
   </div>
+
   <div id="listaAgenda"></div>
+
 </section>
+
+
+<!-- PERFIL / PANEL DE JEFA -->
+
 <section id="perfil" class="view">
-  <button class="secondary back" onclick="inicio()">← Volver</button>
+
+  <button
+    class="secondary back"
+    onclick="inicio()"
+  >
+    ← Volver
+  </button>
+
   <h2>👤 Perfil</h2>
+
   <div class="card">
-    <h3>👑 Jefa</h3>
-    <p>Estado: <strong>Premium activo</strong></p>
+
+    <h3>
+      👑 Jefa
+    </h3>
+
+    <p>
+      Estado:
+      <strong>Premium activo</strong>
+    </p>
+
   </div>
+
+
+  <!-- SOLICITUDES PREMIUM -->
+
   <div class="card">
-    <h3>🛠️ Panel de Jefa</h3>
-    <p>Modo demostración para administrar usuarios.</p>
-    <input id="nuevoUsuario" placeholder="Nombre del usuario">
-    <button class="primary" onclick="crearUsuario()">
+
+    <h3>
+      💳 Solicitudes Premium
+    </h3>
+
+    <p class="small">
+      Comprueba primero el Bizum de 7,99 €.
+      Después puedes activar o rechazar
+      la solicitud.
+    </p>
+
+    <div id="solicitudesPremium">
+    </div>
+
+  </div>
+
+
+  <!-- CREAR USUARIO -->
+
+  <div class="card">
+
+    <h3>
+      🛠️ Panel de Jefa
+    </h3>
+
+    <p>
+      Administración de usuarios.
+    </p>
+
+    <input
+      id="nuevoUsuario"
+      placeholder="Nombre del usuario"
+    >
+
+    <button
+      class="primary"
+      onclick="crearUsuario()"
+    >
       Añadir usuario
     </button>
+
   </div>
+
   <div id="usuarios"></div>
+
 </section>
+
 </main>
+
+
+<!-- NAVEGACIÓN -->
+
 <nav>
+
   <button onclick="inicio()">
-    <span>🏠</span>Inicio
+    <span>🏠</span>
+    Inicio
   </button>
+
   <button onclick="abrir('peliculas')">
-    <span>🎬</span>Películas
+    <span>🎬</span>
+    Películas
   </button>
+
   <button onclick="abrir('series')">
-    <span>📺</span>Series
+    <span>📺</span>
+    Series
   </button>
+
   <button onclick="abrir('libros')">
-    <span>📚</span>Libros
+    <span>📚</span>
+    Libros
   </button>
+
   <button onclick="abrir('perfil')">
-    <span>👤</span>Perfil
+    <span>👤</span>
+    Perfil
   </button>
+
 </nav>
+
+
+<!-- PREMIUM-USERS.JS -->
+
+<script src="premium-users.js"></script>
+
+
 <script>
+
 const JEFA = true;
+
 let usuarios =
-  JSON.parse(localStorage.getItem("ducattoUsuarios") || "[]");
+  JSON.parse(
+    localStorage.getItem("ducattoUsuarios") || "[]"
+  );
+
 let agenda =
-  JSON.parse(localStorage.getItem("ducattoAgenda") || "[]");
+  JSON.parse(
+    localStorage.getItem("ducattoAgenda") || "[]"
+  );
+
+
+/* CAMBIAR DE SECCIÓN */
+
 function abrir(id){
-  document.querySelectorAll(".view")
-    .forEach(v => v.classList.remove("active"));
-  document.getElementById(id)
+
+  document
+    .querySelectorAll(".view")
+    .forEach(v =>
+      v.classList.remove("active")
+    );
+
+  document
+    .getElementById(id)
     .classList.add("active");
+
   window.scrollTo(0,0);
+
+  if(id === "perfil"){
+    mostrarSolicitudesPremium();
+    mostrarUsuarios();
+  }
 }
+
+
 function inicio(){
+
   abrir("inicio");
+
 }
+
+
+/* CONTENIDO PREMIUM */
+
 function abrirPremium(id){
+
   if(!JEFA){
-    alert("🔒 Esta función requiere Premium.");
+
+    alert(
+      "🔒 Esta función requiere Premium."
+    );
+
     return;
   }
+
   abrir(id);
+
 }
+
+
+/* BUSCAR LIBROS */
+
 async function buscarLibro(){
+
   const texto =
-    document.getElementById("busquedaLibro").value.trim();
+    document
+      .getElementById("busquedaLibro")
+      .value
+      .trim();
+
   const resultado =
-    document.getElementById("resultadosLibro");
+    document
+      .getElementById("resultadosLibro");
+
   if(!texto){
+
     resultado.innerHTML =
-      "<div class='card'>Escribe un libro para buscar.</div>";
+      "<div class='card'>" +
+      "Escribe un libro para buscar." +
+      "</div>";
+
     return;
   }
+
   resultado.innerHTML =
-    "<div class='card'>🔎 Buscando...</div>";
+    "<div class='card'>" +
+    "🔎 Buscando..." +
+    "</div>";
+
   try{
+
     const url =
       "https://openlibrary.org/search.json?q=" +
       encodeURIComponent(texto) +
       "&limit=8";
-    const respuesta = await fetch(url);
-    const datos = await respuesta.json();
+
+    const respuesta =
+      await fetch(url);
+
+    const datos =
+      await respuesta.json();
+
     resultado.innerHTML = "";
+
     datos.docs.forEach(libro => {
+
       const div =
         document.createElement("div");
+
       div.className = "card";
+
       const titulo =
         libro.title || "Sin título";
+
       const autor =
         libro.author_name
-        ? libro.author_name.join(", ")
-        : "Autor desconocido";
+          ? libro.author_name.join(", ")
+          : "Autor desconocido";
+
       div.innerHTML =
-        "<h3>" + escapar(titulo) + "</h3>" +
-        "<p>" + escapar(autor) + "</p>";
+        "<h3>" +
+        escapar(titulo) +
+        "</h3>" +
+
+        "<p>" +
+        escapar(autor) +
+        "</p>";
+
       resultado.appendChild(div);
+
     });
+
   }catch(e){
+
     resultado.innerHTML =
-      "<div class='card'>No se pudo cargar la búsqueda.</div>";
+      "<div class='card'>" +
+      "No se pudo cargar la búsqueda." +
+      "</div>";
+
   }
+
 }
+
+
+/* BUSCAR LUGAR */
+
 function buscarLugar(){
+
   const lugar =
-    document.getElementById("lugar").value.trim();
+    document
+      .getElementById("lugar")
+      .value
+      .trim();
+
   if(!lugar) return;
+
   const url =
     "https://www.openstreetmap.org/search?query=" +
     encodeURIComponent(lugar);
-  document.getElementById("resultadoLugar").innerHTML =
+
+  document
+    .getElementById("resultadoLugar")
+    .innerHTML =
+
     "<div class='card'>" +
-    "<h3>📍 " + escapar(lugar) + "</h3>" +
-    "<a href='" + url +
-    "' target='_blank' style='color:#e5b84b'>" +
-    "Abrir ubicación →</a>" +
+
+    "<h3>📍 " +
+    escapar(lugar) +
+    "</h3>" +
+
+    "<a href='" +
+    url +
+    "' target='_blank' " +
+    "style='color:#e5b84b'>" +
+
+    "Abrir ubicación →" +
+
+    "</a>" +
+
     "</div>";
+
 }
+
+
+/* AGENDA */
+
 function guardarEvento(){
+
   const input =
     document.getElementById("evento");
+
   const texto =
     input.value.trim();
+
   if(!texto) return;
+
   agenda.push(texto);
+
   localStorage.setItem(
     "ducattoAgenda",
     JSON.stringify(agenda)
   );
+
   input.value = "";
+
   mostrarAgenda();
+
 }
+
+
 function mostrarAgenda(){
+
   const lista =
-    document.getElementById("listaAgenda");
+    document.getElementById(
+      "listaAgenda"
+    );
+
   lista.innerHTML = "";
+
   agenda.forEach((evento,i) => {
+
     lista.innerHTML +=
+
       "<div class='card'>" +
-      "📅 " + escapar(evento) +
-      " <button class='secondary' " +
-      "onclick='borrarEvento(" + i + ")'>" +
-      "Borrar</button></div>";
+
+      "📅 " +
+      escapar(evento) +
+
+      " " +
+
+      "<button " +
+      "class='secondary' " +
+      "onclick='borrarEvento(" +
+      i +
+      ")'>" +
+
+      "Borrar" +
+
+      "</button>" +
+
+      "</div>";
+
   });
+
 }
+
+
 function borrarEvento(i){
+
   agenda.splice(i,1);
+
   localStorage.setItem(
     "ducattoAgenda",
     JSON.stringify(agenda)
   );
+
   mostrarAgenda();
+
 }
+
+
+/* CREAR USUARIO */
+
 function crearUsuario(){
+
   const input =
-    document.getElementById("nuevoUsuario");
+    document.getElementById(
+      "nuevoUsuario"
+    );
+
   const nombre =
     input.value.trim();
+
   if(!nombre) return;
+
   usuarios.push({
+
     nombre:nombre,
+
     premium:false
+
   });
+
   localStorage.setItem(
     "ducattoUsuarios",
     JSON.stringify(usuarios)
   );
-  input.value="";
+
+  input.value = "";
+
   mostrarUsuarios();
+
 }
+
+
+/* CAMBIAR PREMIUM */
+
 function cambiarPremium(i){
+
   usuarios[i].premium =
     !usuarios[i].premium;
+
   localStorage.setItem(
     "ducattoUsuarios",
     JSON.stringify(usuarios)
   );
+
   mostrarUsuarios();
+
 }
+
+
+/* ELIMINAR USUARIO */
+
 function eliminarUsuario(i){
+
   usuarios.splice(i,1);
+
   localStorage.setItem(
     "ducattoUsuarios",
     JSON.stringify(usuarios)
   );
+
   mostrarUsuarios();
+
 }
+
+
+/* MOSTRAR USUARIOS */
+
 function mostrarUsuarios(){
+
   const contenedor =
-    document.getElementById("usuarios");
+    document.getElementById(
+      "usuarios"
+    );
+
   contenedor.innerHTML =
     "<h3>Usuarios</h3>";
+
   usuarios.forEach((u,i) => {
+
     contenedor.innerHTML +=
+
       "<div class='card user'>" +
+
       "<div>" +
+
       "<strong>" +
       escapar(u.nombre) +
       "</strong><br>" +
+
       "<span class='status " +
       (u.premium ? "on" : "off") +
       "'>" +
-      (u.premium
-        ? "PREMIUM ACTIVO"
-        : "SIN PREMIUM") +
+
+      (
+        u.premium
+          ? "PREMIUM ACTIVO"
+          : "SIN PREMIUM"
+      ) +
+
       "</span>" +
+
       "</div>" +
+
       "<div>" +
-      "<button class='primary' " +
-      "onclick='cambiarPremium(" + i + ")'>" +
-      (u.premium
-        ? "Quitar Premium"
-        : "Dar Premium") +
+
+      "<button " +
+      "class='primary' " +
+      "onclick='cambiarPremium(" +
+      i +
+      ")'>" +
+
+      (
+        u.premium
+          ? "Quitar Premium"
+          : "Dar Premium"
+      ) +
+
       "</button> " +
-      "<button class='secondary' " +
-      "onclick='eliminarUsuario(" + i + ")'>" +
+
+      "<button " +
+      "class='secondary' " +
+      "onclick='eliminarUsuario(" +
+      i +
+      ")'>" +
+
       "Eliminar" +
+
       "</button>" +
+
       "</div>" +
+
       "</div>";
+
   });
+
 }
+
+
+/* MOSTRAR SOLICITUDES */
+
+function mostrarSolicitudesPremium(){
+
+  const contenedor =
+    document.getElementById(
+      "solicitudesPremium"
+    );
+
+  const solicitudes =
+    obtenerSolicitudesPremium();
+
+  contenedor.innerHTML = "";
+
+  if(!solicitudes.length){
+
+    contenedor.innerHTML =
+      "<p class='small'>" +
+      "No hay solicitudes." +
+      "</p>";
+
+    return;
+  }
+
+  solicitudes.forEach(
+    (solicitud,i) => {
+
+      let estadoTexto =
+        "PENDIENTE";
+
+      if(
+        solicitud.estado ===
+        "aprobada"
+      ){
+
+        estadoTexto =
+          "PREMIUM ACTIVADO";
+
+      }
+
+      if(
+        solicitud.estado ===
+        "rechazada"
+      ){
+
+        estadoTexto =
+          "RECHAZADA";
+
+      }
+
+      contenedor.innerHTML +=
+
+        "<div class='card'>" +
+
+        "<strong>" +
+
+        escapar(
+          solicitud.usuario
+        ) +
+
+        "</strong>" +
+
+        "<br>" +
+
+        "<span class='status pending'>" +
+
+        estadoTexto +
+
+        "</span>" +
+
+        "<p class='small'>" +
+
+        "Importe: " +
+        solicitud.precio +
+        " €" +
+
+        "</p>" +
+
+        "<div class='request-actions'>" +
+
+        (
+          solicitud.estado ===
+          "pendiente"
+
+          ?
+
+          "<button " +
+          "class='primary' " +
+          "onclick='aprobarSolicitud(\"" +
+          escaparAtributo(
+            solicitud.usuario
+          ) +
+          "\")'>" +
+
+          "✅ Activar Premium" +
+
+          "</button>" +
+
+          "<button " +
+          "class='danger' " +
+          "onclick='rechazarSolicitud(\"" +
+          escaparAtributo(
+            solicitud.usuario
+          ) +
+          "\")'>" +
+
+          "❌ Rechazar" +
+
+          "</button>"
+
+          :
+
+          ""
+        ) +
+
+        "</div>" +
+
+        "</div>";
+
+    }
+  );
+
+}
+
+
+/* APROBAR SOLICITUD */
+
+function aprobarSolicitud(usuario){
+
+  if(
+    !confirm(
+      "¿Has comprobado que el Bizum de 7,99 € ha llegado?"
+    )
+  ){
+
+    return;
+  }
+
+  activarPremium(usuario);
+
+  usuarios =
+    obtenerUsuarios();
+
+  mostrarSolicitudesPremium();
+  mostrarUsuarios();
+
+  alert(
+    "✅ Premium activado para " +
+    usuario
+  );
+
+}
+
+
+/* RECHAZAR SOLICITUD */
+
+function rechazarSolicitud(usuario){
+
+  if(
+    !confirm(
+      "¿Quieres rechazar esta solicitud?"
+    )
+  ){
+
+    return;
+  }
+
+  rechazarPremium(usuario);
+
+  mostrarSolicitudesPremium();
+
+  alert(
+    "Solicitud rechazada."
+  );
+
+}
+
+
+/* ESCAPAR HTML */
+
 function escapar(texto){
+
   return String(texto)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
 }
+
+
+/* ESCAPAR ATRIBUTOS */
+
+function escaparAtributo(texto){
+
+  return String(texto)
+    .replaceAll(
+      "\\",
+      "\\\\"
+    )
+    .replaceAll(
+      '"',
+      '\\"'
+    );
+
+}
+
+
+/* INICIAR */
+
 mostrarAgenda();
 mostrarUsuarios();
+
 </script>
+
 </body>
 </html>
