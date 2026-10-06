@@ -3,216 +3,518 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DUCATTO</title>
 
 <style>
+:root{
+  --rojo:#e50914;
+  --rojo2:#ff1e2d;
+  --negro:#070707;
+  --negro2:#111;
+  --gris:#1b1b1b;
+  --gris2:#292929;
+  --blanco:#fff;
+  --grisTexto:#cfcfcf;
+  --verde:#22c55e;
+}
+
 *{
   box-sizing:border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
+  background:
+    radial-gradient(circle at top,#280000 0,#090909 32%,#050505 100%);
+  color:var(--blanco);
   font-family:Arial,Helvetica,sans-serif;
-  background:#090909;
-  color:#fff;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
 }
 
 header{
-  background:#111;
-  padding:18px;
-  text-align:center;
-  border-bottom:1px solid #292929;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(5,5,5,.96);
+  border-bottom:2px solid var(--rojo);
+  backdrop-filter:blur(10px);
+}
+
+.topbar{
+  max-width:1400px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
 
 .logo{
-  font-size:30px;
-  font-weight:bold;
-  letter-spacing:3px;
+  font-size:34px;
+  font-weight:1000;
+  letter-spacing:5px;
+  color:var(--rojo);
+  text-shadow:
+    0 0 5px #ff0000,
+    0 0 18px rgba(255,0,0,.65),
+    0 0 35px rgba(255,0,0,.3);
+  white-space:nowrap;
 }
 
-.sub{
-  color:#aaa;
-  margin-top:5px;
+#userBadge{
+  color:#fff;
+  font-size:14px;
 }
 
 nav{
+  max-width:1400px;
+  margin:auto;
+  padding:0 15px 15px;
   display:flex;
   flex-wrap:wrap;
-  justify-content:center;
   gap:8px;
-  padding:12px;
+}
+
+nav button{
+  border:1px solid #3a3a3a;
   background:#151515;
-  position:sticky;
-  top:0;
-  z-index:20;
+  color:#fff;
+  padding:10px 13px;
+  border-radius:10px;
+  transition:.2s;
 }
 
-nav button,
-button{
-  border:0;
-  border-radius:9px;
-  padding:11px 15px;
-  cursor:pointer;
-  background:#242424;
-  color:white;
-}
-
-nav button:hover,
-button:hover{
-  background:#383838;
+nav button:hover{
+  background:var(--rojo);
+  border-color:var(--rojo);
+  transform:translateY(-1px);
 }
 
 main{
-  max-width:1200px;
+  max-width:1400px;
   margin:auto;
-  padding:20px;
+  padding:30px 18px 80px;
 }
 
-section{
+.section{
   display:none;
+  animation:aparecer .25s ease;
 }
 
-section.active{
+.section.active{
   display:block;
 }
 
-h1,h2,h3{
+@keyframes aparecer{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.hero{
+  min-height:380px;
+  border:1px solid #3b0b0b;
+  border-radius:22px;
+  padding:45px 30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:
+    linear-gradient(135deg,rgba(229,9,20,.18),rgba(0,0,0,.85)),
+    #0c0c0c;
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+.hero h1{
+  font-size:clamp(42px,8vw,82px);
+  margin:0 0 10px;
+  color:var(--rojo);
+  text-shadow:0 0 25px rgba(229,9,20,.6);
+}
+
+.hero p{
+  color:var(--grisTexto);
+  font-size:19px;
+  max-width:720px;
+  line-height:1.6;
+}
+
+h2{
+  color:#fff;
+  font-size:32px;
   margin-top:0;
 }
 
+h3{
+  color:#fff;
+}
+
+.red{
+  color:var(--rojo);
+}
+
 .card{
-  background:#151515;
-  border:1px solid #292929;
-  border-radius:14px;
-  padding:18px;
-  margin-bottom:15px;
+  background:linear-gradient(145deg,#171717,#0d0d0d);
+  border:1px solid #303030;
+  border-radius:17px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+.card:hover{
+  border-color:#661015;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
 }
 
-.item{
-  background:#171717;
-  border:1px solid #2b2b2b;
-  border-radius:14px;
-  padding:15px;
-  min-height:150px;
+.media-card{
+  overflow:hidden;
+  padding:0;
 }
 
-.item h3{
-  margin-bottom:8px;
+.poster{
+  height:250px;
+  background:
+    linear-gradient(135deg,#350000,#0d0d0d);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:70px;
 }
 
-.item p{
+.media-body{
+  padding:18px;
+}
+
+.media-body h3{
+  margin-top:0;
+}
+
+.description{
   color:#aaa;
+  line-height:1.5;
+}
+
+button.primary,
+.primary{
+  background:var(--rojo);
+  border:1px solid var(--rojo);
+  color:white;
+  padding:11px 16px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+button.primary:hover{
+  background:var(--rojo2);
+  box-shadow:0 0 15px rgba(229,9,20,.4);
+}
+
+button.secondary{
+  background:#222;
+  border:1px solid #444;
+  color:white;
+  padding:10px 15px;
+  border-radius:10px;
+}
+
+button.danger{
+  background:#5e0000;
+  border:1px solid #a00000;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:10px;
 }
 
 input,
 select,
 textarea{
   width:100%;
-  padding:12px;
-  margin:7px 0 12px;
-  border-radius:9px;
-  border:1px solid #333;
-  background:#0f0f0f;
-  color:white;
-}
-
-.primary{
-  background:#6c4cff;
-}
-
-.premium{
-  background:#b8860b;
-}
-
-.danger{
-  background:#9b2226;
-}
-
-.success{
-  background:#247a3d;
-}
-
-.muted{
-  color:#999;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.status{
-  padding:10px;
-  border-radius:8px;
-  background:#202020;
-  margin:10px 0;
-}
-
-#visor{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.92);
-  z-index:100;
-  display:none;
-  overflow:auto;
-  padding:25px;
-}
-
-#visor .contenido{
-  max-width:1000px;
-  margin:auto;
   background:#111;
-  border-radius:15px;
-  padding:20px;
-}
-
-#videoFrame{
-  width:100%;
-  height:600px;
-  border:0;
+  color:white;
+  border:1px solid #444;
   border-radius:10px;
-  background:#000;
+  padding:12px;
+  outline:none;
 }
 
-.close{
-  float:right;
-  background:#9b2226;
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--rojo);
 }
 
-.bookFrame{
-  width:100%;
-  height:650px;
-  border:0;
-  border-radius:10px;
-  background:white;
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
 }
 
-.badge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  background:#292929;
-  color:#ccc;
-  font-size:12px;
+.field{
+  margin-bottom:12px;
 }
 
-footer{
-  text-align:center;
-  padding:30px;
-  color:#777;
+.field label{
+  display:block;
+  color:#bbb;
+  margin-bottom:6px;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
 }
 
 .notice{
-  background:#1c1730;
-  border:1px solid #493c77;
-  padding:15px;
+  padding:14px;
   border-radius:10px;
+  background:#171717;
+  border-left:4px solid var(--rojo);
+  color:#ddd;
+  margin:15px 0;
+}
+
+.success{
+  border-left-color:var(--verde);
+}
+
+.book-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
+}
+
+.book-card{
+  background:#151515;
+  border:1px solid #333;
+  border-radius:15px;
+  padding:18px;
+}
+
+.book-card .cover{
+  height:120px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#330000,#181818);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:50px;
   margin-bottom:15px;
+}
+
+.viewer{
+  display:none;
+  margin-top:20px;
+}
+
+.viewer.active{
+  display:block;
+}
+
+.viewer iframe{
+  width:100%;
+  height:75vh;
+  min-height:500px;
+  border:1px solid #444;
+  border-radius:14px;
+  background:#fff;
+}
+
+.video-player{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid #333;
+}
+
+.video-player iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.video-player video{
+  width:100%;
+  height:100%;
+  background:#000;
+}
+
+.empty{
+  padding:30px;
+  text-align:center;
+  color:#999;
+  border:1px dashed #444;
+  border-radius:14px;
+}
+
+.premium-box{
+  border:2px solid var(--rojo);
+  box-shadow:0 0 30px rgba(229,9,20,.16);
+  background:
+    radial-gradient(circle at top right,rgba(229,9,20,.18),transparent 35%),
+    #0d0d0d;
+}
+
+.price{
+  font-size:48px;
+  font-weight:1000;
+  color:var(--rojo);
+}
+
+.bizum{
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#fff;
+  padding:16px;
+  border-radius:12px;
+  background:#191919;
+  border:1px solid #444;
+  text-align:center;
+}
+
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:bold;
+  background:#292929;
+  color:#ddd;
+}
+
+.status.pending{
+  background:#4b3500;
+  color:#ffd76a;
+}
+
+.status.approved{
+  background:#063d1c;
+  color:#5dff9a;
+}
+
+.status.rejected{
+  background:#4b0808;
+  color:#ff8c8c;
+}
+
+.jefa-panel{
+  border:2px solid #8f6b00;
+  background:
+    linear-gradient(135deg,rgba(255,193,7,.08),rgba(0,0,0,.4)),
+    #101010;
+}
+
+.jefa-title{
+  color:#ffd34e;
+  font-size:26px;
+}
+
+.request{
+  background:#171717;
+  border:1px solid #333;
+  border-radius:12px;
+  padding:15px;
+  margin:10px 0;
+}
+
+.event{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+  background:#151515;
+  border:1px solid #333;
+  border-radius:12px;
+  padding:16px;
+  margin:10px 0;
+}
+
+.event-date{
+  color:var(--rojo);
+  font-weight:bold;
+}
+
+.location-result{
+  padding:14px;
+  background:#151515;
+  border:1px solid #333;
+  border-radius:12px;
+  margin:10px 0;
+}
+
+footer{
+  border-top:1px solid #2b2b2b;
+  padding:30px 20px;
+  text-align:center;
+  color:#777;
+}
+
+.small{
+  font-size:13px;
+  color:#888;
+}
+
+.hidden{
+  display:none !important;
+}
+
+@media(max-width:700px){
+  .topbar{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .logo{
+    font-size:28px;
+  }
+
+  nav{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+  }
+
+  nav button{
+    white-space:nowrap;
+  }
+
+  .hero{
+    padding:30px 20px;
+  }
+
+  .event{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
@@ -220,67 +522,86 @@ footer{
 <body>
 
 <header>
-  <div class="logo">DUCATTO</div>
-  <div class="sub">Películas · Series · TV · Libros · Agenda</div>
-</header>
+  <div class="topbar">
+    <div class="logo">DUCATTO</div>
+    <div id="userBadge">Sin usuario</div>
+  </div>
 
-<nav>
-  <button onclick="mostrar('inicio')">Inicio</button>
-  <button onclick="mostrar('peliculas')">🎬 Películas</button>
-  <button onclick="mostrar('series')">📺 Series</button>
-  <button onclick="mostrar('tv')">📡 TV</button>
-  <button onclick="mostrar('libros')">📚 Libros</button>
-  <button onclick="mostrar('agenda')">📅 Agenda</button>
-  <button onclick="mostrar('ubicaciones')">📍 Ubicaciones</button>
-  <button onclick="mostrar('perfil')">👤 Perfil</button>
-  <button onclick="mostrar('premium')" class="premium">⭐ Premium</button>
-</nav>
+  <nav>
+    <button onclick="mostrarSeccion('inicio')">🏠 Inicio</button>
+    <button onclick="mostrarSeccion('peliculas')">🎬 Películas</button>
+    <button onclick="mostrarSeccion('series')">📺 Series</button>
+    <button onclick="mostrarSeccion('tv')">📡 TV</button>
+    <button onclick="mostrarSeccion('libros')">📚 Libros</button>
+    <button onclick="mostrarSeccion('agenda')">📅 Agenda</button>
+    <button onclick="mostrarSeccion('ubicaciones')">📍 Ubicaciones</button>
+    <button onclick="mostrarSeccion('perfil')">👤 Perfil</button>
+    <button onclick="mostrarSeccion('premium')">⭐ Premium</button>
+  </nav>
+</header>
 
 <main>
 
-<!-- INICIO -->
-<section id="inicio" class="active">
+<!-- ================= INICIO ================= -->
 
-  <div class="card">
-    <h1>Bienvenido a DUCATTO</h1>
+<section id="inicio" class="section active">
+
+  <div class="hero">
+    <h1>DUCATTO</h1>
+
     <p>
-      Tu espacio para películas, series, televisión, libros,
-      agenda y mucho más.
+      Tu espacio para entretenimiento, lectura, televisión,
+      planes, lugares y funciones Premium.
     </p>
+
+    <div class="actions">
+      <button class="primary" onclick="mostrarSeccion('peliculas')">
+        🎬 Ver películas
+      </button>
+
+      <button class="primary" onclick="mostrarSeccion('series')">
+        📺 Ver series
+      </button>
+
+      <button class="secondary" onclick="mostrarSeccion('libros')">
+        📚 Entrar en libros
+      </button>
+
+      <button class="secondary" onclick="mostrarSeccion('agenda')">
+        📅 Abrir agenda
+      </button>
+    </div>
   </div>
 
-  <div class="grid">
+  <div class="grid" style="margin-top:20px">
 
-    <div class="item">
+    <div class="card">
       <h3>🎬 Películas</h3>
-      <p>Busca películas disponibles para reproducir.</p>
-      <button class="primary" onclick="mostrar('peliculas')">
-        Ver películas
-      </button>
+      <p class="description">
+        Lista de títulos con reproducción integrada cuando la fuente
+        permite legalmente su reproducción.
+      </p>
     </div>
 
-    <div class="item">
+    <div class="card">
       <h3>📺 Series</h3>
-      <p>Busca series y episodios disponibles.</p>
-      <button class="primary" onclick="mostrar('series')">
-        Ver series
-      </button>
+      <p class="description">
+        Series y episodios disponibles mediante fuentes autorizadas.
+      </p>
     </div>
 
-    <div class="item">
-      <h3>📚 Biblioteca</h3>
-      <p>Elige entre libros en español o inglés.</p>
-      <button class="primary" onclick="mostrar('libros')">
-        Abrir biblioteca
-      </button>
+    <div class="card">
+      <h3>📚 Libros</h3>
+      <p class="description">
+        Biblioteca con libros de dominio público para leer dentro de DUCATTO.
+      </p>
     </div>
 
-    <div class="item">
+    <div class="card">
       <h3>⭐ Premium</h3>
-      <p>Accede a las funciones Premium después de la aprobación.</p>
-      <button class="premium" onclick="mostrar('premium')">
-        Ver Premium
-      </button>
+      <p class="description">
+        Solicita Premium por 7,99 € y espera la activación manual.
+      </p>
     </div>
 
   </div>
@@ -288,292 +609,363 @@ footer{
 </section>
 
 
-<!-- PELÍCULAS -->
-<section id="peliculas">
+<!-- ================= PELÍCULAS ================= -->
 
-  <h1>🎬 Películas</h1>
+<section id="peliculas" class="section">
 
-  <div class="notice">
-    Busca películas disponibles en fuentes con contenido autorizado.
-    Cuando haya una reproducción compatible, se abrirá dentro de DUCATTO.
-  </div>
-
-  <div class="card">
-    <input
-      id="buscarPelicula"
-      placeholder="Buscar una película..."
-      onkeydown="if(event.key==='Enter') buscarPeliculas()"
-    >
-
-    <button class="primary" onclick="buscarPeliculas()">
-      🔎 Buscar películas
-    </button>
-  </div>
-
-  <div id="peliculasResultados" class="grid"></div>
-
-</section>
-
-
-<!-- SERIES -->
-<section id="series">
-
-  <h1>📺 Series</h1>
+  <h2>🎬 Películas</h2>
 
   <div class="notice">
-    Busca series y episodios disponibles en fuentes con reproducción autorizada.
-  </div>
-
-  <div class="card">
-
-    <input
-      id="buscarSerie"
-      placeholder="Buscar una serie..."
-      onkeydown="if(event.key==='Enter') buscarSeries()"
-    >
-
-    <button class="primary" onclick="buscarSeries()">
-      🔎 Buscar series
-    </button>
-
-  </div>
-
-  <div id="seriesResultados" class="grid"></div>
-
-</section>
-
-
-<!-- TV -->
-<section id="tv">
-
-  <h1>📡 TV</h1>
-
-  <div class="notice">
-    Canales IPTV públicos disponibles mediante listas HLS/M3U.
-    La disponibilidad depende de cada canal.
+    Estas películas son ejemplos de obras clásicas que pueden ofrecerse
+    mediante fuentes autorizadas o de dominio público. DUCATTO no
+    descarga ni redistribuye películas.
   </div>
 
   <div class="grid">
 
-    <div class="item">
-      <h3>🇪🇸 Canales de España</h3>
-      <button class="primary" onclick="cargarTV('es')">
-        Cargar TV
-      </button>
-    </div>
+    <article class="card media-card">
+      <div class="poster">🎞️</div>
 
-    <div class="item">
-      <h3>🎬 Películas TV</h3>
-      <button class="primary" onclick="cargarTV('movies')">
-        Cargar canales
-      </button>
-    </div>
+      <div class="media-body">
+        <h3>The General</h3>
 
-    <div class="item">
-      <h3>📺 Series TV</h3>
-      <button class="primary" onclick="cargarTV('series')">
-        Cargar canales
-      </button>
-    </div>
+        <p class="description">
+          Película clásica de Buster Keaton.
+        </p>
 
-  </div>
-
-  <div id="tvResultados" class="grid"></div>
-
-</section>
+        <button
+          class="primary"
+          onclick="reproducirPelícula(
+            'https://archive.org/embed/TheGeneral'
+          )">
+          ▶ Ver
+        </button>
+      </div>
+    </article>
 
 
-<!-- LIBROS -->
-<section id="libros">
+    <article class="card media-card">
+      <div class="poster">🎬</div>
 
-  <h1>📚 Biblioteca</h1>
+      <div class="media-body">
+        <h3>A Trip to the Moon</h3>
 
-  <div class="card">
+        <p class="description">
+          Cortometraje clásico de Georges Méliès.
+        </p>
 
-    <label>Idioma</label>
-
-    <select id="idiomaLibro" onchange="cargarLibros()">
-      <option value="es">🇪🇸 Español</option>
-      <option value="en">🇬🇧 English</option>
-    </select>
-
-    <input
-      id="buscarLibro"
-      placeholder="Buscar libro..."
-      onkeydown="if(event.key==='Enter') buscarLibros()"
-    >
-
-    <button class="primary" onclick="buscarLibros()">
-      🔎 Buscar
-    </button>
-
-    <button onclick="cargarLibros()">
-      📚 Ver catálogo
-    </button>
-
-  </div>
-
-  <div id="librosResultados" class="grid"></div>
-
-</section>
+        <button
+          class="primary"
+          onclick="reproducirPelícula(
+            'https://archive.org/embed/A_Trip_to_the_Moon'
+          )">
+          ▶ Ver
+        </button>
+      </div>
+    </article>
 
 
-<!-- AGENDA -->
-<section id="agenda">
+    <article class="card media-card">
+      <div class="poster">🎥</div>
 
-  <h1>📅 Agenda</h1>
+      <div class="media-body">
+        <h3>Película autorizada</h3>
 
-  <div class="card">
+        <p class="description">
+          Aquí puedes añadir una película para la que tengas
+          autorización de reproducción.
+        </p>
 
-    <input id="planTitulo" placeholder="¿Qué quieres hacer?">
-
-    <input id="planFecha" type="date">
-
-    <input id="planHora" type="time">
-
-    <input id="planLugar" placeholder="Lugar">
-
-    <textarea
-      id="planNotas"
-      placeholder="Notas"
-    ></textarea>
-
-    <button class="primary" onclick="guardarPlan()">
-      ➕ Añadir a la agenda
-    </button>
-
-  </div>
-
-  <div id="agendaLista"></div>
-
-</section>
-
-
-<!-- UBICACIONES -->
-<section id="ubicaciones">
-
-  <h1>📍 Ubicaciones</h1>
-
-  <div class="card">
-
-    <input
-      id="buscarLugar"
-      placeholder="Buscar un lugar..."
-      onkeydown="if(event.key==='Enter') buscarLugares()"
-    >
-
-    <button class="primary" onclick="buscarLugares()">
-      🔎 Buscar
-    </button>
-
-  </div>
-
-  <div id="lugaresResultados"></div>
-
-</section>
-
-
-<!-- PERFIL -->
-<section id="perfil">
-
-  <h1>👤 Perfil</h1>
-
-  <div id="perfilSinUsuario" class="card">
-
-    <h2>Crear perfil</h2>
-
-    <p class="muted">
-      Crea tu perfil para guardar tu usuario en DUCATTO.
-    </p>
-
-    <input
-      id="nuevoUsuario"
-      placeholder="Nombre de usuario"
-    >
-
-    <button class="primary" onclick="crearPerfil()">
-      Crear perfil
-    </button>
+        <button
+          class="secondary"
+          onclick="alert('Añade aquí únicamente una fuente cuya reproducción esté autorizada.')">
+          ℹ️ Información
+        </button>
+      </div>
+    </article>
 
   </div>
 
 
-  <div id="perfilUsuario" class="card hidden">
+  <div id="movieViewer" class="viewer">
 
-    <h2>Mi perfil</h2>
+    <div class="card">
 
-    <p>
-      Usuario:
-      <strong id="nombrePerfil"></strong>
-    </p>
+      <div class="actions">
+        <button class="secondary" onclick="cerrarPelícula()">
+          ← Salir de la película
+        </button>
+      </div>
 
-    <p>
-      Estado:
-      <span id="estadoPerfil" class="badge"></span>
-    </p>
-
-    <button class="premium" onclick="mostrar('premium')">
-      ⭐ Gestionar Premium
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- PREMIUM -->
-<section id="premium">
-
-  <h1>⭐ DUCATTO Premium</h1>
-
-  <div class="card">
-
-    <h2>7,99 €</h2>
-
-    <p>
-      Para solicitar Premium realiza el pago mediante Bizum:
-    </p>
-
-    <h2>602 898 046</h2>
-
-    <p>
-      En el concepto/mensaje de Bizum escribe exactamente
-      tu nombre de usuario de DUCATTO.
-    </p>
-
-    <div id="premiumNoPerfil">
-
-      <p class="muted">
-        Primero debes crear tu perfil.
-      </p>
-
-      <button class="primary" onclick="mostrar('perfil')">
-        Crear perfil
-      </button>
+      <div class="video-player">
+        <iframe
+          id="movieFrame"
+          allowfullscreen>
+        </iframe>
+      </div>
 
     </div>
 
+  </div>
 
-    <div id="premiumConPerfil" class="hidden">
+</section>
 
-      <p>
-        Usuario:
-        <strong id="premiumUsuario"></strong>
-      </p>
 
-      <p>
-        Cuando hayas realizado el pago, pulsa el botón.
-        La activación NO es automática.
+<!-- ================= SERIES ================= -->
+
+<section id="series" class="section">
+
+  <h2>📺 Series</h2>
+
+  <div class="notice">
+    Las series deben añadirse únicamente cuando tengas una fuente
+    autorizada para reproducir sus episodios.
+  </div>
+
+  <div class="grid">
+
+    <article class="card media-card">
+
+      <div class="poster">📺</div>
+
+      <div class="media-body">
+
+        <h3>Series clásicas</h3>
+
+        <p class="description">
+          Zona preparada para series y episodios con reproducción
+          autorizada.
+        </p>
+
+        <button
+          class="primary"
+          onclick="mostrarEpisodios('serieClasica')">
+          ▶ Ver episodios
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <article class="card media-card">
+
+      <div class="poster">🎞️</div>
+
+      <div class="media-body">
+
+        <h3>Mi serie autorizada</h3>
+
+        <p class="description">
+          Puedes añadir aquí episodios propios o contenidos para
+          los que tengas permiso de reproducción.
+        </p>
+
+        <button
+          class="secondary"
+          onclick="alert('Esta zona queda preparada para añadir episodios autorizados.')">
+          ℹ️ Ver información
+        </button>
+
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <div id="episodeArea" class="card hidden">
+
+    <h3>📺 Episodios</h3>
+
+    <div id="episodeList"></div>
+
+    <div id="seriesViewer" class="viewer">
+
+      <div class="actions">
+        <button
+          class="secondary"
+          onclick="cerrarSerie()">
+          ← Salir del episodio
+        </button>
+      </div>
+
+      <div class="video-player">
+
+        <iframe
+          id="seriesFrame"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= TV ================= -->
+
+<section id="tv" class="section">
+
+  <h2>📡 Televisión</h2>
+
+  <div class="notice">
+    TV mediante listas públicas/autorizadas. Las listas IPTV son
+    emisiones en directo, no un catálogo de películas bajo demanda.
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h3>🇪🇸 España</h3>
+
+      <p class="description">
+        Canales disponibles en una playlist pública.
       </p>
 
       <button
-        class="premium"
-        onclick="solicitarPremiumDesdeWeb()"
-      >
-        💳 He realizado el pago
+        class="primary"
+        onclick="cargarTV(
+          'https://iptv-org.github.io/iptv/countries/es.m3u'
+        )">
+        📡 Cargar canales
       </button>
 
-      <div id="premiumMensaje" class="status"></div>
+    </div>
+
+
+    <div class="card">
+
+      <h3>🎨 Animación</h3>
+
+      <p class="description">
+        Canales de animación disponibles públicamente.
+      </p>
+
+      <button
+        class="primary"
+        onclick="cargarTV(
+          'https://iptv-org.github.io/iptv/categories/animation.m3u'
+        )">
+        📡 Cargar canales
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>🎬 Películas en TV</h3>
+
+      <p class="description">
+        Canales de televisión que emiten películas.
+      </p>
+
+      <button
+        class="primary"
+        onclick="cargarTV(
+          'https://iptv-org.github.io/iptv/categories/movies.m3u'
+        )">
+        📡 Cargar canales
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div id="tvArea" class="card hidden">
+
+    <h3>📡 Canales</h3>
+
+    <select id="tvChannels">
+      <option value="">Selecciona un canal</option>
+    </select>
+
+    <div class="actions">
+      <button class="primary" onclick="reproducirTV()">
+        ▶ Reproducir canal
+      </button>
+    </div>
+
+    <video
+      id="tvVideo"
+      class="video-player"
+      controls
+      playsinline>
+    </video>
+
+    <p class="small">
+      Si un canal no permite reproducción directa desde el navegador,
+      puede no funcionar dentro de DUCATTO.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= LIBROS ================= -->
+
+<section id="libros" class="section">
+
+  <h2>📚 Biblioteca DUCATTO</h2>
+
+  <div class="notice">
+    Elige el idioma y entra directamente en un libro.
+    La lectura se abre dentro de DUCATTO.
+  </div>
+
+  <div class="form-grid">
+
+    <div class="field">
+      <label>Idioma</label>
+
+      <select id="bookLanguage" onchange="cargarLibros()">
+        <option value="es">🇪🇸 Español</option>
+        <option value="en">🇬🇧 English</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Buscar libro</label>
+
+      <input
+        id="bookSearch"
+        placeholder="Escribe título o autor..."
+        oninput="filtrarLibros()">
+    </div>
+
+  </div>
+
+  <div id="bookList" class="book-list">
+  </div>
+
+
+  <div id="bookViewer" class="viewer">
+
+    <div class="card">
+
+      <div class="actions">
+
+        <button
+          class="secondary"
+          onclick="salirLibro()">
+          ← Salir del libro
+        </button>
+
+      </div>
+
+      <h3 id="bookViewerTitle">Libro</h3>
+
+      <iframe
+        id="bookFrame"
+        title="Lector de libros">
+      </iframe>
 
     </div>
 
@@ -582,16 +974,253 @@ footer{
 </section>
 
 
-<!-- PANEL Jefa -->
-<section id="jefa">
+<!-- ================= AGENDA ================= -->
 
-  <h1>👑 Panel Jefa</h1>
+<section id="agenda" class="section">
+
+  <h2>📅 Agenda DUCATTO</h2>
 
   <div class="card">
 
-    <h3>Solicitudes Premium</h3>
+    <h3>➕ Añadir plan</h3>
 
-    <div id="solicitudesJefa"></div>
+    <div class="form-grid">
+
+      <div class="field">
+        <label>Plan</label>
+        <input id="eventTitle" placeholder="Ej.: Cine">
+      </div>
+
+      <div class="field">
+        <label>Fecha</label>
+        <input id="eventDate" type="date">
+      </div>
+
+      <div class="field">
+        <label>Hora</label>
+        <input id="eventTime" type="time">
+      </div>
+
+      <div class="field">
+        <label>Lugar</label>
+        <input id="eventPlace" placeholder="Ej.: Málaga">
+      </div>
+
+    </div>
+
+    <div class="field">
+      <label>Notas</label>
+      <textarea
+        id="eventNotes"
+        rows="3"
+        placeholder="Detalles del plan..."></textarea>
+    </div>
+
+    <button
+      class="primary"
+      onclick="guardarEvento()">
+      ➕ Guardar plan
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>🗓️ Mis planes</h3>
+
+    <div id="eventList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= UBICACIONES ================= -->
+
+<section id="ubicaciones" class="section">
+
+  <h2>📍 Ubicaciones</h2>
+
+  <div class="card">
+
+    <p class="description">
+      Busca lugares públicos como bibliotecas, parques, museos,
+      centros culturales o restaurantes.
+    </p>
+
+    <div class="form-grid">
+
+      <input
+        id="locationSearch"
+        placeholder="Ej.: biblioteca">
+
+      <button
+        class="primary"
+        onclick="buscarUbicaciones()">
+        🔎 Buscar
+      </button>
+
+    </div>
+
+  </div>
+
+  <div id="locationResults"></div>
+
+</section>
+
+
+<!-- ================= PERFIL ================= -->
+
+<section id="perfil" class="section">
+
+  <h2>👤 Mi perfil</h2>
+
+  <div class="card">
+
+    <div class="field">
+
+      <label>Nombre de usuario</label>
+
+      <input
+        id="usernameInput"
+        placeholder="Ej.: usuario123">
+
+    </div>
+
+    <button
+      class="primary"
+      onclick="guardarUsuario()">
+      💾 Guardar usuario
+    </button>
+
+    <div id="profileMessage"></div>
+
+  </div>
+
+
+  <div
+    id="jefaArea"
+    class="card jefa-panel hidden">
+
+    <div class="jefa-title">
+      👑 Panel Jefa
+    </div>
+
+    <p class="description">
+      Cuenta Jefa: <strong>RA222</strong>
+    </p>
+
+    <p class="small">
+      Desde aquí puedes revisar las solicitudes Premium guardadas
+      en este navegador.
+    </p>
+
+    <div id="jefaRequests"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PREMIUM ================= -->
+
+<section id="premium" class="section">
+
+  <h2>⭐ DUCATTO Premium</h2>
+
+  <div class="card premium-box">
+
+    <h3>Acceso Premium</h3>
+
+    <div class="price">
+      7,99 €
+    </div>
+
+    <p>
+      Premium se activa manualmente después de comprobar el pago.
+    </p>
+
+    <hr style="border-color:#333">
+
+    <h3>💳 Pago por Bizum</h3>
+
+    <p>
+      Envía <strong>7,99 €</strong> por Bizum al número:
+    </p>
+
+    <div class="bizum">
+      602 898 046
+    </div>
+
+    <p>
+      En el concepto o mensaje de Bizum escribe tu
+      <strong>usuario de DUCATTO</strong>.
+    </p>
+
+    <div class="notice">
+      Después de pagar, escribe aquí exactamente el mismo usuario.
+      La solicitud quedará <strong>pendiente</strong> hasta que Jefa
+      compruebe el pago.
+    </div>
+
+
+    <div class="field">
+
+      <label>Tu usuario de DUCATTO</label>
+
+      <input
+        id="premiumUsername"
+        placeholder="Ej.: miusuario">
+
+    </div>
+
+    <button
+      class="primary"
+      onclick="solicitarPremiumDesdeWeb()">
+      💳 He realizado el pago
+    </button>
+
+    <div id="premiumMessage"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>📌 Estado de mi solicitud</h3>
+
+    <div id="premiumStatus">
+      Escribe tu usuario para consultar el estado.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= Jefa ================= -->
+
+<section
+  id="jefa"
+  class="section">
+
+  <h2>👑 Jefa</h2>
+
+  <div
+    id="jefaOnly"
+    class="card jefa-panel">
+
+    <div class="jefa-title">
+      Panel Jefa
+    </div>
+
+    <p>
+      Este panel solo aparece si el usuario activo es
+      <strong>RA222</strong>.
+    </p>
+
+    <div id="jefaRequestsFull"></div>
 
   </div>
 
@@ -600,52 +1229,39 @@ footer{
 </main>
 
 
-<!-- VISOR -->
-<div id="visor">
-
-  <div class="contenido">
-
-    <button class="close" onclick="cerrarVisor()">
-      ✕ Cerrar
-    </button>
-
-    <h2 id="visorTitulo"></h2>
-
-    <div id="visorDescripcion"></div>
-
-    <div id="videoContainer">
-      <iframe
-        id="videoFrame"
-        allowfullscreen
-        allow="autoplay; fullscreen"
-      ></iframe>
-    </div>
-
-  </div>
-
-</div>
-
-
 <footer>
-  DUCATTO · 2026
+  DUCATTO · Entretenimiento · Lectura · TV · Agenda
 </footer>
 
 
+<!-- HLS.js para emisiones compatibles -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<!-- TU SISTEMA PREMIUM -->
 <script src="premium-users.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <script>
 
-/* =========================
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
+
+const JEFA_USUARIO = "RA222";
+
+const PRECIO_PREMIUM_LOCAL = 7.99;
+
+
+/* =========================================================
    NAVEGACIÓN
-========================= */
+========================================================= */
 
-function mostrar(id){
+function mostrarSeccion(id){
 
-  document.querySelectorAll("main section").forEach(
-    section => section.classList.remove("active")
-  );
+  document.querySelectorAll(".section")
+    .forEach(section=>{
+      section.classList.remove("active");
+    });
 
   const destino = document.getElementById(id);
 
@@ -653,49 +1269,37 @@ function mostrar(id){
     destino.classList.add("active");
   }
 
-  if(id === "agenda"){
-    cargarAgenda();
-  }
-
-  if(id === "perfil"){
-    actualizarPerfil();
-  }
-
-  if(id === "premium"){
-    actualizarPremium();
-  }
-
-  if(id === "jefa"){
-    cargarSolicitudesJefa();
-  }
-
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
+  actualizarJefa();
 }
 
 
-/* =========================
+/* =========================================================
    PERFIL
-========================= */
+========================================================= */
 
-function obtenerPerfil(){
+function obtenerUsuarioActual(){
 
-  return localStorage.getItem("ducattoPerfil") || "";
+  return (
+    localStorage.getItem("ducattoUsuario") || ""
+  ).trim();
 
 }
 
 
-function crearPerfil(){
+function guardarUsuario(){
 
   const input =
-    document.getElementById("nuevoUsuario");
+    document.getElementById("usernameInput");
 
-  const nombre =
+  const usuario =
     input.value.trim();
 
-  if(!nombre){
+  if(!usuario){
 
     alert("Escribe un nombre de usuario.");
 
@@ -703,278 +1307,91 @@ function crearPerfil(){
   }
 
   localStorage.setItem(
-    "ducattoPerfil",
-    nombre
+    "ducattoUsuario",
+    usuario
   );
 
-  let usuarios =
-    obtenerUsuarios();
-
-  const existe =
-    usuarios.some(
-      u =>
-        String(u.nombre).toLowerCase() ===
-        nombre.toLowerCase()
-    );
-
-  if(!existe){
-
-    usuarios.push({
-      nombre:nombre,
-      premium:false
-    });
-
-    guardarUsuarios(usuarios);
-
-  }
-
-  input.value = "";
-
   actualizarPerfil();
-  actualizarPremium();
 
-  alert("Perfil creado correctamente.");
+  document.getElementById(
+    "profileMessage"
+  ).innerHTML =
+    '<div class="notice success">Usuario guardado correctamente.</div>';
+
+  actualizarJefa();
+
+  cargarEstadoPremium();
 }
 
 
 function actualizarPerfil(){
 
-  const nombre =
-    obtenerPerfil();
-
-  const sin =
-    document.getElementById("perfilSinUsuario");
-
-  const con =
-    document.getElementById("perfilUsuario");
-
-  if(!nombre){
-
-    sin.classList.remove("hidden");
-    con.classList.add("hidden");
-
-    return;
-  }
-
-  sin.classList.add("hidden");
-  con.classList.remove("hidden");
+  const usuario =
+    obtenerUsuarioActual();
 
   document.getElementById(
-    "nombrePerfil"
-  ).textContent = nombre;
-
-  const premium =
-    tienePremium(nombre);
-
-  const estado =
-    document.getElementById(
-      "estadoPerfil"
-    );
-
-  estado.textContent =
-    premium
-      ? "⭐ Premium activo"
-      : "Cuenta normal";
-
-}
-
-
-function actualizarPremium(){
-
-  const nombre =
-    obtenerPerfil();
-
-  const sin =
-    document.getElementById(
-      "premiumNoPerfil"
-    );
-
-  const con =
-    document.getElementById(
-      "premiumConPerfil"
-    );
-
-  if(!nombre){
-
-    sin.classList.remove("hidden");
-    con.classList.add("hidden");
-
-    return;
-  }
-
-  sin.classList.add("hidden");
-  con.classList.remove("hidden");
+    "usernameInput"
+  ).value = usuario;
 
   document.getElementById(
-    "premiumUsuario"
-  ).textContent = nombre;
-
-}
-
-
-/* =========================
-   PREMIUM
-========================= */
-
-function solicitarPremiumDesdeWeb(){
-
-  const nombre =
-    obtenerPerfil();
-
-  if(!nombre){
-
-    alert("Primero crea tu perfil.");
-
-    mostrar("perfil");
-
-    return;
-  }
-
-  const resultado =
-    solicitarPremium(nombre);
+    "premiumUsername"
+  ).value = usuario;
 
   document.getElementById(
-    "premiumMensaje"
+    "userBadge"
   ).textContent =
-    resultado.mensaje;
+    usuario
+      ? "👤 " + usuario
+      : "Sin usuario";
 
 }
 
 
-/* =========================
-   PELÍCULAS / SERIES
-========================= */
+/* =========================================================
+   JEFA
+========================================================= */
 
-/*
-  Usamos Internet Archive como catálogo
-  de contenido que puede incluir material
-  de dominio público o con licencias abiertas.
+function esJefa(){
 
-  Antes de reproducir comprobamos los metadatos.
-*/
+  return (
+    obtenerUsuarioActual().toLowerCase()
+    === JEFA_USUARIO.toLowerCase()
+  );
 
-async function buscarArchive(query, tipo){
+}
 
-  const url =
-    "https://archive.org/advancedsearch.php?q=" +
-    encodeURIComponent(
-      "title:(" +
-      query +
-      ") AND mediatype:movies"
-    ) +
-    "&fl[]=identifier" +
-    "&fl[]=title" +
-    "&fl[]=description" +
-    "&rows=20" +
-    "&output=json";
+
+function actualizarJefa(){
+
+  const area =
+    document.getElementById("jefaArea");
+
+  if(esJefa()){
+
+    area.classList.remove("hidden");
+
+    renderizarSolicitudesJefa();
+
+  }else{
+
+    area.classList.add("hidden");
+
+  }
+
+}
+
+
+function obtenerSolicitudesLocales(){
 
   try{
 
-    const respuesta =
-      await fetch(url);
-
-    const datos =
-      await respuesta.json();
-
-    const docs =
-      datos.response &&
-      datos.response.docs
-        ? datos.response.docs
-        : [];
-
-    const validos = [];
-
-    for(const doc of docs){
-
-      try{
-
-        const metaRespuesta =
-          await fetch(
-            "https://archive.org/metadata/" +
-            encodeURIComponent(
-              doc.identifier
-            )
-          );
-
-        const meta =
-          await metaRespuesta.json();
-
-        const metadata =
-          meta.metadata || {};
-
-        const licencia =
-          String(
-            metadata.licenseurl ||
-            ""
-          ).toLowerCase();
-
-        const derechos =
-          String(
-            metadata.rights ||
-            ""
-          ).toLowerCase();
-
-        const descripcion =
-          String(
-            metadata.description ||
-            doc.description ||
-            ""
-          ).toLowerCase();
-
-        const autorizado =
-          licencia.includes(
-            "creativecommons.org"
-          ) ||
-          derechos.includes(
-            "public domain"
-          ) ||
-          derechos.includes(
-            "public-domain"
-          ) ||
-          descripcion.includes(
-            "public domain"
-          ) ||
-          descripcion.includes(
-            "creative commons"
-          );
-
-        if(autorizado){
-
-          validos.push({
-            identifier:doc.identifier,
-            title:doc.title || query,
-            description:
-              doc.description ||
-              metadata.description ||
-              "",
-            license:
-              metadata.licenseurl ||
-              metadata.rights ||
-              "Licencia abierta"
-          });
-
-        }
-
-      }catch(error){
-
-        console.log(
-          "No se pudieron comprobar los metadatos:",
-          error
-        );
-
-      }
-
-      if(validos.length >= 12){
-        break;
-      }
-
-    }
-
-    return validos;
+    return JSON.parse(
+      localStorage.getItem(
+        "ducattoSolicitudesPremium"
+      ) || "[]"
+    );
 
   }catch(error){
-
-    console.error(error);
 
     return [];
 
@@ -983,1010 +1400,597 @@ async function buscarArchive(query, tipo){
 }
 
 
-async function buscarPeliculas(){
+function guardarSolicitudesLocales(lista){
 
-  const texto =
-    document.getElementById(
-      "buscarPelicula"
-    ).value.trim();
-
-  const contenedor =
-    document.getElementById(
-      "peliculasResultados"
-    );
-
-  if(!texto){
-
-    contenedor.innerHTML =
-      "<div class='card'>Escribe el nombre de una película.</div>";
-
-    return;
-  }
-
-  contenedor.innerHTML =
-    "<div class='card'>🔎 Buscando películas...</div>";
-
-  const resultados =
-    await buscarArchive(
-      texto,
-      "pelicula"
-    );
-
-  if(!resultados.length){
-
-    contenedor.innerHTML =
-      "<div class='card'>No se han encontrado películas autorizadas con ese nombre.</div>";
-
-    return;
-  }
-
-  contenedor.innerHTML = "";
-
-  resultados.forEach(
-    pelicula => {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-      div.className = "item";
-
-      div.innerHTML = `
-        <span class="badge">🎬 Película</span>
-        <h3>${escapeHTML(pelicula.title)}</h3>
-        <p>${escapeHTML(
-          limpiarDescripcion(
-            pelicula.description
-          )
-        )}</p>
-        <button class="primary">
-          ▶️ Ver dentro de DUCATTO
-        </button>
-      `;
-
-      div.querySelector("button")
-        .onclick = () =>
-          reproducirArchive(
-            pelicula
-          );
-
-      contenedor.appendChild(div);
-
-    }
+  localStorage.setItem(
+    "ducattoSolicitudesPremium",
+    JSON.stringify(lista)
   );
 
 }
 
 
-async function buscarSeries(){
+function renderizarSolicitudesJefa(){
 
-  const texto =
-    document.getElementById(
-      "buscarSerie"
-    ).value.trim();
+  if(!esJefa()) return;
 
-  const contenedor =
-    document.getElementById(
-      "seriesResultados"
-    );
+  const solicitudes =
+    obtenerSolicitudesLocales();
 
-  if(!texto){
+  const contenedores = [
+    document.getElementById("jefaRequests"),
+    document.getElementById("jefaRequestsFull")
+  ];
 
-    contenedor.innerHTML =
-      "<div class='card'>Escribe el nombre de una serie.</div>";
+  contenedores.forEach(contenedor=>{
 
-    return;
-  }
+    if(!contenedor) return;
 
-  contenedor.innerHTML =
-    "<div class='card'>🔎 Buscando series...</div>";
+    if(solicitudes.length === 0){
 
-  const resultados =
-    await buscarArchive(
-      texto,
-      "serie"
-    );
-
-  if(!resultados.length){
-
-    contenedor.innerHTML =
-      "<div class='card'>No se han encontrado episodios o contenidos autorizados con ese nombre.</div>";
-
-    return;
-  }
-
-  contenedor.innerHTML = "";
-
-  resultados.forEach(
-    episodio => {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-      div.className = "item";
-
-      div.innerHTML = `
-        <span class="badge">📺 Serie / episodio</span>
-        <h3>${escapeHTML(episodio.title)}</h3>
-        <p>${escapeHTML(
-          limpiarDescripcion(
-            episodio.description
-          )
-        )}</p>
-        <button class="primary">
-          ▶️ Ver dentro de DUCATTO
-        </button>
-      `;
-
-      div.querySelector("button")
-        .onclick = () =>
-          reproducirArchive(
-            episodio
-          );
-
-      contenedor.appendChild(div);
-
-    }
-  );
-
-}
-
-
-function limpiarDescripcion(texto){
-
-  if(!texto){
-    return "Contenido disponible para reproducción.";
-  }
-
-  return String(texto)
-    .replace(/<[^>]*>/g,"")
-    .substring(0,280);
-
-}
-
-
-function escapeHTML(texto){
-
-  return String(texto || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function reproducirArchive(item){
-
-  document.getElementById(
-    "visorTitulo"
-  ).textContent =
-    item.title;
-
-  document.getElementById(
-    "visorDescripcion"
-  ).innerHTML =
-    "<p>" +
-    escapeHTML(
-      limpiarDescripcion(
-        item.description
-      )
-    ) +
-    "</p>" +
-    "<p class='muted'>Fuente/licencia: " +
-    escapeHTML(
-      item.license
-    ) +
-    "</p>";
-
-  document.getElementById(
-    "videoFrame"
-  ).src =
-    "https://archive.org/embed/" +
-    encodeURIComponent(
-      item.identifier
-    );
-
-  document.getElementById(
-    "visor"
-  ).style.display = "block";
-
-}
-
-
-function cerrarVisor(){
-
-  document.getElementById(
-    "videoFrame"
-  ).src = "";
-
-  document.getElementById(
-    "visor"
-  ).style.display = "none";
-
-}
-
-
-/* =========================
-   LIBROS
-========================= */
-
-async function cargarLibros(){
-
-  const idioma =
-    document.getElementById(
-      "idiomaLibro"
-    ).value;
-
-  const contenedor =
-    document.getElementById(
-      "librosResultados"
-    );
-
-  contenedor.innerHTML =
-    "<div class='card'>📚 Cargando libros...</div>";
-
-  try{
-
-    const respuesta =
-      await fetch(
-        "https://gutendex.com/books/?languages=" +
-        encodeURIComponent(idioma) +
-        "&page=1"
-      );
-
-    const datos =
-      await respuesta.json();
-
-    mostrarLibros(
-      datos.results || []
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    contenedor.innerHTML =
-      "<div class='card'>No se ha podido cargar la biblioteca.</div>";
-
-  }
-
-}
-
-
-async function buscarLibros(){
-
-  const idioma =
-    document.getElementById(
-      "idiomaLibro"
-    ).value;
-
-  const texto =
-    document.getElementById(
-      "buscarLibro"
-    ).value.trim();
-
-  const contenedor =
-    document.getElementById(
-      "librosResultados"
-    );
-
-  if(!texto){
-
-    cargarLibros();
-
-    return;
-  }
-
-  contenedor.innerHTML =
-    "<div class='card'>🔎 Buscando libros...</div>";
-
-  try{
-
-    const respuesta =
-      await fetch(
-        "https://gutendex.com/books/?search=" +
-        encodeURIComponent(texto) +
-        "&languages=" +
-        encodeURIComponent(idioma)
-      );
-
-    const datos =
-      await respuesta.json();
-
-    mostrarLibros(
-      datos.results || []
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    contenedor.innerHTML =
-      "<div class='card'>No se ha podido realizar la búsqueda.</div>";
-
-  }
-
-}
-
-
-function mostrarLibros(libros){
-
-  const contenedor =
-    document.getElementById(
-      "librosResultados"
-    );
-
-  contenedor.innerHTML = "";
-
-  if(!libros.length){
-
-    contenedor.innerHTML =
-      "<div class='card'>No se han encontrado libros en ese idioma.</div>";
-
-    return;
-  }
-
-  libros.slice(0,20).forEach(
-    libro => {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-      div.className = "item";
-
-      const titulo =
-        libro.title ||
-        "Libro sin título";
-
-      const autores =
-        (libro.authors || [])
-          .map(
-            a => a.name
-          )
-          .join(", ");
-
-      div.innerHTML = `
-        <span class="badge">
-          ${libro.languages &&
-          libro.languages.includes("es")
-          ? "🇪🇸 Español"
-          : "🇬🇧 English"}
-        </span>
-
-        <h3>${escapeHTML(titulo)}</h3>
-
-        <p>
-          ${escapeHTML(
-            autores ||
-            "Autor desconocido"
-          )}
-        </p>
-
-        <button class="primary">
-          📖 Leer
-        </button>
-      `;
-
-      div.querySelector("button")
-        .onclick = () =>
-          leerLibro(
-            libro
-          );
-
-      contenedor.appendChild(div);
-
-    }
-  );
-
-}
-
-
-function leerLibro(libro){
-
-  const formatos =
-    libro.formats || {};
-
-  const html =
-    formatos["text/html"] ||
-    formatos["text/html; charset=utf-8"] ||
-    formatos["text/html; charset=us-ascii"];
-
-  if(!html){
-
-    const texto =
-      formatos["text/plain; charset=utf-8"] ||
-      formatos["text/plain"];
-
-    if(texto){
-
-      window.open(
-        texto,
-        "_blank"
-      );
+      contenedor.innerHTML =
+        '<div class="empty">No hay solicitudes Premium.</div>';
 
       return;
     }
 
-    alert(
-      "Este libro no tiene un formato de lectura web compatible."
+    contenedor.innerHTML = "";
+
+    solicitudes
+      .slice()
+      .reverse()
+      .forEach((solicitud,indexReverse)=>{
+
+        const realIndex =
+          solicitudes.length - 1 - indexReverse;
+
+        const div =
+          document.createElement("div");
+
+        div.className = "request";
+
+        const estado =
+          solicitud.estado || "pendiente";
+
+        div.innerHTML = `
+          <strong>${escapeHTML(solicitud.usuario)}</strong>
+
+          <p>
+            Precio:
+            ${Number(solicitud.precio || PRECIO_PREMIUM_LOCAL).toFixed(2)} €
+          </p>
+
+          <p>
+            Estado:
+            <span class="status ${escapeHTML(estado)}">
+              ${escapeHTML(estado)}
+            </span>
+          </p>
+
+          <p class="small">
+            ${solicitud.fecha
+              ? new Date(solicitud.fecha).toLocaleString("es-ES")
+              : ""}
+          </p>
+
+          <div class="actions">
+
+            <button
+              class="primary"
+              onclick="jefaAprobar(${realIndex})">
+              ✅ Aprobar Premium
+            </button>
+
+            <button
+              class="secondary"
+              onclick="jefaRechazar(${realIndex})">
+              ❌ Rechazar
+            </button>
+
+            <button
+              class="danger"
+              onclick="jefaQuitarPremium('${escapeAttribute(solicitud.usuario)}')">
+              🚫 Quitar Premium
+            </button>
+
+          </div>
+        `;
+
+        contenedor.appendChild(div);
+
+      });
+
+  });
+
+}
+
+
+function jefaAprobar(index){
+
+  if(!esJefa()){
+
+    alert("Acceso no permitido.");
+
+    return;
+  }
+
+  const solicitudes =
+    obtenerSolicitudesLocales();
+
+  const solicitud =
+    solicitudes[index];
+
+  if(!solicitud){
+
+    return;
+  }
+
+  if(typeof activarPremium === "function"){
+
+    activarPremium(
+      solicitud.usuario
+    );
+
+  }else{
+
+    activarPremiumLocal(
+      solicitud.usuario
+    );
+
+  }
+
+  solicitudes[index].estado =
+    "aprobada";
+
+  guardarSolicitudesLocales(
+    solicitudes
+  );
+
+  renderizarSolicitudesJefa();
+
+  alert(
+    "Premium activado para " +
+    solicitud.usuario
+  );
+
+}
+
+
+function jefaRechazar(index){
+
+  if(!esJefa()){
+
+    alert("Acceso no permitido.");
+
+    return;
+  }
+
+  const solicitudes =
+    obtenerSolicitudesLocales();
+
+  if(!solicitudes[index]) return;
+
+  solicitudes[index].estado =
+    "rechazada";
+
+  guardarSolicitudesLocales(
+    solicitudes
+  );
+
+  if(typeof rechazarPremium === "function"){
+
+    rechazarPremium(
+      solicitudes[index].usuario
+    );
+
+  }
+
+  renderizarSolicitudesJefa();
+
+}
+
+
+function jefaQuitarPremium(usuario){
+
+  if(!esJefa()){
+
+    alert("Acceso no permitido.");
+
+    return;
+  }
+
+  if(typeof quitarPremium === "function"){
+
+    quitarPremium(usuario);
+
+  }else{
+
+    quitarPremiumLocal(usuario);
+
+  }
+
+  alert(
+    "Premium retirado para " + usuario
+  );
+
+  renderizarSolicitudesJefa();
+
+}
+
+
+function activarPremiumLocal(usuario){
+
+  const usuarios =
+    JSON.parse(
+      localStorage.getItem(
+        "ducattoUsuarios"
+      ) || "[]"
+    );
+
+  let encontrado =
+    usuarios.find(
+      u =>
+        u.nombre &&
+        u.nombre.toLowerCase()
+        === usuario.toLowerCase()
+    );
+
+  if(!encontrado){
+
+    encontrado = {
+      nombre:usuario,
+      premium:true
+    };
+
+    usuarios.push(encontrado);
+
+  }else{
+
+    encontrado.premium = true;
+
+  }
+
+  localStorage.setItem(
+    "ducattoUsuarios",
+    JSON.stringify(usuarios)
+  );
+
+}
+
+
+function quitarPremiumLocal(usuario){
+
+  const usuarios =
+    JSON.parse(
+      localStorage.getItem(
+        "ducattoUsuarios"
+      ) || "[]"
+    );
+
+  const encontrado =
+    usuarios.find(
+      u =>
+        u.nombre &&
+        u.nombre.toLowerCase()
+        === usuario.toLowerCase()
+    );
+
+  if(encontrado){
+
+    encontrado.premium = false;
+
+  }
+
+  localStorage.setItem(
+    "ducattoUsuarios",
+    JSON.stringify(usuarios)
+  );
+
+}
+
+
+/* =========================================================
+   PREMIUM
+========================================================= */
+
+function solicitarPremiumDesdeWeb(){
+
+  const input =
+    document.getElementById(
+      "premiumUsername"
+    );
+
+  const usuario =
+    input.value.trim();
+
+  if(!usuario){
+
+    mostrarPremiumMensaje(
+      "Escribe tu usuario de DUCATTO."
     );
 
     return;
   }
 
-  document.getElementById(
-    "visorTitulo"
-  ).textContent =
-    libro.title;
+  /*
+    IMPORTANTE:
+    El botón NO activa Premium.
+    Solo crea una solicitud pendiente.
+  */
 
-  document.getElementById(
-    "visorDescripcion"
-  ).innerHTML =
-    "<p>📚 Lectura del libro</p>";
+  let resultado;
 
-  document.getElementById(
-    "videoFrame"
-  ).src = html;
+  if(typeof solicitarPremium === "function"){
 
-  document.getElementById(
-    "visor"
-  ).style.display = "block";
+    resultado =
+      solicitarPremium(usuario);
+
+  }else{
+
+    resultado =
+      solicitarPremiumLocal(usuario);
+
+  }
+
+  mostrarPremiumMensaje(
+    resultado.mensaje,
+    resultado.ok
+  );
+
+  cargarEstadoPremium();
 
 }
 
 
-/* =========================
-   TV IPTV
-========================= */
+function solicitarPremiumLocal(usuario){
 
-const PLAYLISTS = {
+  const solicitudes =
+    obtenerSolicitudesLocales();
 
-  es:
-    "https://iptv-org.github.io/iptv/countries/es.m3u",
+  const existente =
+    solicitudes.find(
+      s =>
+        s.usuario.toLowerCase()
+        === usuario.toLowerCase()
+        &&
+        s.estado === "pendiente"
+    );
 
-  movies:
-    "https://iptv-org.github.io/iptv/categories/movies.m3u",
+  if(existente){
 
-  series:
-    "https://iptv-org.github.io/iptv/categories/series.m3u"
+    return {
+      ok:false,
+      mensaje:
+        "Ya tienes una solicitud pendiente."
+    };
+
+  }
+
+  solicitudes.push({
+
+    usuario:usuario,
+
+    precio:PRECIO_PREMIUM_LOCAL,
+
+    fecha:new Date().toISOString(),
+
+    estado:"pendiente"
+
+  });
+
+  guardarSolicitudesLocales(
+    solicitudes
+  );
+
+  return {
+    ok:true,
+    mensaje:
+      "Solicitud enviada. Queda pendiente de comprobación."
+  };
+
+}
+
+
+function mostrarPremiumMensaje(
+  mensaje,
+  correcto=false
+){
+
+  document.getElementById(
+    "premiumMessage"
+  ).innerHTML =
+    `<div class="notice ${correcto ? "success" : ""}">
+      ${escapeHTML(mensaje)}
+    </div>`;
+
+}
+
+
+function cargarEstadoPremium(){
+
+  const usuario =
+    obtenerUsuarioActual();
+
+  const elemento =
+    document.getElementById(
+      "premiumStatus"
+    );
+
+  if(!usuario){
+
+    elemento.innerHTML =
+      "Primero guarda tu usuario en Perfil.";
+
+    return;
+
+  }
+
+  const solicitudes =
+    obtenerSolicitudesLocales();
+
+  const solicitud =
+    solicitudes
+      .slice()
+      .reverse()
+      .find(
+        s =>
+          s.usuario.toLowerCase()
+          === usuario.toLowerCase()
+      );
+
+  let premium = false;
+
+  if(typeof tienePremium === "function"){
+
+    premium =
+      tienePremium(usuario);
+
+  }else{
+
+    const usuarios =
+      JSON.parse(
+        localStorage.getItem(
+          "ducattoUsuarios"
+        ) || "[]"
+      );
+
+    const encontrado =
+      usuarios.find(
+        u =>
+          u.nombre &&
+          u.nombre.toLowerCase()
+          === usuario.toLowerCase()
+      );
+
+    premium =
+      !!(
+        encontrado &&
+        encontrado.premium === true
+      );
+
+  }
+
+  if(premium){
+
+    elemento.innerHTML =
+      '<span class="status approved">⭐ PREMIUM ACTIVO</span>';
+
+    return;
+  }
+
+  if(solicitud){
+
+    elemento.innerHTML =
+      `
+      <p>
+        Usuario:
+        <strong>${escapeHTML(usuario)}</strong>
+      </p>
+
+      <p>
+        Estado:
+        <span class="status ${escapeHTML(solicitud.estado)}">
+          ${escapeHTML(solicitud.estado)}
+        </span>
+      </p>
+      `;
+
+    return;
+
+  }
+
+  elemento.innerHTML =
+    "No tienes una solicitud Premium.";
+
+}
+
+
+/* =========================================================
+   PELÍCULAS
+========================================================= */
+
+function reproducirPelícula(url){
+
+  const viewer =
+    document.getElementById(
+      "movieViewer"
+    );
+
+  const frame =
+    document.getElementById(
+      "movieFrame"
+    );
+
+  frame.src = url;
+
+  viewer.classList.add("active");
+
+  viewer.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+function cerrarPelícula(){
+
+  document.getElementById(
+    "movieFrame"
+  ).src = "";
+
+  document.getElementById(
+    "movieViewer"
+  ).classList.remove("active");
+
+}
+
+
+/* =========================================================
+   SERIES
+========================================================= */
+
+const SERIES_AUTORIZADAS = {
+
+  serieClasica: [
+
+    {
+      titulo:"Episodio autorizado 1",
+      url:""
+    },
+
+    {
+      titulo:"Episodio autorizado 2",
+      url:""
+    }
+
+  ]
 
 };
 
 
-async function cargarTV(tipo){
+function mostrarEpisodios(id){
 
-  const contenedor =
+  const area =
     document.getElementById(
-      "tvResultados"
+      "episodeArea"
     );
 
-  const url =
-    PLAYLISTS[tipo];
-
-  contenedor.innerHTML =
-    "<div class='card'>📡 Cargando canales...</div>";
-
-  try{
-
-    const respuesta =
-      await fetch(url);
-
-    const texto =
-      await respuesta.text();
-
-    const canales =
-      parseM3U(texto);
-
-    contenedor.innerHTML = "";
-
-    if(!canales.length){
-
-      contenedor.innerHTML =
-        "<div class='card'>No se han encontrado canales.</div>";
-
-      return;
-    }
-
-    canales
-      .slice(0,60)
-      .forEach(
-        canal => {
-
-          const div =
-            document.createElement(
-              "div"
-            );
-
-          div.className =
-            "item";
-
-          div.innerHTML = `
-            <span class="badge">📡 TV</span>
-            <h3>${escapeHTML(canal.nombre)}</h3>
-            <button class="primary">
-              ▶️ Ver
-            </button>
-          `;
-
-          div.querySelector("button")
-            .onclick = () =>
-              reproducirHLS(
-                canal.nombre,
-                canal.url
-              );
-
-          contenedor.appendChild(div);
-
-        }
-      );
-
-  }catch(error){
-
-    console.error(error);
-
-    contenedor.innerHTML =
-      "<div class='card'>No se ha podido cargar la lista de TV.</div>";
-
-  }
-
-}
-
-
-function parseM3U(texto){
-
-  const lineas =
-    texto.split(/\r?\n/);
-
-  const resultado = [];
-
-  let nombre = "";
-
-  for(let i=0;i<lineas.length;i++){
-
-    const linea =
-      lineas[i].trim();
-
-    if(linea.startsWith("#EXTINF")){
-
-      const coma =
-        linea.indexOf(",");
-
-      nombre =
-        coma >= 0
-          ? linea.substring(
-              coma+1
-            ).trim()
-          : "Canal";
-
-    }else if(
-      linea &&
-      !linea.startsWith("#") &&
-      nombre
-    ){
-
-      resultado.push({
-        nombre:nombre,
-        url:linea
-      });
-
-      nombre = "";
-
-    }
-
-  }
-
-  return resultado;
-
-}
-
-
-function reproducirHLS(
-  nombre,
-  url
-){
-
-  document.getElementById(
-    "visorTitulo"
-  ).textContent =
-    nombre;
-
-  document.getElementById(
-    "visorDescripcion"
-  ).innerHTML =
-    "<p>📡 Canal TV</p>";
-
-  const container =
+  const lista =
     document.getElementById(
-      "videoContainer"
+      "episodeList"
     );
 
-  container.innerHTML = `
-    <video
-      id="hlsVideo"
-      controls
-      autoplay
-      style="
-        width:100%;
-        max-height:600px;
-        background:#000;
-        border-radius:10px;
-      "
-    ></video>
-  `;
+  const episodios =
+    SERIES_AUTORIZADAS[id] || [];
 
-  const video =
-    document.getElementById(
-      "hlsVideo"
-    );
-
-  if(
-    video.canPlayType(
-      "application/vnd.apple.mpegurl"
-    )
-  ){
-
-    video.src = url;
-
-  }else if(
-    window.Hls &&
-    Hls.isSupported()
-  ){
-
-    const hls =
-      new Hls();
-
-    hls.loadSource(url);
-    hls.attachMedia(video);
-
-  }else{
-
-    container.innerHTML =
-      "<p>Este navegador no admite este formato de vídeo.</p>";
-
-  }
-
-  document.getElementById(
-    "visor"
-  ).style.display =
-    "block";
-
-}
-
-
-/* =========================
-   AGENDA
-========================= */
-
-function guardarPlan(){
-
-  const titulo =
-    document.getElementById(
-      "planTitulo"
-    ).value.trim();
-
-  const fecha =
-    document.getElementById(
-      "planFecha"
-    ).value;
-
-  const hora =
-    document.getElementById(
-      "planHora"
-    ).value;
-
-  const lugar =
-    document.getElementById(
-      "planLugar"
-    ).value.trim();
-
-  const notas =
-    document.getElementById(
-      "planNotas"
-    ).value.trim();
-
-  if(!titulo){
-
-    alert(
-      "Escribe qué quieres hacer."
-    );
-
-    return;
-  }
-
-  const agenda =
-    JSON.parse(
-      localStorage.getItem(
-        "ducattoAgenda"
-      ) || "[]"
-    );
-
-  agenda.push({
-    id:Date.now(),
-    titulo,
-    fecha,
-    hora,
-    lugar,
-    notas
-  });
-
-  localStorage.setItem(
-    "ducattoAgenda",
-    JSON.stringify(agenda)
+  area.classList.remove(
+    "hidden"
   );
 
-  document.getElementById(
-    "planTitulo"
-  ).value = "";
+  lista.innerHTML = "";
 
-  document.getElementById(
-    "planFecha"
-  ).value = "";
-
-  document.getElementById(
-    "planHora"
-  ).value = "";
-
-  document.getElementById(
-    "planLugar"
-  ).value = "";
-
-  document.getElementById(
-    "planNotas"
-  ).value = "";
-
-  cargarAgenda();
-
-}
-
-
-function cargarAgenda(){
-
-  const contenedor =
-    document.getElementById(
-      "agendaLista"
-    );
-
-  const agenda =
-    JSON.parse(
-      localStorage.getItem(
-        "ducattoAgenda"
-      ) || "[]"
-    );
-
-  contenedor.innerHTML = "";
-
-  if(!agenda.length){
-
-    contenedor.innerHTML =
-      "<div class='card'>No tienes planes todavía.</div>";
-
-    return;
-  }
-
-  agenda
-    .sort(
-      (a,b) =>
-        String(a.fecha).localeCompare(
-          String(b.fecha)
-        )
-    )
-    .forEach(
-      plan => {
-
-        const div =
-          document.createElement(
-            "div"
-          );
-
-        div.className =
-          "card";
-
-        div.innerHTML = `
-          <h3>${escapeHTML(plan.titulo)}</h3>
-          <p>📅 ${escapeHTML(plan.fecha || "Sin fecha")}</p>
-          <p>⏰ ${escapeHTML(plan.hora || "Sin hora")}</p>
-          <p>📍 ${escapeHTML(plan.lugar || "Sin lugar")}</p>
-          <p>${escapeHTML(plan.notas || "")}</p>
-
-          <button class="danger">
-            🗑️ Eliminar
-          </button>
-        `;
-
-        div.querySelector("button")
-          .onclick = () =>
-            eliminarPlan(
-              plan.id
-            );
-
-        contenedor.appendChild(div);
-
-      }
-    );
-
-}
-
-
-function eliminarPlan(id){
-
-  let agenda =
-    JSON.parse(
-      localStorage.getItem(
-        "ducattoAgenda"
-      ) || "[]"
-    );
-
-  agenda =
-    agenda.filter(
-      p => p.id !== id
-    );
-
-  localStorage.setItem(
-    "ducattoAgenda",
-    JSON.stringify(agenda)
-  );
-
-  cargarAgenda();
-
-}
-
-
-/* =========================
-   UBICACIONES
-========================= */
-
-async function buscarLugares(){
-
-  const texto =
-    document.getElementById(
-      "buscarLugar"
-    ).value.trim();
-
-  const contenedor =
-    document.getElementById(
-      "lugaresResultados"
-    );
-
-  if(!texto){
-
-    contenedor.innerHTML =
-      "<div class='card'>Escribe un lugar para buscar.</div>";
-
-    return;
-  }
-
-  contenedor.innerHTML =
-    "<div class='card'>📍 Buscando...</div>";
-
-  try{
-
-    const url =
-      "https://nominatim.openstreetmap.org/search?format=json&limit=8&q=" +
-      encodeURIComponent(texto);
-
-    const respuesta =
-      await fetch(url);
-
-    const datos =
-      await respuesta.json();
-
-    contenedor.innerHTML = "";
-
-    if(!datos.length){
-
-      contenedor.innerHTML =
-        "<div class='card'>No se encontraron lugares.</div>";
-
-      return;
-    }
-
-    datos.forEach(
-      lugar => {
-
-        const div =
-          document.createElement(
-            "div"
-          );
-
-        div.className =
-          "card";
-
-        div.innerHTML = `
-          <h3>📍 ${escapeHTML(lugar.display_name)}</h3>
-          <a
-            href="https://www.openstreetmap.org/?mlat=${encodeURIComponent(lugar.lat)}&mlon=${encodeURIComponent(lugar.lon)}"
-            target="_blank"
-            style="color:#9d8cff"
-          >
-            Ver mapa
-          </a>
-        `;
-
-        contenedor.appendChild(div);
-
-      }
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    contenedor.innerHTML =
-      "<div class='card'>No se ha podido realizar la búsqueda.</div>";
-
-  }
-
-}
-
-
-/* =========================
-   PANEL JEFA
-========================= */
-
-/*
-  IMPORTANTE:
-  Esta contraseña es solo una barrera de interfaz.
-  Una contraseña escrita en JavaScript NO es seguridad
-  real frente a alguien que inspeccione el código.
-
-  Para una administración realmente privada hace falta
-  autenticación del servidor.
-*/
-
-const CLAVE_JEFA =
-  "CAMBIA-ESTA-CLAVE";
-
-
-function abrirPanelJefa(){
-
-  const clave =
-    prompt(
-      "Contraseña de Jefa:"
-    );
-
-  if(clave !== CLAVE_JEFA){
-
-    alert(
-      "Contraseña incorrecta."
-    );
-
-    return;
-  }
-
-  mostrar("jefa");
-
-}
-
-
-function cargarSolicitudesJefa(){
-
-  const contenedor =
-    document.getElementById(
-      "solicitudesJefa"
-    );
-
-  const solicitudes =
-    obtenerSolicitudesPremium();
-
-  contenedor.innerHTML = "";
-
-  if(!solicitudes.length){
-
-    contenedor.innerHTML =
-      "<p class='muted'>No hay solicitudes.</p>";
-
-    return;
-  }
-
-  solicitudes.forEach(
-    solicitud => {
+  episodios.forEach(
+    (episodio,index)=>{
 
       const div =
         document.createElement(
@@ -1994,129 +1998,938 @@ function cargarSolicitudesJefa(){
         );
 
       div.className =
-        "card";
+        "request";
 
       div.innerHTML = `
-        <h3>${escapeHTML(solicitud.usuario)}</h3>
+        <strong>
+          ${escapeHTML(episodio.titulo)}
+        </strong>
 
-        <p>
-          Precio:
-          ${escapeHTML(
-            String(solicitud.precio)
-          )} €
-        </p>
+        <div class="actions">
 
-        <p>
-          Estado:
-          ${escapeHTML(
-            solicitud.estado
-          )}
-        </p>
+          ${
+            episodio.url
+            ?
+            `
+            <button
+              class="primary"
+              onclick="reproducirEpisodio(
+                '${escapeAttribute(episodio.url)}'
+              )">
+              ▶ Ver episodio
+            </button>
+            `
+            :
+            `
+            <span class="small">
+              Fuente autorizada pendiente de añadir.
+            </span>
+            `
+          }
 
-        <p>
-          Fecha:
-          ${escapeHTML(
-            solicitud.fecha
-          )}
-        </p>
-
-        <button class="success">
-          ✅ Aprobar Premium
-        </button>
-
-        <button class="danger">
-          ❌ Rechazar
-        </button>
-
-        <button>
-          ⛔ Quitar Premium
-        </button>
+        </div>
       `;
 
-      const botones =
-        div.querySelectorAll(
-          "button"
-        );
+      lista.appendChild(div);
 
-      botones[0].onclick = () => {
+    });
 
-        activarPremium(
-          solicitud.usuario
-        );
+}
 
-        cargarSolicitudesJefa();
 
-      };
+function reproducirEpisodio(url){
 
-      botones[1].onclick = () => {
+  if(!url){
 
-        rechazarPremium(
-          solicitud.usuario
-        );
+    alert(
+      "Este episodio todavía no tiene una fuente autorizada."
+    );
 
-        cargarSolicitudesJefa();
+    return;
+  }
 
-      };
+  const viewer =
+    document.getElementById(
+      "seriesViewer"
+    );
 
-      botones[2].onclick = () => {
+  document.getElementById(
+    "seriesFrame"
+  ).src = url;
 
-        quitarPremium(
-          solicitud.usuario
-        );
+  viewer.classList.add(
+    "active"
+  );
 
-        cargarSolicitudesJefa();
+  viewer.scrollIntoView({
+    behavior:"smooth"
+  });
 
-      };
+}
 
-      contenedor.appendChild(div);
 
-    }
+function cerrarSerie(){
+
+  document.getElementById(
+    "seriesFrame"
+  ).src = "";
+
+  document.getElementById(
+    "seriesViewer"
+  ).classList.remove(
+    "active"
   );
 
 }
 
 
-/* =========================
-   ACCESO DE JEFA
-========================= */
+/* =========================================================
+   TV / M3U
+========================================================= */
 
-document.addEventListener(
-  "keydown",
-  function(event){
+let canalesTV = [];
 
-    /*
-      Ctrl + Shift + J
-      abre el acceso de Jefa.
-    */
 
-    if(
-      event.ctrlKey &&
-      event.shiftKey &&
-      event.key.toLowerCase() === "j"
-    ){
+async function cargarTV(url){
 
-      event.preventDefault();
+  const area =
+    document.getElementById(
+      "tvArea"
+    );
 
-      abrirPanelJefa();
+  const select =
+    document.getElementById(
+      "tvChannels"
+    );
+
+  area.classList.remove(
+    "hidden"
+  );
+
+  select.innerHTML =
+    '<option value="">Cargando canales...</option>';
+
+  try{
+
+    const respuesta =
+      await fetch(url);
+
+    if(!respuesta.ok){
+
+      throw new Error(
+        "No se pudo cargar la lista."
+      );
 
     }
 
+    const texto =
+      await respuesta.text();
+
+    canalesTV =
+      parsearM3U(texto);
+
+    select.innerHTML =
+      '<option value="">Selecciona un canal</option>';
+
+    canalesTV.forEach(
+      (canal,index)=>{
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          String(index);
+
+        option.textContent =
+          canal.nombre;
+
+        select.appendChild(
+          option
+        );
+
+      });
+
+  }catch(error){
+
+    select.innerHTML =
+      '<option value="">No se pudo cargar la playlist</option>';
+
+    alert(
+      "No se ha podido cargar esta lista desde el navegador."
+    );
+
   }
-);
+
+}
 
 
-/* =========================
+function parsearM3U(texto){
+
+  const lineas =
+    texto.split(/\r?\n/);
+
+  const resultado = [];
+
+  let actual = null;
+
+  lineas.forEach(linea=>{
+
+    linea = linea.trim();
+
+    if(!linea) return;
+
+    if(linea.startsWith("#EXTINF")){
+
+      const coma =
+        linea.indexOf(",");
+
+      const nombre =
+        coma >= 0
+        ? linea.slice(coma + 1).trim()
+        : "Canal";
+
+      actual = {
+        nombre:nombre,
+        url:""
+      };
+
+    }else if(
+      actual &&
+      !linea.startsWith("#")
+    ){
+
+      actual.url =
+        linea;
+
+      resultado.push(
+        actual
+      );
+
+      actual = null;
+
+    }
+
+  });
+
+  return resultado;
+
+}
+
+
+function reproducirTV(){
+
+  const select =
+    document.getElementById(
+      "tvChannels"
+    );
+
+  const indice =
+    Number(select.value);
+
+  const canal =
+    canalesTV[indice];
+
+  if(!canal){
+
+    alert(
+      "Selecciona un canal."
+    );
+
+    return;
+  }
+
+  const video =
+    document.getElementById(
+      "tvVideo"
+    );
+
+  if(
+    canal.url.includes(".m3u8")
+    &&
+    Hls.isSupported()
+  ){
+
+    if(video.hlsInstance){
+
+      video.hlsInstance.destroy();
+
+    }
+
+    const hls =
+      new Hls();
+
+    video.hlsInstance =
+      hls;
+
+    hls.loadSource(
+      canal.url
+    );
+
+    hls.attachMedia(
+      video
+    );
+
+    hls.on(
+      Hls.Events.MANIFEST_PARSED,
+      ()=>{
+        video.play().catch(()=>{});
+      }
+    );
+
+  }else{
+
+    video.src =
+      canal.url;
+
+    video.play().catch(()=>{});
+
+  }
+
+}
+
+
+/* =========================================================
+   LIBROS
+========================================================= */
+
+const LIBROS_FIJOS = [
+
+  {
+    titulo:"Orgullo y prejuicio",
+    autor:"Jane Austen",
+    idioma:"es",
+    url:"https://www.gutenberg.org/ebooks/42671"
+  },
+
+  {
+    titulo:"Pride and Prejudice",
+    autor:"Jane Austen",
+    idioma:"en",
+    url:"https://www.gutenberg.org/ebooks/1342"
+  },
+
+  {
+    titulo:"Alicia en el País de las Maravillas",
+    autor:"Lewis Carroll",
+    idioma:"es",
+    url:"https://www.gutenberg.org/ebooks/49004"
+  },
+
+  {
+    titulo:"Alice's Adventures in Wonderland",
+    autor:"Lewis Carroll",
+    idioma:"en",
+    url:"https://www.gutenberg.org/ebooks/11"
+  },
+
+  {
+    titulo:"Las aventuras de Sherlock Holmes",
+    autor:"Arthur Conan Doyle",
+    idioma:"es",
+    url:"https://www.gutenberg.org/ebooks/1661"
+  },
+
+  {
+    titulo:"The Adventures of Sherlock Holmes",
+    autor:"Arthur Conan Doyle",
+    idioma:"en",
+    url:"https://www.gutenberg.org/ebooks/1661"
+  },
+
+  {
+    titulo:"Frankenstein",
+    autor:"Mary Shelley",
+    idioma:"en",
+    url:"https://www.gutenberg.org/ebooks/84"
+  },
+
+  {
+    titulo:"Drácula",
+    autor:"Bram Stoker",
+    idioma:"es",
+    url:"https://www.gutenberg.org/ebooks/345"
+  },
+
+  {
+    titulo:"Dracula",
+    autor:"Bram Stoker",
+    idioma:"en",
+    url:"https://www.gutenberg.org/ebooks/345"
+  },
+
+  {
+    titulo:"La máquina del tiempo",
+    autor:"H. G. Wells",
+    idioma:"es",
+    url:"https://www.gutenberg.org/ebooks/35"
+  },
+
+  {
+    titulo:"The Time Machine",
+    autor:"H. G. Wells",
+    idioma:"en",
+    url:"https://www.gutenberg.org/ebooks/35"
+  },
+
+  {
+    titulo:"The Secret Garden",
+    autor:"Frances Hodgson Burnett",
+    idioma:"en",
+    url:"https://www.gutenberg.org/ebooks/17396"
+  },
+
+  {
+    titulo:"A Christmas Carol",
+    autor:"Charles Dickens",
+    idioma:"en",
+    url:"https://www.gutenberg.org/ebooks/46"
+  }
+
+];
+
+
+let librosMostrados = [];
+
+
+function cargarLibros(){
+
+  const idioma =
+    document.getElementById(
+      "bookLanguage"
+    ).value;
+
+  librosMostrados =
+    LIBROS_FIJOS.filter(
+      libro =>
+        libro.idioma === idioma
+    );
+
+  filtrarLibros();
+
+}
+
+
+function filtrarLibros(){
+
+  const idioma =
+    document.getElementById(
+      "bookLanguage"
+    ).value;
+
+  const busqueda =
+    document.getElementById(
+      "bookSearch"
+    ).value
+    .toLowerCase()
+    .trim();
+
+  librosMostrados =
+    LIBROS_FIJOS.filter(
+      libro => {
+
+        const coincideIdioma =
+          libro.idioma === idioma;
+
+        const coincideBusqueda =
+          !busqueda
+          ||
+          libro.titulo
+            .toLowerCase()
+            .includes(busqueda)
+          ||
+          libro.autor
+            .toLowerCase()
+            .includes(busqueda);
+
+        return (
+          coincideIdioma
+          &&
+          coincideBusqueda
+        );
+
+      }
+    );
+
+  renderizarLibros();
+
+}
+
+
+function renderizarLibros(){
+
+  const contenedor =
+    document.getElementById(
+      "bookList"
+    );
+
+  contenedor.innerHTML = "";
+
+  if(
+    librosMostrados.length === 0
+  ){
+
+    contenedor.innerHTML =
+      '<div class="empty">No hay libros con esa búsqueda.</div>';
+
+    return;
+
+  }
+
+  librosMostrados.forEach(
+    (libro,index)=>{
+
+      const div =
+        document.createElement(
+          "article"
+        );
+
+      div.className =
+        "book-card";
+
+      div.innerHTML = `
+
+        <div class="cover">
+          📖
+        </div>
+
+        <h3>
+          ${escapeHTML(libro.titulo)}
+        </h3>
+
+        <p class="description">
+          ${escapeHTML(libro.autor)}
+        </p>
+
+        <button
+          class="primary"
+          onclick="leerLibro(${index})">
+          📖 Leer
+        </button>
+
+      `;
+
+      contenedor.appendChild(
+        div
+      );
+
+    });
+
+}
+
+
+function leerLibro(index){
+
+  const libro =
+    librosMostrados[index];
+
+  if(!libro) return;
+
+  document.getElementById(
+    "bookViewerTitle"
+  ).textContent =
+    libro.titulo;
+
+  /*
+    Gutenberg ofrece la página del libro.
+    Se intenta abrir dentro de DUCATTO.
+  */
+
+  document.getElementById(
+    "bookFrame"
+  ).src =
+    libro.url;
+
+  document.getElementById(
+    "bookViewer"
+  ).classList.add(
+    "active"
+  );
+
+  document.getElementById(
+    "bookViewer"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+function salirLibro(){
+
+  document.getElementById(
+    "bookFrame"
+  ).src = "";
+
+  document.getElementById(
+    "bookViewer"
+  ).classList.remove(
+    "active"
+  );
+
+}
+
+
+/* =========================================================
+   AGENDA
+========================================================= */
+
+function obtenerEventos(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "ducattoAgenda"
+      ) || "[]"
+    );
+
+  }catch(error){
+
+    return [];
+
+  }
+
+}
+
+
+function guardarEvento(){
+
+  const titulo =
+    document.getElementById(
+      "eventTitle"
+    ).value.trim();
+
+  const fecha =
+    document.getElementById(
+      "eventDate"
+    ).value;
+
+  const hora =
+    document.getElementById(
+      "eventTime"
+    ).value;
+
+  const lugar =
+    document.getElementById(
+      "eventPlace"
+    ).value.trim();
+
+  const notas =
+    document.getElementById(
+      "eventNotes"
+    ).value.trim();
+
+  if(!titulo){
+
+    alert(
+      "Escribe el nombre del plan."
+    );
+
+    return;
+  }
+
+  const eventos =
+    obtenerEventos();
+
+  eventos.push({
+
+    id:Date.now(),
+
+    titulo,
+
+    fecha,
+
+    hora,
+
+    lugar,
+
+    notas
+
+  });
+
+  localStorage.setItem(
+    "ducattoAgenda",
+    JSON.stringify(eventos)
+  );
+
+  document.getElementById(
+    "eventTitle"
+  ).value = "";
+
+  document.getElementById(
+    "eventDate"
+  ).value = "";
+
+  document.getElementById(
+    "eventTime"
+  ).value = "";
+
+  document.getElementById(
+    "eventPlace"
+  ).value = "";
+
+  document.getElementById(
+    "eventNotes"
+  ).value = "";
+
+  renderizarEventos();
+
+}
+
+
+function eliminarEvento(id){
+
+  const eventos =
+    obtenerEventos()
+      .filter(
+        evento =>
+          evento.id !== id
+      );
+
+  localStorage.setItem(
+    "ducattoAgenda",
+    JSON.stringify(eventos)
+  );
+
+  renderizarEventos();
+
+}
+
+
+function renderizarEventos(){
+
+  const contenedor =
+    document.getElementById(
+      "eventList"
+    );
+
+  const eventos =
+    obtenerEventos();
+
+  if(eventos.length === 0){
+
+    contenedor.innerHTML =
+      '<div class="empty">Todavía no tienes planes guardados.</div>';
+
+    return;
+
+  }
+
+  eventos.sort(
+    (a,b)=>
+      `${a.fecha} ${a.hora}`
+      .localeCompare(
+        `${b.fecha} ${b.hora}`
+      )
+  );
+
+  contenedor.innerHTML = "";
+
+  eventos.forEach(evento=>{
+
+    const div =
+      document.createElement(
+        "div"
+      );
+
+    div.className =
+      "event";
+
+    div.innerHTML = `
+
+      <div>
+
+        <div class="event-date">
+          ${escapeHTML(evento.fecha || "Sin fecha")}
+          ${evento.hora ? " · " + escapeHTML(evento.hora) : ""}
+        </div>
+
+        <h3>
+          ${escapeHTML(evento.titulo)}
+        </h3>
+
+        ${
+          evento.lugar
+          ?
+          `<p>📍 ${escapeHTML(evento.lugar)}</p>`
+          :
+          ""
+        }
+
+        ${
+          evento.notas
+          ?
+          `<p class="description">${escapeHTML(evento.notas)}</p>`
+          :
+          ""
+        }
+
+      </div>
+
+      <button
+        class="danger"
+        onclick="eliminarEvento(${evento.id})">
+        🗑️ Eliminar
+      </button>
+
+    `;
+
+    contenedor.appendChild(
+      div
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   UBICACIONES
+========================================================= */
+
+async function buscarUbicaciones(){
+
+  const consulta =
+    document.getElementById(
+      "locationSearch"
+    ).value.trim();
+
+  const resultados =
+    document.getElementById(
+      "locationResults"
+    );
+
+  if(!consulta){
+
+    resultados.innerHTML =
+      '<div class="empty">Escribe qué lugar quieres buscar.</div>';
+
+    return;
+
+  }
+
+  resultados.innerHTML =
+    '<div class="card">🔎 Buscando lugares...</div>';
+
+  try{
+
+    const url =
+      "https://nominatim.openstreetmap.org/search" +
+      "?format=json" +
+      "&limit=10" +
+      "&q=" +
+      encodeURIComponent(consulta);
+
+    const respuesta =
+      await fetch(url);
+
+    const datos =
+      await respuesta.json();
+
+    resultados.innerHTML = "";
+
+    if(!datos.length){
+
+      resultados.innerHTML =
+        '<div class="empty">No se encontraron lugares.</div>';
+
+      return;
+
+    }
+
+    datos.forEach(
+      lugar=>{
+
+        const div =
+          document.createElement(
+            "div"
+          );
+
+        div.className =
+          "location-result";
+
+        div.innerHTML = `
+
+          <strong>
+            ${escapeHTML(lugar.display_name)}
+          </strong>
+
+          <div class="actions">
+
+            <a
+              href="https://www.openstreetmap.org/?mlat=${encodeURIComponent(lugar.lat)}&mlon=${encodeURIComponent(lugar.lon)}"
+              target="_blank"
+              rel="noopener"
+              class="primary"
+              style="text-decoration:none">
+              🗺️ Ver mapa
+            </a>
+
+          </div>
+
+        `;
+
+        resultados.appendChild(
+          div
+        );
+
+      });
+
+  }catch(error){
+
+    resultados.innerHTML =
+      '<div class="notice">No se ha podido realizar la búsqueda ahora mismo.</div>';
+
+  }
+
+}
+
+
+/* =========================================================
+   SEGURIDAD BÁSICA DE TEXTO
+========================================================= */
+
+function escapeHTML(valor){
+
+  return String(valor ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function escapeAttribute(valor){
+
+  return String(valor ?? "")
+    .replaceAll("\\","\\\\")
+    .replaceAll("'","\\'")
+    .replaceAll("\n"," ");
+
+}
+
+
+/* =========================================================
    INICIO
-========================= */
+========================================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
-  function(){
+  ()=>{
 
     actualizarPerfil();
-    actualizarPremium();
+
     cargarLibros();
-    cargarAgenda();
+
+    renderizarEventos();
+
+    cargarEstadoPremium();
+
+    actualizarJefa();
 
   }
 );
