@@ -2,102 +2,120 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DUCATTO</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:#0b0b12;
+  background:#09090f;
   color:#fff;
-  padding-bottom:85px
+  font-family:Arial,Helvetica,sans-serif;
+  padding-bottom:85px;
 }
 
 header{
-  padding:18px;
-  background:#151522;
-  border-bottom:1px solid #29293a;
   position:sticky;
   top:0;
-  z-index:20
+  z-index:50;
+  background:#15151f;
+  border-bottom:1px solid #292938;
+  padding:16px 20px;
 }
 
 .logo{
-  font-size:28px;
-  font-weight:bold
+  font-size:29px;
+  font-weight:800;
 }
 
 .badge{
   display:inline-block;
-  margin-top:8px;
-  padding:6px 11px;
+  margin-top:7px;
+  padding:6px 12px;
   border-radius:20px;
-  background:#e5b84b;
+  background:#e6b94e;
   color:#111;
   font-size:12px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 main{
-  max-width:1050px;
+  max-width:1100px;
   margin:auto;
-  padding:20px
+  padding:20px;
 }
 
 .view{
-  display:none
+  display:none;
 }
 
 .view.active{
-  display:block
+  display:block;
 }
 
 .hero{
-  background:linear-gradient(135deg,#302044,#171725);
-  padding:25px;
-  border-radius:20px;
-  margin-bottom:20px
+  padding:28px;
+  border-radius:22px;
+  margin-bottom:20px;
+  background:linear-gradient(135deg,#35214d,#171722);
 }
 
 .hero h1{
-  margin-top:0
+  margin-top:0;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:13px
+  gap:14px;
 }
 
 .card{
-  background:#171722;
-  border:1px solid #29293a;
-  border-radius:16px;
-  padding:18px;
-  margin-bottom:13px
+  background:#161620;
+  border:1px solid #292938;
+  border-radius:17px;
+  padding:17px;
+  margin-bottom:14px;
 }
 
 .tile{
-  min-height:125px;
+  min-height:135px;
   cursor:pointer;
-  transition:.2s
+  transition:.2s;
 }
 
 .tile:hover{
-  transform:translateY(-2px);
-  border-color:#e5b84b
+  transform:translateY(-3px);
+  border-color:#e6b94e;
 }
 
 .icon{
-  font-size:34px;
-  margin-bottom:9px
+  font-size:35px;
 }
 
-.card p{
-  color:#aaa
+h2{
+  margin-top:5px;
+}
+
+p{
+  color:#bbb;
+}
+
+.small{
+  color:#888;
+  font-size:13px;
+}
+
+.notice{
+  background:#1d1d29;
+  border:1px solid #292938;
+  padding:15px;
+  border-radius:13px;
+  margin-bottom:15px;
 }
 
 button{
@@ -105,26 +123,26 @@ button{
   border-radius:10px;
   padding:11px 15px;
   cursor:pointer;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .primary{
-  background:#e5b84b;
-  color:#111
+  background:#e6b94e;
+  color:#111;
 }
 
 .secondary{
-  background:#29293a;
-  color:#fff
+  background:#292938;
+  color:#fff;
 }
 
 .danger{
-  background:#642b2b;
-  color:#fff
+  background:#652d2d;
+  color:#fff;
 }
 
 .back{
-  margin-bottom:18px
+  margin-bottom:15px;
 }
 
 input{
@@ -132,190 +150,98 @@ input{
   padding:13px;
   border-radius:10px;
   border:1px solid #333344;
-  background:#11111a;
+  background:#101018;
   color:#fff;
-  margin:7px 0
+  margin:7px 0;
 }
 
-.notice{
-  padding:14px;
-  background:#20202d;
-  border-radius:12px;
-  margin-bottom:15px;
-  color:#ccc
-}
-
-.small{
-  color:#999;
-  font-size:13px
-}
-
-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#151522;
-  border-top:1px solid #29293a;
-  display:flex;
-  justify-content:space-around;
-  padding:9px;
-  z-index:50
-}
-
-nav button{
-  background:none;
-  color:#aaa;
-  padding:5px
-}
-
-nav span{
-  display:block;
-  font-size:20px
-}
-
-.status{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:15px;
-  font-size:12px
-}
-
-.on{
-  background:#214d32
-}
-
-.off{
-  background:#512626
-}
-
-.pending{
-  background:#5b4a20
-}
-
-.user{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap
-}
-
-.request-actions{
-  display:flex;
+.sugerencias{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
   gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px
+  margin:15px 0;
 }
 
+.sugerencia{
+  background:#20202c;
+  border:1px solid #303044;
+  border-radius:10px;
+  padding:11px;
+  cursor:pointer;
+}
 
-/* CATÁLOGOS */
+.sugerencia:hover{
+  border-color:#e6b94e;
+}
 
 .media-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px
+  gap:14px;
+  margin-top:18px;
 }
 
 .media-card{
-  background:#171722;
-  border:1px solid #29293a;
-  border-radius:16px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.2s
+  background:#171721;
+  border:1px solid #292938;
+  border-radius:15px;
+  padding:17px;
 }
 
-.media-card:hover{
-  transform:translateY(-3px);
-  border-color:#e5b84b
+.media-card h3{
+  margin-top:0;
 }
 
-.media-cover{
-  height:190px;
+.episode{
   display:flex;
+  justify-content:space-between;
   align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#35234d,#151522);
-  font-size:58px;
-  overflow:hidden
+  gap:12px;
+  background:#191923;
+  border:1px solid #292938;
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:10px;
 }
-
-.media-cover img{
-  width:100%;
-  height:100%;
-  object-fit:cover
-}
-
-.media-info{
-  padding:15px
-}
-
-.media-info h3{
-  margin:0 0 7px
-}
-
-.media-info p{
-  margin:0;
-  color:#999;
-  font-size:13px
-}
-
-
-/* REPRODUCTOR */
 
 .player{
   background:#000;
-  border-radius:15px;
+  border-radius:14px;
   overflow:hidden;
-  margin:15px 0
+  margin-top:15px;
 }
 
 .player video{
   width:100%;
-  max-height:600px;
   display:block;
-  background:#000
+  max-height:600px;
 }
 
-.player iframe{
-  width:100%;
-  min-height:600px;
-  border:0;
-  display:block
-}
-
-
-/* EPISODIOS */
-
-.episode{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  background:#171722;
-  border:1px solid #29293a;
+.reader{
+  background:#fff;
   border-radius:12px;
-  padding:14px;
-  margin-bottom:10px
+  overflow:hidden;
 }
 
-
-/* MODAL */
+.reader iframe{
+  width:100%;
+  height:700px;
+  border:0;
+}
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.85);
+  background:rgba(0,0,0,.86);
   z-index:100;
   padding:20px;
   align-items:center;
-  justify-content:center
+  justify-content:center;
 }
 
 .modal.active{
-  display:flex
+  display:flex;
 }
 
 .modal-box{
@@ -326,298 +252,313 @@ nav span{
   background:#11111a;
   border:1px solid #333344;
   border-radius:18px;
-  padding:18px
+  padding:18px;
 }
 
 .close{
   float:right;
-  background:#29293a;
-  color:#fff
+  background:#292938;
+  color:#fff;
 }
 
-
-/* LECTOR */
-
-.reader{
-  background:#fff;
-  border-radius:14px;
-  overflow:hidden
+.user{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.reader iframe{
-  width:100%;
-  height:720px;
-  border:0
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
 }
 
+.active-status{
+  background:#214e34;
+}
+
+.off-status{
+  background:#512727;
+}
+
+.pending-status{
+  background:#5a4a1d;
+}
+
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:60;
+  display:flex;
+  justify-content:space-around;
+  background:#15151f;
+  border-top:1px solid #292938;
+  padding:9px 5px;
+}
+
+nav button{
+  background:transparent;
+  color:#aaa;
+  padding:5px;
+}
+
+nav span{
+  display:block;
+  font-size:21px;
+}
 
 @media(max-width:750px){
 
   .grid,
-  .media-grid{
-    grid-template-columns:1fr
-  }
-
-  .media-cover{
-    height:170px
+  .media-grid,
+  .sugerencias{
+    grid-template-columns:1fr;
   }
 
   .episode{
     align-items:flex-start;
-    flex-direction:column
+    flex-direction:column;
   }
 
-  .player iframe{
-    min-height:450px
+  .reader iframe{
+    height:550px;
   }
 }
 </style>
 </head>
 
-
 <body>
 
-
 <header>
-
-  <div class="logo">
-    DUCATTO
-  </div>
-
-  <div class="badge">
-    👑 JEFA · PREMIUM ACTIVO
-  </div>
-
+  <div class="logo">DUCATTO</div>
+  <div class="badge">👑 JEFA · PREMIUM ACTIVO</div>
 </header>
-
 
 <main>
 
-
-<!-- =====================================================
-     INICIO
-===================================================== -->
+<!-- ================= INICIO ================= -->
 
 <section id="inicio" class="view active">
 
   <div class="hero">
-
     <h1>Bienvenida a DUCATTO</h1>
-
     <p>
-      Tu espacio de entretenimiento,
-      biblioteca, agenda y lugares.
+      Entretenimiento, libros, agenda,
+      ubicaciones y mucho más.
     </p>
-
   </div>
-
 
   <div class="grid">
 
-    <div
-      class="card tile"
-      onclick="abrirPremium('peliculas')"
-    >
+    <div class="card tile" onclick="abrirPremium('peliculas')">
       <div class="icon">🎬</div>
-
       <h3>Películas</h3>
-
-      <p>
-        Películas disponibles para
-        reproducción autorizada.
-      </p>
+      <p>Busca películas y consulta las disponibles.</p>
     </div>
 
-
-    <div
-      class="card tile"
-      onclick="abrirPremium('series')"
-    >
+    <div class="card tile" onclick="abrirPremium('series')">
       <div class="icon">📺</div>
-
       <h3>Series</h3>
-
-      <p>
-        Series y episodios dentro
-        de DUCATTO.
-      </p>
+      <p>Busca series y sus episodios.</p>
     </div>
 
-
-    <div
-      class="card tile"
-      onclick="abrirPremium('libros')"
-    >
+    <div class="card tile" onclick="abrirPremium('libros')">
       <div class="icon">📚</div>
-
       <h3>Libros</h3>
-
-      <p>
-        Busca y lee libros dentro
-        de DUCATTO.
-      </p>
+      <p>Busca libros y léelos dentro de DUCATTO.</p>
     </div>
 
-
-    <div
-      class="card tile"
-      onclick="abrir('ubicaciones')"
-    >
+    <div class="card tile" onclick="abrir('ubicaciones')">
       <div class="icon">📍</div>
-
       <h3>Ubicaciones</h3>
-
-      <p>
-        Lugares y mapas.
-      </p>
+      <p>Busca lugares y mapas.</p>
     </div>
 
-
-    <div
-      class="card tile"
-      onclick="abrir('agenda')"
-    >
+    <div class="card tile" onclick="abrir('agenda')">
       <div class="icon">📅</div>
-
       <h3>Agenda</h3>
-
-      <p>
-        Organiza tus eventos.
-      </p>
+      <p>Guarda tus eventos.</p>
     </div>
 
-
-    <div
-      class="card tile"
-      onclick="abrir('perfil')"
-    >
+    <div class="card tile" onclick="abrir('perfil')">
       <div class="icon">👤</div>
-
       <h3>Perfil</h3>
-
-      <p>
-        Cuenta y Premium.
-      </p>
+      <p>Usuarios y Premium.</p>
     </div>
 
   </div>
-
 </section>
 
 
-
-<!-- =====================================================
-     PELÍCULAS
-===================================================== -->
+<!-- ================= PELÍCULAS ================= -->
 
 <section id="peliculas" class="view">
 
-  <button
-    class="secondary back"
-    onclick="inicio()"
-  >
+  <button class="secondary back" onclick="inicio()">
     ← Volver
   </button>
 
   <h2>🎬 Películas</h2>
 
   <div class="notice">
+    <strong>¿No sabes qué buscar?</strong>
+    <br>
+    Aquí tienes algunas sugerencias.
+  </div>
 
-    Catálogo de obras que pueden ofrecerse
-    legalmente para reproducción digital.
-    Pulsa una tarjeta para verla dentro
-    de DUCATTO.
+  <div class="sugerencias">
+
+    <div class="sugerencia" onclick="ponerPelicula('The Tramp')">
+      🎞️ The Tramp
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('The Kid')">
+      🎞️ The Kid
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('Big Business')">
+      🎞️ Big Business
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('The General')">
+      🎞️ The General
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('Metropolis')">
+      🎞️ Metropolis
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('Nosferatu')">
+      🎞️ Nosferatu
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('Sherlock Jr.')">
+      🎞️ Sherlock Jr.
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('The Gold Rush')">
+      🎞️ The Gold Rush
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('A Trip to the Moon')">
+      🎞️ A Trip to the Moon
+    </div>
+
+    <div class="sugerencia" onclick="ponerPelicula('His Girl Friday')">
+      🎞️ His Girl Friday
+    </div>
 
   </div>
 
   <input
     id="busquedaPelicula"
-    placeholder="Buscar película..."
+    placeholder="🔎 Escribe una película..."
     onkeydown="if(event.key==='Enter') buscarPeliculas()"
   >
 
-  <button
-    class="primary"
-    onclick="buscarPeliculas()"
-  >
+  <button class="primary" onclick="buscarPeliculas()">
     🔎 Buscar
   </button>
 
-  <div
-    id="catalogoPeliculas"
-    class="media-grid"
-    style="margin-top:18px"
-  ></div>
+  <div id="resultadosPeliculas"></div>
 
 </section>
 
 
-
-<!-- =====================================================
-     SERIES
-===================================================== -->
+<!-- ================= SERIES ================= -->
 
 <section id="series" class="view">
 
-  <button
-    class="secondary back"
-    onclick="inicio()"
-  >
+  <button class="secondary back" onclick="inicio()">
     ← Volver
   </button>
 
   <h2>📺 Series</h2>
 
   <div class="notice">
-
-    Las series que añadas mediante fuentes
-    autorizadas aparecerán aquí con sus
-    episodios.
-
+    <strong>¿No sabes qué buscar?</strong>
+    <br>
+    Aquí tienes algunas sugerencias.
   </div>
 
-  <div
-    id="catalogoSeries"
-    class="media-grid"
-  ></div>
+  <div class="sugerencias">
 
-</section>
+    <div class="sugerencia" onclick="ponerSerie('The Adventures of Sherlock Holmes')">
+      📺 The Adventures of Sherlock Holmes
+    </div>
 
+    <div class="sugerencia" onclick="ponerSerie('Bonanza')">
+      📺 Bonanza
+    </div>
 
+    <div class="sugerencia" onclick="ponerSerie('The Lone Ranger')">
+      📺 The Lone Ranger
+    </div>
 
-<!-- =====================================================
-     LIBROS
-===================================================== -->
+    <div class="sugerencia" onclick="ponerSerie('The Addams Family')">
+      📺 The Addams Family
+    </div>
 
-<section id="libros" class="view">
+    <div class="sugerencia" onclick="ponerSerie('Batman')">
+      📺 Batman
+    </div>
 
-  <button
-    class="secondary back"
-    onclick="inicio()"
-  >
-    ← Volver
-  </button>
+    <div class="sugerencia" onclick="ponerSerie('The Three Stooges')">
+      📺 The Three Stooges
+    </div>
 
-  <h2>📚 Biblioteca</h2>
+    <div class="sugerencia" onclick="ponerSerie('The Andy Griffith Show')">
+      📺 The Andy Griffith Show
+    </div>
 
-  <div class="notice">
-
-    Busca libros disponibles para lectura
-    digital. Cuando exista un formato HTML
-    público, DUCATTO abrirá el lector aquí.
+    <div class="sugerencia" onclick="ponerSerie('The Lucy Show')">
+      📺 The Lucy Show
+    </div>
 
   </div>
 
   <input
+    id="busquedaSerie"
+    placeholder="🔎 Escribe una serie..."
+    onkeydown="if(event.key==='Enter') buscarSeries()"
+  >
+
+  <button class="primary" onclick="buscarSeries()">
+    🔎 Buscar
+  </button>
+
+  <div id="resultadosSeries"></div>
+
+</section>
+
+
+<!-- ================= LIBROS ================= -->
+
+<section id="libros" class="view">
+
+  <button class="secondary back" onclick="inicio()">
+    ← Volver
+  </button>
+
+  <h2>📚 Libros</h2>
+
+  <div class="notice">
+    Busca un libro y, cuando exista una edición
+    HTML disponible, podrás leerla dentro de DUCATTO.
+  </div>
+
+  <input
     id="busquedaLibro"
-    placeholder="Título, autor..."
+    placeholder="🔎 Título o autor..."
     onkeydown="if(event.key==='Enter') buscarLibro()"
   >
 
-  <button
-    class="primary"
-    onclick="buscarLibro()"
-  >
+  <button class="primary" onclick="buscarLibro()">
     🔎 Buscar
   </button>
 
@@ -626,17 +567,11 @@ nav span{
 </section>
 
 
-
-<!-- =====================================================
-     UBICACIONES
-===================================================== -->
+<!-- ================= UBICACIONES ================= -->
 
 <section id="ubicaciones" class="view">
 
-  <button
-    class="secondary back"
-    onclick="inicio()"
-  >
+  <button class="secondary back" onclick="inicio()">
     ← Volver
   </button>
 
@@ -644,38 +579,27 @@ nav span{
 
   <div class="card">
 
-    <h3>Buscar lugar</h3>
-
     <input
       id="lugar"
       placeholder="Ej.: Fuengirola"
     >
 
-    <button
-      class="primary"
-      onclick="buscarLugar()"
-    >
-      Abrir mapa
+    <button class="primary" onclick="buscarLugar()">
+      📍 Buscar
     </button>
 
-    <div id="resultadoLugar"></div>
-
   </div>
+
+  <div id="resultadoLugar"></div>
 
 </section>
 
 
-
-<!-- =====================================================
-     AGENDA
-===================================================== -->
+<!-- ================= AGENDA ================= -->
 
 <section id="agenda" class="view">
 
-  <button
-    class="secondary back"
-    onclick="inicio()"
-  >
+  <button class="secondary back" onclick="inicio()">
     ← Volver
   </button>
 
@@ -685,14 +609,11 @@ nav span{
 
     <input
       id="evento"
-      placeholder="Nuevo evento"
+      placeholder="Escribe un evento..."
     >
 
-    <button
-      class="primary"
-      onclick="guardarEvento()"
-    >
-      Guardar
+    <button class="primary" onclick="guardarEvento()">
+      ➕ Añadir
     </button>
 
   </div>
@@ -702,30 +623,25 @@ nav span{
 </section>
 
 
-
-<!-- =====================================================
-     PERFIL
-===================================================== -->
+<!-- ================= PERFIL ================= -->
 
 <section id="perfil" class="view">
 
-  <button
-    class="secondary back"
-    onclick="inicio()"
-  >
+  <button class="secondary back" onclick="inicio()">
     ← Volver
   </button>
 
   <h2>👤 Perfil</h2>
-
 
   <div class="card">
 
     <h3>👑 Jefa</h3>
 
     <p>
-      Estado:
-      <strong>Premium activo</strong>
+      Premium:
+      <span class="status active-status">
+        ACTIVO
+      </span>
     </p>
 
   </div>
@@ -733,15 +649,29 @@ nav span{
 
   <div class="card">
 
-    <h3>💳 Solicitudes Premium</h3>
+    <h3>💳 Solicitar Premium</h3>
 
-    <p class="small">
-
-      Comprueba primero el Bizum de
-      7,99 €. Después puedes activar
-      o rechazar la solicitud.
-
+    <p>
+      Precio: <strong>7,99 €</strong>
     </p>
+
+    <input
+      id="usuarioPremium"
+      placeholder="Tu nombre de usuario"
+    >
+
+    <button class="primary" onclick="enviarSolicitudPremium()">
+      Solicitar Premium
+    </button>
+
+    <p id="mensajePremium" class="small"></p>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>👑 Solicitudes de Premium</h3>
 
     <div id="solicitudesPremium"></div>
 
@@ -750,22 +680,15 @@ nav span{
 
   <div class="card">
 
-    <h3>🛠️ Panel de Jefa</h3>
-
-    <p>
-      Administración de usuarios.
-    </p>
+    <h3>👥 Crear usuario</h3>
 
     <input
       id="nuevoUsuario"
       placeholder="Nombre del usuario"
     >
 
-    <button
-      class="primary"
-      onclick="crearUsuario()"
-    >
-      Añadir usuario
+    <button class="primary" onclick="crearUsuario()">
+      Crear usuario
     </button>
 
   </div>
@@ -774,14 +697,10 @@ nav span{
 
 </section>
 
-
 </main>
 
 
-
-<!-- =====================================================
-     NAVEGACIÓN
-===================================================== -->
+<!-- ================= NAVEGACIÓN ================= -->
 
 <nav>
 
@@ -813,914 +732,508 @@ nav span{
 </nav>
 
 
+<!-- ================= MODAL ================= -->
 
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div
-  id="mediaModal"
-  class="modal"
->
+<div id="modal" class="modal">
 
   <div class="modal-box">
 
-    <button
-      class="close"
-      onclick="cerrarModal()"
-    >
+    <button class="close" onclick="cerrarModal()">
       ✕
     </button>
 
-    <div id="mediaContenido"></div>
+    <div id="modalContenido"></div>
 
   </div>
 
 </div>
 
 
-
-<!-- =====================================================
-     TU ARCHIVO EXISTENTE
-===================================================== -->
-
+<!-- IMPORTANTE:
+     Este archivo tiene que estar en la misma carpeta -->
 <script src="premium-users.js"></script>
 
 
 <script>
 
-
-/* =====================================================
-   CONFIGURACIÓN
-===================================================== */
+/* ================= CONFIGURACIÓN ================= */
 
 const JEFA = true;
 
 
-/*
-  SERIES AUTORIZADAS
-
-  Esta es la zona donde podrás añadir posteriormente
-  tus propias series con vídeos que tengas permiso
-  para reproducir.
-
-  Ejemplo:
-
-  {
-    titulo:"Mi serie",
-    descripcion:"Serie autorizada",
-    icono:"📺",
-    episodios:[
-      {
-        titulo:"Episodio 1",
-        src:"https://tu-servidor/episodio1.mp4"
-      }
-    ]
-  }
-*/
-
-const SERIES_AUTORIZADAS = [
-
-];
-
-
-
-/*
-  PELÍCULAS PROPIAS/AUTORIZADAS
-
-  Puedes añadir aquí archivos MP4 que tengas
-  legalmente alojados.
-
-  Ejemplo:
-
-  {
-    titulo:"Mi película",
-    descripcion:"Película autorizada",
-    icono:"🎬",
-    src:"https://tu-servidor/pelicula.mp4"
-  }
-*/
-
-const PELICULAS_PROPIAS = [
-
-];
-
-
-
-/* =====================================================
-   DATOS LOCALES
-===================================================== */
-
-let usuarios =
-  JSON.parse(
-    localStorage.getItem(
-      "ducattoUsuarios"
-    ) || "[]"
-  );
-
-
-let agenda =
-  JSON.parse(
-    localStorage.getItem(
-      "ducattoAgenda"
-    ) || "[]"
-  );
-
-
-
-/* =====================================================
-   NAVEGACIÓN
-===================================================== */
+/* ================= NAVEGACIÓN ================= */
 
 function abrir(id){
 
-  document
-    .querySelectorAll(".view")
-    .forEach(
-      v =>
-        v.classList.remove("active")
-    );
+  document.querySelectorAll(".view").forEach(v=>{
+    v.classList.remove("active");
+  });
 
-
-  const vista =
-    document.getElementById(id);
-
+  const vista=document.getElementById(id);
 
   if(!vista) return;
 
-
   vista.classList.add("active");
-
 
   window.scrollTo(0,0);
 
+  if(id==="agenda") mostrarAgenda();
 
-  if(id === "peliculas"){
-    prepararPeliculas();
-  }
-
-
-  if(id === "series"){
-    mostrarSeries();
-  }
-
-
-  if(id === "perfil"){
-    mostrarSolicitudesPremium();
+  if(id==="perfil"){
     mostrarUsuarios();
-  }
-
-
-  if(id === "agenda"){
-    mostrarAgenda();
+    mostrarSolicitudesPremium();
   }
 
 }
 
 
 function inicio(){
-
   abrir("inicio");
-
 }
-
 
 
 function abrirPremium(id){
 
   if(!JEFA){
-
-    alert(
-      "🔒 Esta función requiere Premium."
-    );
-
+    alert("🔒 Esta sección requiere Premium.");
     return;
-
   }
-
 
   abrir(id);
-
 }
 
 
+/* ================= PELÍCULAS ================= */
 
-/* =====================================================
-   PELÍCULAS
-===================================================== */
+function ponerPelicula(nombre){
 
-function prepararPeliculas(){
+  document.getElementById(
+    "busquedaPelicula"
+  ).value=nombre;
 
-  const contenedor =
-    document.getElementById(
-      "catalogoPeliculas"
-    );
-
-
-  contenedor.innerHTML = "";
-
-
-  if(PELICULAS_PROPIAS.length){
-
-    PELICULAS_PROPIAS.forEach(
-      (pelicula,index) => {
-
-        crearTarjetaPelicula(
-          pelicula,
-          index
-        );
-
-      }
-    );
-
-    return;
-
-  }
-
-
-  contenedor.innerHTML =
-
-    "<div class='card' style='grid-column:1/-1'>" +
-
-    "<h3>🎬 Catálogo preparado</h3>" +
-
-    "<p>" +
-
-    "Puedes añadir aquí películas que " +
-    "tengas autorizadas para reproducir." +
-
-    "</p>" +
-
-    "<p class='small'>" +
-
-    "No se han añadido películas de terceros " +
-    "automáticamente para evitar distribuir " +
-    "contenido sin permiso." +
-
-    "</p>" +
-
-    "</div>";
-
+  buscarPeliculas();
 }
 
 
-
-function crearTarjetaPelicula(
-  pelicula,
-  index
-){
-
-  const contenedor =
-    document.getElementById(
-      "catalogoPeliculas"
-    );
-
-
-  const tarjeta =
-    document.createElement("div");
-
-
-  tarjeta.className =
-    "media-card";
-
-
-  tarjeta.onclick =
-    function(){
-
-      reproducirPelicula(
-        index
-      );
-
-    };
-
-
-  tarjeta.innerHTML =
-
-    "<div class='media-cover'>" +
-
-    escapar(
-      pelicula.icono || "🎬"
-    ) +
-
-    "</div>" +
-
-    "<div class='media-info'>" +
-
-    "<h3>" +
-
-    escapar(
-      pelicula.titulo
-    ) +
-
-    "</h3>" +
-
-    "<p>" +
-
-    escapar(
-      pelicula.descripcion || ""
-    ) +
-
-    "</p>" +
-
-    "</div>";
-
-
-  contenedor.appendChild(
-    tarjeta
-  );
-
-}
-
-
-
-function reproducirPelicula(index){
-
-  const pelicula =
-    PELICULAS_PROPIAS[index];
-
-
-  if(!pelicula){
-    return;
-  }
-
-
-  if(!pelicula.src){
-
-    alert(
-      "Esta película todavía no tiene vídeo."
-    );
-
-    return;
-
-  }
-
-
-  abrirModal(
-
-    "<h2>🎬 " +
-
-    escapar(
-      pelicula.titulo
-    ) +
-
-    "</h2>" +
-
-    "<div class='player'>" +
-
-    "<video controls playsinline>" +
-
-    "<source src='" +
-
-    escaparAtributo(
-      pelicula.src
-    ) +
-
-    "'>" +
-
-    "Tu navegador no puede reproducir este vídeo." +
-
-    "</video>" +
-
-    "</div>" +
-
-    "<p>" +
-
-    escapar(
-      pelicula.descripcion || ""
-    ) +
-
-    "</p>"
-
-  );
-
-}
-
-
-
-/* =====================================================
-   SERIES
-===================================================== */
-
-function mostrarSeries(){
-
-  const contenedor =
-    document.getElementById(
-      "catalogoSeries"
-    );
-
-
-  contenedor.innerHTML = "";
-
-
-  if(!SERIES_AUTORIZADAS.length){
-
-    contenedor.innerHTML =
-
-      "<div class='card' style='grid-column:1/-1'>" +
-
-      "<h3>📺 Series</h3>" +
-
-      "<p>" +
-
-      "El catálogo está preparado para " +
-      "tus series autorizadas." +
-
-      "</p>" +
-
-      "</div>";
-
-    return;
-
-  }
-
-
-  SERIES_AUTORIZADAS.forEach(
-    (serie,index) => {
-
-      const tarjeta =
-        document.createElement("div");
-
-
-      tarjeta.className =
-        "media-card";
-
-
-      tarjeta.onclick =
-        function(){
-
-          abrirSerie(index);
-
-        };
-
-
-      tarjeta.innerHTML =
-
-        "<div class='media-cover'>" +
-
-        escapar(
-          serie.icono || "📺"
-        ) +
-
-        "</div>" +
-
-        "<div class='media-info'>" +
-
-        "<h3>" +
-
-        escapar(
-          serie.titulo
-        ) +
-
-        "</h3>" +
-
-        "<p>" +
-
-        escapar(
-          serie.descripcion || ""
-        ) +
-
-        "</p>" +
-
-        "</div>";
-
-
-      contenedor.appendChild(
-        tarjeta
-      );
-
-    }
-  );
-
-}
-
-
-
-function abrirSerie(index){
-
-  const serie =
-    SERIES_AUTORIZADAS[index];
-
-
-  if(!serie) return;
-
-
-  let html =
-
-    "<h2>📺 " +
-
-    escapar(
-      serie.titulo
-    ) +
-
-    "</h2>";
-
-
-  if(
-    !serie.episodios ||
-    !serie.episodios.length
-  ){
-
-    html +=
-
-      "<div class='notice'>" +
-
-      "No hay episodios configurados." +
-
-      "</div>";
-
-  }else{
-
-    serie.episodios.forEach(
-      (episodio,i) => {
-
-        html +=
-
-          "<div class='episode'>" +
-
-          "<div>" +
-
-          "<strong>" +
-
-          "Episodio " +
-          (i + 1) +
-
-          "</strong>" +
-
-          "<br>" +
-
-          "<span class='small'>" +
-
-          escapar(
-            episodio.titulo ||
-            "Episodio " + (i + 1)
-          ) +
-
-          "</span>" +
-
-          "</div>" +
-
-          "<button " +
-
-          "class='primary' " +
-
-          "onclick='reproducirEpisodio(" +
-
-          index +
-          "," +
-          i +
-
-          ")'>" +
-
-          "▶ Ver" +
-
-          "</button>" +
-
-          "</div>";
-
-      }
-    );
-
-  }
-
-
-  abrirModal(
-    html
-  );
-
-}
-
-
-
-function reproducirEpisodio(
-  serieIndex,
-  episodioIndex
-){
-
-  const serie =
-    SERIES_AUTORIZADAS[
-      serieIndex
-    ];
-
-
-  if(!serie) return;
-
-
-  const episodio =
-    serie.episodios[
-      episodioIndex
-    ];
-
-
-  if(!episodio) return;
-
-
-  if(!episodio.src){
-
-    alert(
-      "Este episodio todavía no tiene vídeo."
-    );
-
-    return;
-
-  }
-
-
-  abrirModal(
-
-    "<h2>📺 " +
-
-    escapar(
-      serie.titulo
-    ) +
-
-    "</h2>" +
-
-    "<p>" +
-
-    escapar(
-      episodio.titulo ||
-      "Episodio"
-    ) +
-
-    "</p>" +
-
-    "<div class='player'>" +
-
-    "<video controls playsinline>" +
-
-    "<source src='" +
-
-    escaparAtributo(
-      episodio.src
-    ) +
-
-    "'>" +
-
-    "</video>" +
-
-    "</div>"
-
-  );
-
-}
-
-
-
-/* =====================================================
-   LIBROS
-===================================================== */
-
-async function buscarLibro(){
-
-  const texto =
-    document
-      .getElementById(
-        "busquedaLibro"
-      )
-      .value
-      .trim();
-
-
-  const resultado =
-    document.getElementById(
-      "resultadosLibro"
-    );
-
+async function buscarPeliculas(){
+
+  const texto=document
+    .getElementById("busquedaPelicula")
+    .value
+    .trim();
+
+  const resultado=document
+    .getElementById("resultadosPeliculas");
 
   if(!texto){
-
-    resultado.innerHTML =
-
-      "<div class='card'>" +
-
-      "Escribe un título o autor." +
-
-      "</div>";
-
+    resultado.innerHTML=
+      "<div class='card'>Escribe una película.</div>";
     return;
-
   }
 
+  resultado.innerHTML=
+    "<div class='card'>🔎 Buscando...</div>";
 
-  resultado.innerHTML =
-
-    "<div class='card'>" +
-
-    "🔎 Buscando..." +
-
-    "</div>";
-
+  /*
+    Buscamos información del título.
+    La reproducción solo se habilita cuando
+    existe una fuente autorizada configurada.
+  */
 
   try{
 
-    /*
-      Gutendex proporciona acceso a
-      libros del catálogo de Project Gutenberg.
-    */
+    const respuesta=await fetch(
+      "https://archive.org/advancedsearch.php?q="+
+      encodeURIComponent(
+        "title:("+texto+") AND mediatype:movies"
+      )+
+      "&fl[]=identifier,title,description&rows=12&page=1&output=json"
+    );
 
-    const respuesta =
-      await fetch(
-        "https://gutendex.com/books/?search=" +
-        encodeURIComponent(texto)
-      );
+    const datos=await respuesta.json();
 
-
-    if(!respuesta.ok){
-      throw new Error();
-    }
-
-
-    const datos =
-      await respuesta.json();
-
-
-    resultado.innerHTML = "";
-
+    resultado.innerHTML="";
 
     if(
-      !datos.results ||
-      !datos.results.length
+      !datos.response ||
+      !datos.response.docs ||
+      !datos.response.docs.length
     ){
 
-      resultado.innerHTML =
-
-        "<div class='card'>" +
-
-        "No se encontraron libros." +
-
+      resultado.innerHTML=
+        "<div class='card'>"+
+        "No hemos encontrado resultados para <strong>"+
+        escapar(texto)+
+        "</strong>."+
         "</div>";
 
       return;
-
     }
 
+    datos.response.docs.forEach(pelicula=>{
 
-    datos.results
-      .slice(0,12)
-      .forEach(
-        libro => {
+      const div=document.createElement("div");
 
-          const div =
-            document.createElement(
-              "div"
-            );
+      div.className="card";
 
+      div.innerHTML=
+        "<h3>🎬 "+
+        escapar(pelicula.title || texto)+
+        "</h3>"+
 
-          div.className =
-            "card";
+        "<p>"+
+        escapar(
+          pelicula.description
+          ? limpiarTexto(pelicula.description)
+          : "Resultado disponible en el catálogo."
+        )+
+        "</p>"+
 
+        "<p class='small'>"+
+        "Identificador: "+
+        escapar(pelicula.identifier || "")+
+        "</p>"+
 
-          const autor =
-            libro.authors &&
-            libro.authors.length
+        (
+          pelicula.identifier
+          ?
+          "<button class='primary' onclick='verPeliculaArchivo(\""+
+          escaparAtributo(pelicula.identifier)+
+          "\",\""+
+          escaparAtributo(pelicula.title || texto)+
+          "\")'>"+
+          "▶ Abrir reproductor"+
+          "</button>"
+          :
+          ""
+        );
 
-            ?
+      resultado.appendChild(div);
 
-            libro.authors
-              .map(
-                a => a.name
-              )
-              .join(", ")
-
-            :
-
-            "Autor desconocido";
-
-
-          const formatos =
-            libro.formats || {};
-
-
-          const htmlUrl =
-            formatos[
-              "text/html"
-            ] ||
-
-            formatos[
-              "text/html; charset=utf-8"
-            ];
-
-
-          let boton = "";
-
-
-          if(htmlUrl){
-
-            boton =
-
-              "<button " +
-
-              "class='primary' " +
-
-              "onclick='leerLibro(\"" +
-
-              escaparAtributo(
-                htmlUrl
-              ) +
-
-              "\",\"" +
-
-              escaparAtributo(
-                libro.title
-              ) +
-
-              "\")'>" +
-
-              "📖 Leer dentro de DUCATTO" +
-
-              "</button>";
-
-          }
-
-
-          div.innerHTML =
-
-            "<h3>" +
-
-            escapar(
-              libro.title
-            ) +
-
-            "</h3>" +
-
-            "<p>" +
-
-            escapar(
-              autor
-            ) +
-
-            "</p>" +
-
-            (
-              boton
-
-              ?
-
-              boton
-
-              :
-
-              "<span class='small'>" +
-              "No hay lector HTML disponible para esta edición." +
-              "</span>"
-            );
-
-
-          resultado.appendChild(
-            div
-          );
-
-        }
-      );
-
+    });
 
   }catch(error){
 
-    resultado.innerHTML =
-
-      "<div class='card'>" +
-
-      "No se pudo cargar la biblioteca." +
-
+    resultado.innerHTML=
+      "<div class='card'>"+
+      "No se pudo realizar la búsqueda."+
       "</div>";
 
   }
-
 }
 
 
+/*
+  Abre el reproductor de una obra del catálogo
+  cuando existe un archivo de vídeo reproducible.
+*/
 
-function leerLibro(
-  url,
+async function verPeliculaArchivo(
+  identifier,
   titulo
 ){
 
   abrirModal(
+    "<h2>🎬 "+
+    escapar(titulo)+
+    "</h2>"+
+    "<div class='notice'>"+
+    "Buscando un archivo de vídeo reproducible..."+
+    "</div>"
+  );
 
-    "<h2>📖 " +
+  try{
 
-    escapar(
-      titulo
-    ) +
+    const respuesta=await fetch(
+      "https://archive.org/metadata/"+
+      encodeURIComponent(identifier)
+    );
 
-    "</h2>" +
+    const datos=await respuesta.json();
 
-    "<div class='reader'>" +
+    const archivos=datos.files || [];
 
-    "<iframe " +
+    const video=archivos.find(
+      archivo=>{
+        const nombre=(archivo.name||"").toLowerCase();
 
-    "src='" +
+        return (
+          nombre.endsWith(".mp4") ||
+          nombre.endsWith(".webm") ||
+          nombre.endsWith(".ogv")
+        );
+      }
+    );
 
-    escaparAtributo(
-      url
-    ) +
+    if(!video){
 
-    "' " +
+      abrirModal(
+        "<h2>🎬 "+
+        escapar(titulo)+
+        "</h2>"+
+        "<div class='notice'>"+
+        "Esta obra no tiene un archivo de vídeo compatible "+
+        "disponible para reproducir directamente dentro "+
+        "del navegador."+
+        "</div>"
+      );
 
-    "title='Lector de libro'>" +
+      return;
+    }
 
-    "</iframe>" +
+    const url=
+      "https://archive.org/download/"+
+      encodeURIComponent(identifier)+
+      "/"+
+      video.name
+      .split("/")
+      .map(encodeURIComponent)
+      .join("/");
 
+    abrirModal(
+      "<h2>🎬 "+
+      escapar(titulo)+
+      "</h2>"+
+
+      "<div class='player'>"+
+      "<video controls playsinline>"+
+      "<source src='"+
+      escaparAtributo(url)+
+      "'>"+
+      "Tu navegador no puede reproducir este vídeo."+
+      "</video>"+
+      "</div>"
+    );
+
+  }catch(error){
+
+    abrirModal(
+      "<div class='notice'>"+
+      "No se pudo cargar el reproductor."+
+      "</div>"
+    );
+
+  }
+
+}
+
+
+/* ================= SERIES ================= */
+
+function ponerSerie(nombre){
+
+  document.getElementById(
+    "busquedaSerie"
+  ).value=nombre;
+
+  buscarSeries();
+}
+
+
+async function buscarSeries(){
+
+  const texto=document
+    .getElementById("busquedaSerie")
+    .value
+    .trim();
+
+  const resultado=document
+    .getElementById("resultadosSeries");
+
+  if(!texto){
+
+    resultado.innerHTML=
+      "<div class='card'>Escribe una serie.</div>";
+
+    return;
+  }
+
+  resultado.innerHTML=
+    "<div class='card'>🔎 Buscando...</div>";
+
+  try{
+
+    const respuesta=await fetch(
+      "https://archive.org/advancedsearch.php?q="+
+      encodeURIComponent(
+        "title:("+texto+")"
+      )+
+      "&fl[]=identifier,title,description&rows=12&page=1&output=json"
+    );
+
+    const datos=await respuesta.json();
+
+    resultado.innerHTML="";
+
+    if(
+      !datos.response ||
+      !datos.response.docs ||
+      !datos.response.docs.length
+    ){
+
+      resultado.innerHTML=
+        "<div class='card'>"+
+        "No hemos encontrado esa serie."+
+        "</div>";
+
+      return;
+    }
+
+    datos.response.docs.forEach(item=>{
+
+      const div=document.createElement("div");
+
+      div.className="card";
+
+      div.innerHTML=
+        "<h3>📺 "+
+        escapar(item.title || texto)+
+        "</h3>"+
+
+        "<p>"+
+        escapar(
+          item.description
+          ? limpiarTexto(item.description)
+          : "Resultado disponible en el catálogo."
+        )+
+        "</p>"+
+
+        "<button class='primary' onclick='verPeliculaArchivo(\""+
+        escaparAtributo(item.identifier || "")+
+        "\",\""+
+        escaparAtributo(item.title || texto)+
+        "\")'>"+
+        "▶ Abrir"+
+        "</button>";
+
+      resultado.appendChild(div);
+
+    });
+
+  }catch(error){
+
+    resultado.innerHTML=
+      "<div class='card'>"+
+      "No se pudo realizar la búsqueda."+
+      "</div>";
+
+  }
+
+}
+
+
+/* ================= LIBROS ================= */
+
+async function buscarLibro(){
+
+  const texto=document
+    .getElementById("busquedaLibro")
+    .value
+    .trim();
+
+  const resultado=document
+    .getElementById("resultadosLibro");
+
+  if(!texto){
+
+    resultado.innerHTML=
+      "<div class='card'>Escribe un libro o autor.</div>";
+
+    return;
+  }
+
+  resultado.innerHTML=
+    "<div class='card'>🔎 Buscando libros...</div>";
+
+  try{
+
+    const respuesta=await fetch(
+      "https://gutendex.com/books/?search="+
+      encodeURIComponent(texto)
+    );
+
+    const datos=await respuesta.json();
+
+    resultado.innerHTML="";
+
+    if(!datos.results.length){
+
+      resultado.innerHTML=
+        "<div class='card'>No se encontraron libros.</div>";
+
+      return;
+    }
+
+    datos.results.slice(0,12).forEach(libro=>{
+
+      const div=document.createElement("div");
+
+      div.className="card";
+
+      const autor=libro.authors &&
+                  libro.authors.length
+        ? libro.authors.map(a=>a.name).join(", ")
+        : "Autor desconocido";
+
+      const formatos=libro.formats || {};
+
+      const html=
+        formatos["text/html"] ||
+        formatos["text/html; charset=utf-8"];
+
+      div.innerHTML=
+        "<h3>📖 "+
+        escapar(libro.title)+
+        "</h3>"+
+
+        "<p>"+
+        escapar(autor)+
+        "</p>"+
+
+        (
+          html
+          ?
+          "<button class='primary' onclick='leerLibro(\""+
+          escaparAtributo(html)+
+          "\",\""+
+          escaparAtributo(libro.title)+
+          "\")'>"+
+          "📖 Leer dentro de DUCATTO"+
+          "</button>"
+          :
+          "<p class='small'>"+
+          "No hay edición HTML disponible."+
+          "</p>"
+        );
+
+      resultado.appendChild(div);
+
+    });
+
+  }catch(error){
+
+    resultado.innerHTML=
+      "<div class='card'>"+
+      "No se pudo conectar con la biblioteca."+
+      "</div>";
+
+  }
+
+}
+
+
+function leerLibro(url,titulo){
+
+  abrirModal(
+
+    "<h2>📖 "+
+    escapar(titulo)+
+    "</h2>"+
+
+    "<div class='reader'>"+
+    "<iframe src='"+
+    escaparAtributo(url)+
+    "' title='Lector'></iframe>"+
     "</div>"
 
   );
@@ -1728,778 +1241,478 @@ function leerLibro(
 }
 
 
-
-/* =====================================================
-   MAPAS
-===================================================== */
+/* ================= MAPA ================= */
 
 function buscarLugar(){
 
-  const lugar =
-    document
-      .getElementById(
-        "lugar"
-      )
-      .value
-      .trim();
-
+  const lugar=document
+    .getElementById("lugar")
+    .value
+    .trim();
 
   if(!lugar) return;
 
+  const url=
+    "https://www.openstreetmap.org/search?query="+
+    encodeURIComponent(lugar);
 
-  const url =
-    "https://www.openstreetmap.org/search?query=" +
+  document.getElementById(
+    "resultadoLugar"
+  ).innerHTML=
 
-    encodeURIComponent(
-      lugar
-    );
-
-
-  document
-    .getElementById(
-      "resultadoLugar"
-    )
-    .innerHTML =
-
-    "<div class='card'>" +
-
-    "<h3>📍 " +
-
-    escapar(
-      lugar
-    ) +
-
-    "</h3>" +
-
-    "<a href='" +
-
-    url +
-
-    "' " +
-
-    "target='_blank' " +
-
-    "rel='noopener' " +
-
-    "style='color:#e5b84b'>" +
-
-    "Abrir ubicación →" +
-
-    "</a>" +
-
+    "<div class='card'>"+
+    "<h3>📍 "+
+    escapar(lugar)+
+    "</h3>"+
+    "<a href='"+
+    escaparAtributo(url)+
+    "' target='_blank' rel='noopener' style='color:#e6b94e'>"+
+    "Abrir mapa →"+
+    "</a>"+
     "</div>";
-
 }
 
 
+/* ================= AGENDA ================= */
 
-/* =====================================================
-   AGENDA
-===================================================== */
+let agenda=JSON.parse(
+  localStorage.getItem("ducattoAgenda") || "[]"
+);
+
 
 function guardarEvento(){
 
-  const input =
-    document.getElementById(
-      "evento"
-    );
+  const input=document.getElementById("evento");
 
-
-  const texto =
-    input.value.trim();
-
+  const texto=input.value.trim();
 
   if(!texto) return;
 
-
-  agenda.push(
-    texto
-  );
-
+  agenda.push(texto);
 
   localStorage.setItem(
     "ducattoAgenda",
-    JSON.stringify(
-      agenda
-    )
+    JSON.stringify(agenda)
   );
 
-
-  input.value = "";
-
+  input.value="";
 
   mostrarAgenda();
-
 }
-
 
 
 function mostrarAgenda(){
 
-  const lista =
-    document.getElementById(
-      "listaAgenda"
-    );
+  const lista=document.getElementById("listaAgenda");
 
-
-  lista.innerHTML = "";
-
+  lista.innerHTML="";
 
   if(!agenda.length){
 
-    lista.innerHTML =
-
-      "<div class='card'>" +
-
-      "<p>No hay eventos todavía.</p>" +
-
+    lista.innerHTML=
+      "<div class='card'>"+
+      "No tienes eventos todavía."+
       "</div>";
 
     return;
-
   }
 
+  agenda.forEach((evento,index)=>{
 
-  agenda.forEach(
-    (evento,i) => {
+    lista.innerHTML+=
+      "<div class='card user'>"+
+      "<span>📅 "+
+      escapar(evento)+
+      "</span>"+
+      "<button class='secondary' onclick='borrarEvento("+
+      index+
+      ")'>"+
+      "Borrar"+
+      "</button>"+
+      "</div>";
 
-      lista.innerHTML +=
-
-        "<div class='card'>" +
-
-        "📅 " +
-
-        escapar(
-          evento
-        ) +
-
-        " " +
-
-        "<button " +
-
-        "class='secondary' " +
-
-        "onclick='borrarEvento(" +
-
-        i +
-
-        ")'>" +
-
-        "Borrar" +
-
-        "</button>" +
-
-        "</div>";
-
-    }
-  );
-
+  });
 }
 
 
+function borrarEvento(index){
 
-function borrarEvento(i){
-
-  agenda.splice(
-    i,
-    1
-  );
-
+  agenda.splice(index,1);
 
   localStorage.setItem(
     "ducattoAgenda",
-    JSON.stringify(
-      agenda
-    )
+    JSON.stringify(agenda)
   );
 
-
   mostrarAgenda();
-
 }
 
 
-
-/* =====================================================
-   USUARIOS
-===================================================== */
+/* ================= USUARIOS ================= */
 
 function crearUsuario(){
 
-  const input =
-    document.getElementById(
-      "nuevoUsuario"
-    );
+  const input=document.getElementById("nuevoUsuario");
 
-
-  const nombre =
-    input.value.trim();
-
+  const nombre=input.value.trim();
 
   if(!nombre) return;
 
+  const lista=obtenerUsuarios();
 
-  usuarios.push({
+  if(
+    lista.some(
+      u=>u.nombre.toLowerCase()===nombre.toLowerCase()
+    )
+  ){
 
+    alert("Ese usuario ya existe.");
+
+    return;
+  }
+
+  lista.push({
     nombre:nombre,
-
     premium:false
-
   });
 
+  guardarUsuarios(lista);
 
-  localStorage.setItem(
-    "ducattoUsuarios",
-    JSON.stringify(
-      usuarios
-    )
-  );
-
-
-  input.value = "";
-
+  input.value="";
 
   mostrarUsuarios();
-
 }
-
-
-
-function cambiarPremium(i){
-
-  usuarios[i].premium =
-    !usuarios[i].premium;
-
-
-  localStorage.setItem(
-    "ducattoUsuarios",
-    JSON.stringify(
-      usuarios
-    )
-  );
-
-
-  mostrarUsuarios();
-
-}
-
-
-
-function eliminarUsuario(i){
-
-  usuarios.splice(
-    i,
-    1
-  );
-
-
-  localStorage.setItem(
-    "ducattoUsuarios",
-    JSON.stringify(
-      usuarios
-    )
-  );
-
-
-  mostrarUsuarios();
-
-}
-
 
 
 function mostrarUsuarios(){
 
-  const contenedor =
-    document.getElementById(
-      "usuarios"
-    );
+  const contenedor=document.getElementById("usuarios");
 
+  const lista=obtenerUsuarios();
 
-  contenedor.innerHTML =
-    "<h3>Usuarios</h3>";
+  contenedor.innerHTML="<h3>👥 Usuarios</h3>";
 
+  if(!lista.length){
 
-  usuarios.forEach(
-    (u,i) => {
+    contenedor.innerHTML+=
+      "<div class='card'>"+
+      "Todavía no hay usuarios."+
+      "</div>";
 
-      contenedor.innerHTML +=
+    return;
+  }
 
-        "<div class='card user'>" +
+  lista.forEach((usuario,index)=>{
 
-        "<div>" +
+    contenedor.innerHTML+=
 
-        "<strong>" +
+      "<div class='card user'>"+
 
-        escapar(
-          u.nombre
-        ) +
+      "<div>"+
+      "<strong>"+
+      escapar(usuario.nombre)+
+      "</strong>"+
+      "<br>"+
 
-        "</strong><br>" +
+      "<span class='status "+
+      (
+        usuario.premium
+        ? "active-status"
+        : "off-status"
+      )+
+      "'>"+
+      (
+        usuario.premium
+        ? "PREMIUM"
+        : "SIN PREMIUM"
+      )+
+      "</span>"+
 
-        "<span class='status " +
+      "</div>"+
 
-        (
-          u.premium
-            ? "on"
-            : "off"
-        ) +
+      "<div>"+
 
-        "'>" +
+      "<button class='primary' onclick='cambiarPremium("+
+      index+
+      ")'>"+
+      (
+        usuario.premium
+        ? "Quitar Premium"
+        : "Dar Premium"
+      )+
+      "</button> "+
 
-        (
-          u.premium
-            ? "PREMIUM ACTIVO"
-            : "SIN PREMIUM"
-        ) +
+      "<button class='danger' onclick='eliminarUsuario("+
+      index+
+      ")'>"+
+      "Eliminar"+
+      "</button>"+
 
-        "</span>" +
+      "</div>"+
 
-        "</div>" +
+      "</div>";
 
-        "<div>" +
-
-        "<button " +
-
-        "class='primary' " +
-
-        "onclick='cambiarPremium(" +
-
-        i +
-
-        ")'>" +
-
-        (
-          u.premium
-            ? "Quitar Premium"
-            : "Dar Premium"
-        ) +
-
-        "</button> " +
-
-        "<button " +
-
-        "class='secondary' " +
-
-        "onclick='eliminarUsuario(" +
-
-        i +
-
-        ")'>" +
-
-        "Eliminar" +
-
-        "</button>" +
-
-        "</div>" +
-
-        "</div>";
-
-    }
-  );
-
+  });
 }
 
 
+function cambiarPremium(index){
 
-/* =====================================================
-   PREMIUM
-===================================================== */
+  const lista=obtenerUsuarios();
+
+  if(!lista[index]) return;
+
+  if(lista[index].premium){
+
+    quitarPremium(lista[index].nombre);
+
+  }else{
+
+    activarPremium(lista[index].nombre);
+
+  }
+
+  mostrarUsuarios();
+}
+
+
+function eliminarUsuario(index){
+
+  const lista=obtenerUsuarios();
+
+  lista.splice(index,1);
+
+  guardarUsuarios(lista);
+
+  mostrarUsuarios();
+}
+
+
+/* ================= SOLICITUD PREMIUM ================= */
+
+function enviarSolicitudPremium(){
+
+  const input=document.getElementById("usuarioPremium");
+
+  const mensaje=document.getElementById("mensajePremium");
+
+  const nombre=input.value.trim();
+
+  if(typeof solicitarPremium!=="function"){
+
+    mensaje.textContent=
+      "No se ha cargado premium-users.js.";
+
+    return;
+  }
+
+  const resultado=
+    solicitarPremium(nombre);
+
+  mensaje.textContent=
+    resultado.mensaje;
+
+  if(resultado.ok){
+
+    input.value="";
+
+    mostrarSolicitudesPremium();
+  }
+}
+
 
 function mostrarSolicitudesPremium(){
 
-  const contenedor =
-    document.getElementById(
-      "solicitudesPremium"
-    );
+  const contenedor=
+    document.getElementById("solicitudesPremium");
 
+  if(typeof obtenerSolicitudesPremium!=="function"){
 
-  if(
-    typeof obtenerSolicitudesPremium !==
-    "function"
-  ){
-
-    contenedor.innerHTML =
-
-      "<p class='small'>" +
-
-      "No se ha cargado premium-users.js." +
-
+    contenedor.innerHTML=
+      "<p class='small'>"+
+      "No se ha cargado premium-users.js."+
       "</p>";
 
     return;
-
   }
 
-
-  const solicitudes =
+  const solicitudes=
     obtenerSolicitudesPremium();
 
-
-  contenedor.innerHTML = "";
-
+  contenedor.innerHTML="";
 
   if(!solicitudes.length){
 
-    contenedor.innerHTML =
-
-      "<p class='small'>" +
-
-      "No hay solicitudes." +
-
+    contenedor.innerHTML=
+      "<p class='small'>"+
+      "No hay solicitudes pendientes."+
       "</p>";
 
     return;
-
   }
 
+  solicitudes.forEach(solicitud=>{
 
-  solicitudes.forEach(
-    solicitud => {
+    let clase="pending-status";
 
-      let estado =
-        "PENDIENTE";
-
-
-      if(
-        solicitud.estado ===
-        "aprobada"
-      ){
-
-        estado =
-          "PREMIUM ACTIVADO";
-
-      }
-
-
-      if(
-        solicitud.estado ===
-        "rechazada"
-      ){
-
-        estado =
-          "RECHAZADA";
-
-      }
-
-
-      contenedor.innerHTML +=
-
-        "<div class='card'>" +
-
-        "<strong>" +
-
-        escapar(
-          solicitud.usuario
-        ) +
-
-        "</strong>" +
-
-        "<br>" +
-
-        "<span class='status pending'>" +
-
-        estado +
-
-        "</span>" +
-
-        "<p class='small'>" +
-
-        "Importe: " +
-
-        escapar(
-          solicitud.precio
-        ) +
-
-        " €" +
-
-        "</p>" +
-
-        "<div class='request-actions'>" +
-
-        (
-          solicitud.estado ===
-          "pendiente"
-
-          ?
-
-          "<button " +
-          "class='primary' " +
-          "onclick='aprobarSolicitud(\"" +
-          escaparAtributo(
-            solicitud.usuario
-          ) +
-          "\")'>" +
-
-          "✅ Activar Premium" +
-
-          "</button>" +
-
-          "<button " +
-          "class='danger' " +
-          "onclick='rechazarSolicitud(\"" +
-          escaparAtributo(
-            solicitud.usuario
-          ) +
-          "\")'>" +
-
-          "❌ Rechazar" +
-
-          "</button>"
-
-          :
-
-          ""
-        ) +
-
-        "</div>" +
-
-        "</div>";
-
+    if(solicitud.estado==="aprobada"){
+      clase="active-status";
     }
-  );
 
+    if(solicitud.estado==="rechazada"){
+      clase="off-status";
+    }
+
+    contenedor.innerHTML+=
+
+      "<div class='card'>"+
+
+      "<strong>"+
+      escapar(solicitud.usuario)+
+      "</strong>"+
+
+      "<p>"+
+      "Importe: "+
+      escapar(solicitud.precio)+
+      " €"+
+      "</p>"+
+
+      "<span class='status "+
+      clase+
+      "'>"+
+      escapar(solicitud.estado)+
+      "</span>"+
+
+      (
+        solicitud.estado==="pendiente"
+
+        ?
+
+        "<div style='margin-top:12px'>"+
+
+        "<button class='primary' onclick='aprobarPremiumUsuario(\""+
+        escaparAtributo(solicitud.usuario)+
+        "\")'>"+
+        "✅ Activar"+
+        "</button> "+
+
+        "<button class='danger' onclick='rechazarPremiumUsuario(\""+
+        escaparAtributo(solicitud.usuario)+
+        "\")'>"+
+        "❌ Rechazar"+
+        "</button>"+
+
+        "</div>"
+
+        :
+
+        ""
+      )+
+
+      "</div>";
+
+  });
 }
 
 
+function aprobarPremiumUsuario(usuario){
 
-function aprobarSolicitud(
-  usuario
-){
+  const confirmar=confirm(
+    "Confirma que has comprobado el pago de 7,99 €."
+  );
 
-  if(
-    !confirm(
-      "¿Has comprobado que el Bizum de 7,99 € ha llegado?"
-    )
-  ){
+  if(!confirmar) return;
 
-    return;
-
-  }
-
-
-  if(
-    typeof activarPremium ===
-    "function"
-  ){
-
-    activarPremium(
-      usuario
-    );
-
-  }
-
-
-  if(
-    typeof obtenerUsuarios ===
-    "function"
-  ){
-
-    usuarios =
-      obtenerUsuarios();
-
-  }
-
+  activarPremium(usuario);
 
   mostrarSolicitudesPremium();
 
   mostrarUsuarios();
 
-
   alert(
-    "✅ Premium activado para " +
-    usuario
+    "✅ Premium activado para "+usuario
   );
-
 }
 
 
+function rechazarPremiumUsuario(usuario){
 
-function rechazarSolicitud(
-  usuario
-){
-
-  if(
-    !confirm(
-      "¿Quieres rechazar esta solicitud?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  if(
-    typeof rechazarPremium ===
-    "function"
-  ){
-
-    rechazarPremium(
-      usuario
-    );
-
-  }
-
+  rechazarPremium(usuario);
 
   mostrarSolicitudesPremium();
-
-
-  alert(
-    "Solicitud rechazada."
-  );
-
 }
 
 
+/* ================= MODAL ================= */
 
-/* =====================================================
-   MODAL
-===================================================== */
+function abrirModal(html){
 
-function abrirModal(
-  html
-){
+  document.getElementById(
+    "modalContenido"
+  ).innerHTML=html;
 
-  document
-    .getElementById(
-      "mediaContenido"
-    )
-    .innerHTML =
-      html;
-
-
-  document
-    .getElementById(
-      "mediaModal"
-    )
-    .classList.add(
-      "active"
-    );
-
+  document.getElementById(
+    "modal"
+  ).classList.add("active");
 }
-
 
 
 function cerrarModal(){
 
-  document
-    .getElementById(
-      "mediaContenido"
-    )
-    .innerHTML = "";
+  document.getElementById(
+    "modalContenido"
+  ).innerHTML="";
 
-
-  document
-    .getElementById(
-      "mediaModal"
-    )
-    .classList.remove(
-      "active"
-    );
-
+  document.getElementById(
+    "modal"
+  ).classList.remove("active");
 }
 
 
-document
-  .getElementById(
-    "mediaModal"
-  )
-  .addEventListener(
-    "click",
-    function(e){
+document.getElementById("modal")
+.addEventListener("click",function(event){
 
-      if(
-        e.target === this
-      ){
+  if(event.target===this){
+    cerrarModal();
+  }
 
-        cerrarModal();
-
-      }
-
-    }
-  );
+});
 
 
+/* ================= SEGURIDAD ================= */
 
-/* =====================================================
-   SEGURIDAD HTML
-===================================================== */
+function escapar(texto){
 
-function escapar(
-  texto
-){
-
-  return String(
-    texto ?? ""
-  )
-
-  .replaceAll(
-    "&",
-    "&amp;"
-  )
-
-  .replaceAll(
-    "<",
-    "&lt;"
-  )
-
-  .replaceAll(
-    ">",
-    "&gt;"
-  )
-
-  .replaceAll(
-    '"',
-    "&quot;"
-  )
-
-  .replaceAll(
-    "'",
-    "&#039;"
-  );
-
+  return String(texto ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 
+function escaparAtributo(texto){
 
-function escaparAtributo(
-  texto
-){
-
-  return String(
-    texto ?? ""
-  )
-
-  .replaceAll(
-    "\\",
-    "\\\\"
-  )
-
-  .replaceAll(
-    "'",
-    "\\'"
-  )
-
-  .replaceAll(
-    '"',
-    "&quot;"
-  );
-
+  return String(texto ?? "")
+    .replaceAll("\\","\\\\")
+    .replaceAll("'","\\'");
 }
 
 
+function limpiarTexto(texto){
 
-/* =====================================================
-   INICIO
-===================================================== */
+  return String(texto)
+    .replace(/<[^>]*>/g,"")
+    .slice(0,500);
+}
+
+
+/* ================= ARRANQUE ================= */
 
 mostrarAgenda();
-
 mostrarUsuarios();
-
-prepararPeliculas();
-
-mostrarSeries();
+mostrarSolicitudesPremium();
 
 </script>
 
