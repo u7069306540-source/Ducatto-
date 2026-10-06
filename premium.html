@@ -1,175 +1,313 @@
-/*
-  DUCATTO - GESTIÓN DE PREMIUM
-  Las activaciones se hacen MANUALMENTE después de comprobar el Bizum.
-*/
+<!DOCTYPE html>
+<html lang="es">
 
-const PRECIO_PREMIUM = 7.99;
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* Obtener usuarios guardados */
-function obtenerUsuarios() {
-  return JSON.parse(
-    localStorage.getItem("ducattoUsuarios") || "[]"
-  );
+<title>Ducatto Premium</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-/* Guardar usuarios */
-function guardarUsuarios(usuarios) {
-  localStorage.setItem(
-    "ducattoUsuarios",
-    JSON.stringify(usuarios)
-  );
+body{
+  font-family:Arial,sans-serif;
+  background:#121212;
+  color:white;
+  min-height:100vh;
+  padding:20px;
 }
 
-/* Crear solicitud Premium */
-function solicitarPremium(nombreUsuario) {
-  const usuario = nombreUsuario.trim();
+.container{
+  width:100%;
+  max-width:500px;
+  margin:auto;
+  padding-top:30px;
+}
 
-  if (!usuario) {
-    return {
-      ok: false,
-      mensaje: "Escribe tu nombre de usuario."
-    };
+.logo{
+  text-align:center;
+  font-size:32px;
+  font-weight:bold;
+  color:#00FFB4;
+  margin-bottom:30px;
+}
+
+.box{
+  background:#181818;
+  border:1px solid #00FFB4;
+  border-radius:22px;
+  padding:25px;
+  box-shadow:0 0 25px rgba(0,255,180,.12);
+}
+
+h1{
+  text-align:center;
+  color:#00FFB4;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#aaa;
+  line-height:1.5;
+  margin-bottom:25px;
+}
+
+.price{
+  text-align:center;
+  font-size:32px;
+  font-weight:bold;
+  margin:20px 0;
+}
+
+.features{
+  margin:20px 0;
+}
+
+.feature{
+  background:#202020;
+  border-radius:12px;
+  padding:13px;
+  margin-bottom:10px;
+}
+
+.bizum{
+  margin-top:25px;
+  padding:20px;
+  background:#202020;
+  border-radius:16px;
+  text-align:center;
+}
+
+.bizum-title{
+  color:#00FFB4;
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.bizum-number{
+  font-size:22px;
+  font-weight:bold;
+  margin:15px 0;
+  letter-spacing:1px;
+}
+
+.warning{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.5;
+  margin-top:15px;
+}
+
+.user-box{
+  margin-top:20px;
+}
+
+label{
+  display:block;
+  color:#aaa;
+  margin-bottom:8px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #333;
+  background:#222;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#00FFB4;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:15px;
+  border:1px solid #00FFB4;
+  border-radius:12px;
+  background:#121212;
+  color:#00FFB4;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#00FFB4;
+  color:#121212;
+}
+
+#mensaje{
+  text-align:center;
+  margin-top:15px;
+  color:#aaa;
+  line-height:1.5;
+}
+
+.back{
+  text-align:center;
+  margin-top:20px;
+}
+
+.back a{
+  color:#00FFB4;
+  text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo">
+    DUCATTO
+  </div>
+
+  <div class="box">
+
+    <h1>⭐ Ducatto Premium</h1>
+
+    <p class="subtitle">
+      Desbloquea las funciones exclusivas de Ducatto.
+    </p>
+
+    <div class="price">
+      7,99 € / mes
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        📍 Ubicaciones Premium
+      </div>
+
+      <div class="feature">
+        🤫 Sitios tranquilos
+      </div>
+
+      <div class="feature">
+        📅 Funciones Premium de agenda
+      </div>
+
+      <div class="feature">
+        ⭐ Herramientas exclusivas
+      </div>
+
+    </div>
+
+    <div class="bizum">
+
+      <div class="bizum-title">
+        💚 Pagar con Bizum
+      </div>
+
+      <p>
+        Realiza un Bizum de
+        <strong>7,99 €</strong>
+        al número indicado:
+      </p>
+
+      <div class="bizum-number">
+        602898046
+      </div>
+
+      <p class="warning">
+        Después de realizar el pago,
+        introduce tu nombre de usuario
+        de Ducatto para poder identificar
+        tu solicitud.
+      </p>
+
+    </div>
+
+    <div class="user-box">
+
+      <label for="usuario">
+        Tu nombre de usuario de Ducatto
+      </label>
+
+      <input
+        type="text"
+        id="usuario"
+        placeholder="Ejemplo: usuario123"
+        maxlength="30"
+      >
+
+      <button onclick="avisarPago()">
+        He realizado el pago
+      </button>
+
+      <p id="mensaje"></p>
+
+    </div>
+
+  </div>
+
+  <div class="back">
+
+    <a href="index.html">
+      ← Volver a Ducatto
+    </a>
+
+  </div>
+
+</div>
+
+<!-- Conecta este archivo con premium-users.js -->
+<script src="premium-users.js"></script>
+
+<script>
+
+function avisarPago(){
+
+  const input =
+    document.getElementById("usuario");
+
+  const mensaje =
+    document.getElementById("mensaje");
+
+  const usuario =
+    input.value.trim();
+
+  if(!usuario){
+
+    mensaje.textContent =
+      "Escribe tu nombre de usuario.";
+
+    return;
   }
 
-  const solicitudes = JSON.parse(
-    localStorage.getItem("ducattoSolicitudesPremium") || "[]"
-  );
+  const resultado =
+    solicitarPremium(usuario);
 
-  const existe = solicitudes.find(
-    s => s.usuario.toLowerCase() === usuario.toLowerCase()
-  );
+  mensaje.textContent =
+    resultado.mensaje;
 
-  if (existe && existe.estado === "pendiente") {
-    return {
-      ok: false,
-      mensaje: "Ya tienes una solicitud pendiente."
-    };
+  if(resultado.ok){
+
+    input.value = "";
+
   }
 
-  solicitudes.push({
-    usuario: usuario,
-    precio: PRECIO_PREMIUM,
-    fecha: new Date().toISOString(),
-    estado: "pendiente"
-  });
-
-  localStorage.setItem(
-    "ducattoSolicitudesPremium",
-    JSON.stringify(solicitudes)
-  );
-
-  return {
-    ok: true,
-    mensaje:
-      "Solicitud enviada. Se activará Premium después de comprobar el pago."
-  };
 }
 
-/* Obtener solicitudes */
-function obtenerSolicitudesPremium() {
-  return JSON.parse(
-    localStorage.getItem("ducattoSolicitudesPremium") || "[]"
-  );
-}
+</script>
 
-/* Guardar solicitudes */
-function guardarSolicitudesPremium(solicitudes) {
-  localStorage.setItem(
-    "ducattoSolicitudesPremium",
-    JSON.stringify(solicitudes)
-  );
-}
+</body>
 
-/*
-  ACTIVAR PREMIUM
-  Úsalo solamente después de comprobar que el Bizum ha llegado.
-*/
-function activarPremium(usuarioBuscado) {
-  const usuarios = obtenerUsuarios();
-
-  let usuario = usuarios.find(
-    u =>
-      u.nombre.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
-  );
-
-  if (!usuario) {
-    usuario = {
-      nombre: usuarioBuscado,
-      premium: false
-    };
-
-    usuarios.push(usuario);
-  }
-
-  usuario.premium = true;
-
-  guardarUsuarios(usuarios);
-
-  const solicitudes = obtenerSolicitudesPremium();
-
-  solicitudes.forEach(solicitud => {
-    if (
-      solicitud.usuario.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
-    ) {
-      solicitud.estado = "aprobada";
-    }
-  });
-
-  guardarSolicitudesPremium(solicitudes);
-
-  return true;
-}
-
-/* RECHAZAR / CANCELAR SOLICITUD */
-function rechazarPremium(usuarioBuscado) {
-  const solicitudes = obtenerSolicitudesPremium();
-
-  solicitudes.forEach(solicitud => {
-    if (
-      solicitud.usuario.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
-    ) {
-      solicitud.estado = "rechazada";
-    }
-  });
-
-  guardarSolicitudesPremium(solicitudes);
-
-  return true;
-}
-
-/* QUITAR PREMIUM */
-function quitarPremium(usuarioBuscado) {
-  const usuarios = obtenerUsuarios();
-
-  const usuario = usuarios.find(
-    u =>
-      u.nombre.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
-  );
-
-  if (!usuario) {
-    return false;
-  }
-
-  usuario.premium = false;
-
-  guardarUsuarios(usuarios);
-
-  return true;
-}
-
-/* Comprobar si un usuario tiene Premium */
-function tienePremium(usuarioBuscado) {
-  const usuarios = obtenerUsuarios();
-
-  const usuario = usuarios.find(
-    u =>
-      u.nombre.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
-  );
-
-  return usuario ? usuario.premium === true : false;
-}
+</html>
