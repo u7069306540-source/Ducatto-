@@ -8,326 +8,186 @@
 <style>
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
-  background:#09090f;
+  font-family:Arial,sans-serif;
+  background:#0b0b10;
   color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
-  padding-bottom:85px;
 }
 
 header{
+  background:#15151d;
+  padding:18px;
   position:sticky;
   top:0;
-  z-index:50;
-  background:#15151f;
-  border-bottom:1px solid #292938;
-  padding:16px 20px;
+  z-index:10;
+  border-bottom:1px solid #292936;
 }
 
 .logo{
-  font-size:29px;
-  font-weight:800;
-}
-
-.badge{
-  display:inline-block;
-  margin-top:7px;
-  padding:6px 12px;
-  border-radius:20px;
-  background:#e6b94e;
-  color:#111;
-  font-size:12px;
+  font-size:28px;
   font-weight:bold;
+  text-align:center;
 }
 
-main{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
-
-.view{
-  display:none;
-}
-
-.view.active{
-  display:block;
-}
-
-.hero{
-  padding:28px;
-  border-radius:22px;
-  margin-bottom:20px;
-  background:linear-gradient(135deg,#35214d,#171722);
-}
-
-.hero h1{
-  margin-top:0;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-
-.card{
-  background:#161620;
-  border:1px solid #292938;
-  border-radius:17px;
-  padding:17px;
-  margin-bottom:14px;
-}
-
-.tile{
-  min-height:135px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.tile:hover{
-  transform:translateY(-3px);
-  border-color:#e6b94e;
-}
-
-.icon{
-  font-size:35px;
-}
-
-h2{
-  margin-top:5px;
-}
-
-p{
-  color:#bbb;
-}
-
-.small{
-  color:#888;
-  font-size:13px;
-}
-
-.notice{
-  background:#1d1d29;
-  border:1px solid #292938;
-  padding:15px;
-  border-radius:13px;
-  margin-bottom:15px;
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin-top:15px;
 }
 
 button{
   border:0;
   border-radius:10px;
-  padding:11px 15px;
+  padding:10px 14px;
   cursor:pointer;
-  font-weight:bold;
+  background:#29293a;
+  color:white;
 }
 
-.primary{
-  background:#e6b94e;
-  color:#111;
+button:hover{
+  background:#3a3a50;
 }
 
-.secondary{
-  background:#292938;
-  color:#fff;
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:25px;
 }
 
-.danger{
-  background:#652d2d;
-  color:#fff;
+.seccion{
+  display:none;
 }
 
-.back{
-  margin-bottom:15px;
+.seccion.activa{
+  display:block;
+}
+
+.hero{
+  text-align:center;
+  padding:45px 15px;
+}
+
+.hero h1{
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.hero p{
+  color:#bcbccc;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+
+.card{
+  background:#171720;
+  border:1px solid #292936;
+  border-radius:15px;
+  padding:18px;
+}
+
+.card h3{
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#aaaabd;
+  margin-bottom:14px;
 }
 
 input{
   width:100%;
-  padding:13px;
+  padding:12px;
   border-radius:10px;
   border:1px solid #333344;
-  background:#101018;
-  color:#fff;
-  margin:7px 0;
+  background:#101017;
+  color:white;
+  margin:8px 0;
 }
 
-.sugerencias{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
+.search{
+  display:flex;
   gap:8px;
   margin:15px 0;
 }
 
-.sugerencia{
-  background:#20202c;
-  border:1px solid #303044;
-  border-radius:10px;
-  padding:11px;
-  cursor:pointer;
+.search input{
+  margin:0;
 }
 
-.sugerencia:hover{
-  border-color:#e6b94e;
+.resultado{
+  margin-top:10px;
 }
 
-.media-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:18px;
+.tag{
+  display:inline-block;
+  background:#29293a;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+  margin:3px;
 }
 
-.media-card{
-  background:#171721;
-  border:1px solid #292938;
-  border-radius:15px;
-  padding:17px;
-}
-
-.media-card h3{
-  margin-top:0;
-}
-
-.episode{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  background:#191923;
-  border:1px solid #292938;
-  border-radius:12px;
-  padding:14px;
-  margin-bottom:10px;
-}
-
-.player{
-  background:#000;
-  border-radius:14px;
-  overflow:hidden;
-  margin-top:15px;
-}
-
-.player video{
-  width:100%;
-  display:block;
-  max-height:600px;
-}
-
-.reader{
-  background:#fff;
-  border-radius:12px;
-  overflow:hidden;
-}
-
-.reader iframe{
-  width:100%;
-  height:700px;
-  border:0;
+.premium{
+  border:1px solid #c9a227;
 }
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.86);
+  background:rgba(0,0,0,.9);
   z-index:100;
-  padding:20px;
   align-items:center;
   justify-content:center;
+  padding:20px;
 }
 
-.modal.active{
+.modal.activo{
   display:flex;
 }
 
 .modal-box{
+  background:#15151d;
+  border-radius:16px;
+  width:min(900px,100%);
+  padding:20px;
+}
+
+video{
   width:100%;
-  max-width:950px;
-  max-height:92vh;
-  overflow:auto;
-  background:#11111a;
-  border:1px solid #333344;
-  border-radius:18px;
-  padding:18px;
+  max-height:70vh;
+  background:#000;
+  border-radius:10px;
 }
 
-.close{
-  float:right;
-  background:#292938;
-  color:#fff;
+iframe{
+  width:100%;
+  height:70vh;
+  border:0;
+  background:white;
+  border-radius:10px;
 }
 
-.user{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
+.lista{
+  line-height:2;
+  color:#ccc;
 }
 
-.status{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:12px;
-}
-
-.active-status{
-  background:#214e34;
-}
-
-.off-status{
-  background:#512727;
-}
-
-.pending-status{
-  background:#5a4a1d;
-}
-
-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  z-index:60;
-  display:flex;
-  justify-content:space-around;
-  background:#15151f;
-  border-top:1px solid #292938;
-  padding:9px 5px;
-}
-
-nav button{
-  background:transparent;
-  color:#aaa;
-  padding:5px;
-}
-
-nav span{
-  display:block;
-  font-size:21px;
-}
-
-@media(max-width:750px){
-
-  .grid,
-  .media-grid,
-  .sugerencias{
-    grid-template-columns:1fr;
-  }
-
-  .episode{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .reader iframe{
-    height:550px;
-  }
+footer{
+  text-align:center;
+  padding:30px;
+  color:#777;
 }
 </style>
 </head>
@@ -335,787 +195,817 @@ nav span{
 <body>
 
 <header>
+
   <div class="logo">DUCATTO</div>
-  <div class="badge">👑 JEFA · PREMIUM ACTIVO</div>
+
+  <nav>
+    <button onclick="mostrar('inicio')">🏠 Inicio</button>
+    <button onclick="mostrar('peliculas')">🎬 Películas</button>
+    <button onclick="mostrar('series')">📺 Series</button>
+    <button onclick="mostrar('libros')">📚 Libros</button>
+    <button onclick="mostrar('ubicaciones')">📍 Ubicaciones</button>
+    <button onclick="mostrar('agenda')">📅 Agenda</button>
+    <button onclick="mostrar('perfil')">👤 Perfil</button>
+  </nav>
+
 </header>
+
 
 <main>
 
 <!-- ================= INICIO ================= -->
 
-<section id="inicio" class="view active">
+<section id="inicio" class="seccion activa">
 
   <div class="hero">
+
     <h1>Bienvenida a DUCATTO</h1>
+
     <p>
-      Entretenimiento, libros, agenda,
-      ubicaciones y mucho más.
+      Tu espacio de entretenimiento, biblioteca,
+      agenda y lugares.
     </p>
+
   </div>
 
   <div class="grid">
 
-    <div class="card tile" onclick="abrirPremium('peliculas')">
-      <div class="icon">🎬</div>
-      <h3>Películas</h3>
-      <p>Busca películas y consulta las disponibles.</p>
+    <div class="card">
+      <h3>🎬 Películas</h3>
+      <p>
+        Películas disponibles para reproducción
+        autorizada.
+      </p>
+      <button onclick="mostrar('peliculas')">
+        Ver películas
+      </button>
     </div>
 
-    <div class="card tile" onclick="abrirPremium('series')">
-      <div class="icon">📺</div>
-      <h3>Series</h3>
-      <p>Busca series y sus episodios.</p>
+    <div class="card">
+      <h3>📺 Series</h3>
+      <p>
+        Series y episodios dentro de DUCATTO.
+      </p>
+      <button onclick="mostrar('series')">
+        Ver series
+      </button>
     </div>
 
-    <div class="card tile" onclick="abrirPremium('libros')">
-      <div class="icon">📚</div>
-      <h3>Libros</h3>
-      <p>Busca libros y léelos dentro de DUCATTO.</p>
+    <div class="card">
+      <h3>📚 Libros</h3>
+      <p>
+        Busca y lee libros dentro de DUCATTO.
+      </p>
+      <button onclick="mostrar('libros')">
+        Biblioteca
+      </button>
     </div>
 
-    <div class="card tile" onclick="abrir('ubicaciones')">
-      <div class="icon">📍</div>
-      <h3>Ubicaciones</h3>
-      <p>Busca lugares y mapas.</p>
+    <div class="card">
+      <h3>📍 Ubicaciones</h3>
+      <p>
+        Busca lugares y mapas.
+      </p>
+      <button onclick="mostrar('ubicaciones')">
+        Buscar lugares
+      </button>
     </div>
 
-    <div class="card tile" onclick="abrir('agenda')">
-      <div class="icon">📅</div>
-      <h3>Agenda</h3>
-      <p>Guarda tus eventos.</p>
+    <div class="card">
+      <h3>📅 Agenda</h3>
+      <p>
+        Organiza tus eventos.
+      </p>
+      <button onclick="mostrar('agenda')">
+        Abrir agenda
+      </button>
     </div>
 
-    <div class="card tile" onclick="abrir('perfil')">
-      <div class="icon">👤</div>
-      <h3>Perfil</h3>
-      <p>Usuarios y Premium.</p>
+    <div class="card premium">
+      <h3>👑 Premium</h3>
+      <p>
+        Accede a las funciones Premium.
+      </p>
+      <button onclick="mostrar('perfil')">
+        Ver Premium
+      </button>
     </div>
 
   </div>
+
 </section>
 
 
 <!-- ================= PELÍCULAS ================= -->
 
-<section id="peliculas" class="view">
-
-  <button class="secondary back" onclick="inicio()">
-    ← Volver
-  </button>
+<section id="peliculas" class="seccion">
 
   <h2>🎬 Películas</h2>
 
-  <div class="notice">
-    <strong>¿No sabes qué buscar?</strong>
-    <br>
-    Aquí tienes algunas sugerencias.
-  </div>
+  <p style="margin-top:10px;color:#aaa">
+    Catálogo de obras que pueden ofrecerse
+    legalmente para reproducción digital.
+  </p>
 
-  <div class="sugerencias">
+  <div class="search">
 
-    <div class="sugerencia" onclick="ponerPelicula('The Tramp')">
-      🎞️ The Tramp
-    </div>
+    <input
+      id="busquedaPelicula"
+      placeholder="Buscar película..."
+    >
 
-    <div class="sugerencia" onclick="ponerPelicula('The Kid')">
-      🎞️ The Kid
-    </div>
-
-    <div class="sugerencia" onclick="ponerPelicula('Big Business')">
-      🎞️ Big Business
-    </div>
-
-    <div class="sugerencia" onclick="ponerPelicula('The General')">
-      🎞️ The General
-    </div>
-
-    <div class="sugerencia" onclick="ponerPelicula('Metropolis')">
-      🎞️ Metropolis
-    </div>
-
-    <div class="sugerencia" onclick="ponerPelicula('Nosferatu')">
-      🎞️ Nosferatu
-    </div>
-
-    <div class="sugerencia" onclick="ponerPelicula('Sherlock Jr.')">
-      🎞️ Sherlock Jr.
-    </div>
-
-    <div class="sugerencia" onclick="ponerPelicula('The Gold Rush')">
-      🎞️ The Gold Rush
-    </div>
-
-    <div class="sugerencia" onclick="ponerPelicula('A Trip to the Moon')">
-      🎞️ A Trip to the Moon
-    </div>
-
-    <div class="sugerencia" onclick="ponerPelicula('His Girl Friday')">
-      🎞️ His Girl Friday
-    </div>
+    <button onclick="buscarPeliculas()">
+      🔎 Buscar
+    </button>
 
   </div>
 
-  <input
-    id="busquedaPelicula"
-    placeholder="🔎 Escribe una película..."
-    onkeydown="if(event.key==='Enter') buscarPeliculas()"
-  >
+  <h3 style="margin-top:25px">
+    📋 Títulos que puedes buscar
+  </h3>
 
-  <button class="primary" onclick="buscarPeliculas()">
-    🔎 Buscar
-  </button>
+  <div class="grid">
 
-  <div id="resultadosPeliculas"></div>
+    <div class="card">
+      <h3>The Tramp</h3>
+      <p>Charlie Chaplin</p>
+      <button onclick="buscarTitulo('The Tramp')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>The Kid</h3>
+      <p>Charlie Chaplin</p>
+      <button onclick="buscarTitulo('The Kid')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Big Business</h3>
+      <p>Laurel & Hardy</p>
+      <button onclick="buscarTitulo('Big Business')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>The General</h3>
+      <p>Buster Keaton</p>
+      <button onclick="buscarTitulo('The General')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Metropolis</h3>
+      <p>Ciencia ficción clásica</p>
+      <button onclick="buscarTitulo('Metropolis')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Nosferatu</h3>
+      <p>Terror clásico</p>
+      <button onclick="buscarTitulo('Nosferatu')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Sherlock Jr.</h3>
+      <p>Buster Keaton</p>
+      <button onclick="buscarTitulo('Sherlock Jr.')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>The Gold Rush</h3>
+      <p>Charlie Chaplin</p>
+      <button onclick="buscarTitulo('The Gold Rush')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>A Trip to the Moon</h3>
+      <p>Georges Méliès</p>
+      <button onclick="buscarTitulo('A Trip to the Moon')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>His Girl Friday</h3>
+      <p>Comedia clásica</p>
+      <button onclick="buscarTitulo('His Girl Friday')">
+        Buscar
+      </button>
+    </div>
+
+  </div>
+
+  <div id="resultadosPeliculas"
+       class="grid">
+  </div>
 
 </section>
 
 
 <!-- ================= SERIES ================= -->
 
-<section id="series" class="view">
-
-  <button class="secondary back" onclick="inicio()">
-    ← Volver
-  </button>
+<section id="series" class="seccion">
 
   <h2>📺 Series</h2>
 
-  <div class="notice">
-    <strong>¿No sabes qué buscar?</strong>
-    <br>
-    Aquí tienes algunas sugerencias.
+  <p style="margin-top:10px;color:#aaa">
+    Series que puedes añadir mediante fuentes
+    autorizadas.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>The Adventures of Sherlock Holmes</h3>
+      <button onclick="buscarSerie('The Adventures of Sherlock Holmes')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Bonanza</h3>
+      <button onclick="buscarSerie('Bonanza')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>The Lone Ranger</h3>
+      <button onclick="buscarSerie('The Lone Ranger')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>The Addams Family</h3>
+      <button onclick="buscarSerie('The Addams Family')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Batman</h3>
+      <button onclick="buscarSerie('Batman')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>The Three Stooges</h3>
+      <button onclick="buscarSerie('The Three Stooges')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>The Andy Griffith Show</h3>
+      <button onclick="buscarSerie('The Andy Griffith Show')">
+        Buscar
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>The Lucy Show</h3>
+      <button onclick="buscarSerie('The Lucy Show')">
+        Buscar
+      </button>
+    </div>
+
   </div>
 
-  <div class="sugerencias">
-
-    <div class="sugerencia" onclick="ponerSerie('The Adventures of Sherlock Holmes')">
-      📺 The Adventures of Sherlock Holmes
-    </div>
-
-    <div class="sugerencia" onclick="ponerSerie('Bonanza')">
-      📺 Bonanza
-    </div>
-
-    <div class="sugerencia" onclick="ponerSerie('The Lone Ranger')">
-      📺 The Lone Ranger
-    </div>
-
-    <div class="sugerencia" onclick="ponerSerie('The Addams Family')">
-      📺 The Addams Family
-    </div>
-
-    <div class="sugerencia" onclick="ponerSerie('Batman')">
-      📺 Batman
-    </div>
-
-    <div class="sugerencia" onclick="ponerSerie('The Three Stooges')">
-      📺 The Three Stooges
-    </div>
-
-    <div class="sugerencia" onclick="ponerSerie('The Andy Griffith Show')">
-      📺 The Andy Griffith Show
-    </div>
-
-    <div class="sugerencia" onclick="ponerSerie('The Lucy Show')">
-      📺 The Lucy Show
-    </div>
-
+  <div id="resultadosSeries"
+       class="grid">
   </div>
-
-  <input
-    id="busquedaSerie"
-    placeholder="🔎 Escribe una serie..."
-    onkeydown="if(event.key==='Enter') buscarSeries()"
-  >
-
-  <button class="primary" onclick="buscarSeries()">
-    🔎 Buscar
-  </button>
-
-  <div id="resultadosSeries"></div>
 
 </section>
 
 
 <!-- ================= LIBROS ================= -->
 
-<section id="libros" class="view">
+<section id="libros" class="seccion">
 
-  <button class="secondary back" onclick="inicio()">
-    ← Volver
-  </button>
+  <h2>📚 Biblioteca</h2>
 
-  <h2>📚 Libros</h2>
+  <p style="margin-top:10px;color:#aaa">
+    Busca libros disponibles para lectura digital.
+  </p>
 
-  <div class="notice">
-    Busca un libro y, cuando exista una edición
-    HTML disponible, podrás leerla dentro de DUCATTO.
+  <div class="search">
+
+    <input
+      id="busquedaLibro"
+      placeholder="Título, autor..."
+    >
+
+    <button onclick="buscarLibros()">
+      🔎 Buscar
+    </button>
+
   </div>
 
-  <input
-    id="busquedaLibro"
-    placeholder="🔎 Título o autor..."
-    onkeydown="if(event.key==='Enter') buscarLibro()"
-  >
-
-  <button class="primary" onclick="buscarLibro()">
-    🔎 Buscar
-  </button>
-
-  <div id="resultadosLibro"></div>
+  <div id="resultadosLibros"
+       class="grid">
+  </div>
 
 </section>
 
 
 <!-- ================= UBICACIONES ================= -->
 
-<section id="ubicaciones" class="view">
-
-  <button class="secondary back" onclick="inicio()">
-    ← Volver
-  </button>
+<section id="ubicaciones" class="seccion">
 
   <h2>📍 Ubicaciones</h2>
 
-  <div class="card">
+  <p style="margin-top:10px;color:#aaa">
+    Busca un lugar y abre su mapa.
+  </p>
 
-    <input
-      id="lugar"
-      placeholder="Ej.: Fuengirola"
-    >
+  <input
+    id="busquedaLugar"
+    placeholder="Ej.: Fuengirola"
+  >
 
-    <button class="primary" onclick="buscarLugar()">
-      📍 Buscar
-    </button>
+  <button onclick="buscarLugar()">
+    Abrir mapa
+  </button>
 
+  <div id="mapa"
+       style="margin-top:20px">
   </div>
-
-  <div id="resultadoLugar"></div>
 
 </section>
 
 
 <!-- ================= AGENDA ================= -->
 
-<section id="agenda" class="view">
-
-  <button class="secondary back" onclick="inicio()">
-    ← Volver
-  </button>
+<section id="agenda" class="seccion">
 
   <h2>📅 Agenda</h2>
 
-  <div class="card">
+  <input
+    id="nuevoEvento"
+    placeholder="Nuevo evento"
+  >
 
-    <input
-      id="evento"
-      placeholder="Escribe un evento..."
-    >
+  <button onclick="guardarEvento()">
+    Guardar
+  </button>
 
-    <button class="primary" onclick="guardarEvento()">
-      ➕ Añadir
-    </button>
-
+  <div id="listaAgenda"
+       class="lista"
+       style="margin-top:20px">
   </div>
-
-  <div id="listaAgenda"></div>
 
 </section>
 
 
 <!-- ================= PERFIL ================= -->
 
-<section id="perfil" class="view">
-
-  <button class="secondary back" onclick="inicio()">
-    ← Volver
-  </button>
+<section id="perfil" class="seccion">
 
   <h2>👤 Perfil</h2>
 
-  <div class="card">
+  <div class="card premium"
+       style="margin-top:20px">
 
     <h3>👑 Jefa</h3>
 
     <p>
-      Premium:
-      <span class="status active-status">
-        ACTIVO
-      </span>
+      Estado:
+      <strong>Premium activo</strong>
     </p>
 
   </div>
 
 
-  <div class="card">
+  <div class="card"
+       style="margin-top:20px">
 
     <h3>💳 Solicitar Premium</h3>
 
     <p>
-      Precio: <strong>7,99 €</strong>
+      Precio: 7,99 €
     </p>
 
     <input
-      id="usuarioPremium"
-      placeholder="Tu nombre de usuario"
+      id="nombrePremium"
+      placeholder="Nombre de usuario"
     >
 
-    <button class="primary" onclick="enviarSolicitudPremium()">
+    <button onclick="pedirPremium()">
       Solicitar Premium
     </button>
 
-    <p id="mensajePremium" class="small"></p>
+    <p id="mensajePremium"
+       style="margin-top:12px">
+    </p>
 
   </div>
 
 
-  <div class="card">
+  <div class="card"
+       style="margin-top:20px">
 
-    <h3>👑 Solicitudes de Premium</h3>
+    <h3>🛠️ Panel de Jefa</h3>
 
-    <div id="solicitudesPremium"></div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>👥 Crear usuario</h3>
+    <p>
+      Administración de usuarios.
+    </p>
 
     <input
-      id="nuevoUsuario"
+      id="usuarioAdmin"
       placeholder="Nombre del usuario"
     >
 
-    <button class="primary" onclick="crearUsuario()">
-      Crear usuario
+    <button onclick="activarUsuario()">
+      Activar Premium
     </button>
 
-  </div>
+    <button onclick="rechazarUsuario()">
+      Rechazar
+    </button>
 
-  <div id="usuarios"></div>
+    <button onclick="quitarUsuario()">
+      Quitar Premium
+    </button>
+
+    <div id="resultadoAdmin"
+         style="margin-top:15px">
+    </div>
+
+  </div>
 
 </section>
 
 </main>
 
 
-<!-- ================= NAVEGACIÓN ================= -->
-
-<nav>
-
-  <button onclick="inicio()">
-    <span>🏠</span>
-    Inicio
-  </button>
-
-  <button onclick="abrirPremium('peliculas')">
-    <span>🎬</span>
-    Películas
-  </button>
-
-  <button onclick="abrirPremium('series')">
-    <span>📺</span>
-    Series
-  </button>
-
-  <button onclick="abrirPremium('libros')">
-    <span>📚</span>
-    Libros
-  </button>
-
-  <button onclick="abrir('perfil')">
-    <span>👤</span>
-    Perfil
-  </button>
-
-</nav>
+<footer>
+  DUCATTO · Biblioteca · Entretenimiento · Agenda
+</footer>
 
 
-<!-- ================= MODAL ================= -->
+<!-- ================= MODAL VÍDEO ================= -->
 
-<div id="modal" class="modal">
+<div id="modalVideo"
+     class="modal">
 
   <div class="modal-box">
 
-    <button class="close" onclick="cerrarModal()">
-      ✕
+    <button onclick="cerrarVideo()">
+      ✕ Cerrar
     </button>
 
-    <div id="modalContenido"></div>
+    <h2 id="tituloVideo"
+        style="margin:15px 0">
+    </h2>
+
+    <video
+      id="videoPlayer"
+      controls>
+    </video>
 
   </div>
 
 </div>
 
 
-<!-- IMPORTANTE:
-     Este archivo tiene que estar en la misma carpeta -->
-<script src="premium-users.js"></script>
+<!-- ================= MODAL LIBRO ================= -->
 
+<div id="modalLibro"
+     class="modal">
+
+  <div class="modal-box">
+
+    <button onclick="cerrarLibro()">
+      ✕ Cerrar
+    </button>
+
+    <h2 id="tituloLibro"
+        style="margin:15px 0">
+    </h2>
+
+    <iframe
+      id="lectorLibro">
+    </iframe>
+
+  </div>
+
+</div>
+
+
+<script src="premium-users.js"></script>
 
 <script>
 
-/* ================= CONFIGURACIÓN ================= */
-
-const JEFA = true;
-
-
 /* ================= NAVEGACIÓN ================= */
 
-function abrir(id){
+function mostrar(id){
 
-  document.querySelectorAll(".view").forEach(v=>{
-    v.classList.remove("active");
+  document
+    .querySelectorAll(".seccion")
+    .forEach(
+      s => s.classList.remove("activa")
+    );
+
+  const seccion =
+    document.getElementById(id);
+
+  if(seccion){
+    seccion.classList.add("activa");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
   });
 
-  const vista=document.getElementById(id);
-
-  if(!vista) return;
-
-  vista.classList.add("active");
-
-  window.scrollTo(0,0);
-
-  if(id==="agenda") mostrarAgenda();
-
-  if(id==="perfil"){
-    mostrarUsuarios();
-    mostrarSolicitudesPremium();
-  }
-
-}
-
-
-function inicio(){
-  abrir("inicio");
-}
-
-
-function abrirPremium(id){
-
-  if(!JEFA){
-    alert("🔒 Esta sección requiere Premium.");
-    return;
-  }
-
-  abrir(id);
 }
 
 
 /* ================= PELÍCULAS ================= */
 
-function ponerPelicula(nombre){
-
-  document.getElementById(
-    "busquedaPelicula"
-  ).value=nombre;
-
-  buscarPeliculas();
-}
-
-
 async function buscarPeliculas(){
 
-  const texto=document
-    .getElementById("busquedaPelicula")
-    .value
-    .trim();
-
-  const resultado=document
-    .getElementById("resultadosPeliculas");
+  const texto =
+    document
+      .getElementById("busquedaPelicula")
+      .value
+      .trim();
 
   if(!texto){
-    resultado.innerHTML=
-      "<div class='card'>Escribe una película.</div>";
     return;
   }
 
-  resultado.innerHTML=
-    "<div class='card'>🔎 Buscando...</div>";
+  const contenedor =
+    document.getElementById(
+      "resultadosPeliculas"
+    );
 
-  /*
-    Buscamos información del título.
-    La reproducción solo se habilita cuando
-    existe una fuente autorizada configurada.
-  */
+  contenedor.innerHTML =
+    "<p>Buscando...</p>";
 
   try{
 
-    const respuesta=await fetch(
-      "https://archive.org/advancedsearch.php?q="+
-      encodeURIComponent(
-        "title:("+texto+") AND mediatype:movies"
-      )+
-      "&fl[]=identifier,title,description&rows=12&page=1&output=json"
-    );
+    const url =
+      "https://archive.org/advancedsearch.php" +
+      "?q=title:(" +
+      encodeURIComponent(texto) +
+      ")" +
+      "&fl[]=identifier" +
+      "&fl[]=title" +
+      "&rows=12" +
+      "&page=1" +
+      "&output=json";
 
-    const datos=await respuesta.json();
+    const respuesta =
+      await fetch(url);
 
-    resultado.innerHTML="";
+    const datos =
+      await respuesta.json();
 
-    if(
-      !datos.response ||
-      !datos.response.docs ||
-      !datos.response.docs.length
-    ){
+    const docs =
+      datos.response &&
+      datos.response.docs
+        ? datos.response.docs
+        : [];
 
-      resultado.innerHTML=
-        "<div class='card'>"+
-        "No hemos encontrado resultados para <strong>"+
-        escapar(texto)+
-        "</strong>."+
-        "</div>";
+    contenedor.innerHTML="";
+
+    if(!docs.length){
+
+      contenedor.innerHTML =
+        "<p>No se encontraron resultados.</p>";
 
       return;
     }
 
-    datos.response.docs.forEach(pelicula=>{
+    docs.forEach(item => {
 
-      const div=document.createElement("div");
+      const card =
+        document.createElement("div");
 
-      div.className="card";
+      card.className="card";
 
-      div.innerHTML=
-        "<h3>🎬 "+
-        escapar(pelicula.title || texto)+
-        "</h3>"+
+      card.innerHTML = `
+        <h3>${escapeHTML(item.title || "Película")}</h3>
+        <p>Fuente: Internet Archive</p>
+        <button>
+          🎬 Abrir
+        </button>
+      `;
 
-        "<p>"+
-        escapar(
-          pelicula.description
-          ? limpiarTexto(pelicula.description)
-          : "Resultado disponible en el catálogo."
-        )+
-        "</p>"+
+      card
+        .querySelector("button")
+        .onclick =
+          () => cargarVideo(item);
 
-        "<p class='small'>"+
-        "Identificador: "+
-        escapar(pelicula.identifier || "")+
-        "</p>"+
-
-        (
-          pelicula.identifier
-          ?
-          "<button class='primary' onclick='verPeliculaArchivo(\""+
-          escaparAtributo(pelicula.identifier)+
-          "\",\""+
-          escaparAtributo(pelicula.title || texto)+
-          "\")'>"+
-          "▶ Abrir reproductor"+
-          "</button>"
-          :
-          ""
-        );
-
-      resultado.appendChild(div);
+      contenedor.appendChild(card);
 
     });
 
   }catch(error){
 
-    resultado.innerHTML=
-      "<div class='card'>"+
-      "No se pudo realizar la búsqueda."+
-      "</div>";
+    contenedor.innerHTML =
+      "<p>No se pudo realizar la búsqueda.</p>";
 
   }
+
 }
 
 
-/*
-  Abre el reproductor de una obra del catálogo
-  cuando existe un archivo de vídeo reproducible.
-*/
+function buscarTitulo(titulo){
 
-async function verPeliculaArchivo(
-  identifier,
-  titulo
-){
+  document
+    .getElementById("busquedaPelicula")
+    .value = titulo;
 
-  abrirModal(
-    "<h2>🎬 "+
-    escapar(titulo)+
-    "</h2>"+
-    "<div class='notice'>"+
-    "Buscando un archivo de vídeo reproducible..."+
-    "</div>"
-  );
+  buscarPeliculas();
+
+}
+
+
+async function cargarVideo(item){
+
+  if(!item.identifier){
+    return;
+  }
 
   try{
 
-    const respuesta=await fetch(
-      "https://archive.org/metadata/"+
-      encodeURIComponent(identifier)
-    );
+    const respuesta =
+      await fetch(
+        "https://archive.org/metadata/" +
+        encodeURIComponent(item.identifier)
+      );
 
-    const datos=await respuesta.json();
+    const datos =
+      await respuesta.json();
 
-    const archivos=datos.files || [];
+    const archivos =
+      Array.isArray(datos.files)
+        ? datos.files
+        : [];
 
-    const video=archivos.find(
-      archivo=>{
-        const nombre=(archivo.name||"").toLowerCase();
-
-        return (
-          nombre.endsWith(".mp4") ||
-          nombre.endsWith(".webm") ||
-          nombre.endsWith(".ogv")
-        );
-      }
-    );
+    const video =
+      archivos.find(
+        archivo =>
+          archivo.name &&
+          /\.(mp4|webm|ogv)$/i.test(
+            archivo.name
+          )
+      );
 
     if(!video){
 
-      abrirModal(
-        "<h2>🎬 "+
-        escapar(titulo)+
-        "</h2>"+
-        "<div class='notice'>"+
-        "Esta obra no tiene un archivo de vídeo compatible "+
-        "disponible para reproducir directamente dentro "+
-        "del navegador."+
-        "</div>"
+      alert(
+        "Esta obra no tiene un vídeo reproducible directamente."
       );
 
       return;
     }
 
-    const url=
-      "https://archive.org/download/"+
-      encodeURIComponent(identifier)+
-      "/"+
+    const url =
+      "https://archive.org/download/" +
+      encodeURIComponent(item.identifier) +
+      "/" +
       video.name
-      .split("/")
-      .map(encodeURIComponent)
-      .join("/");
+        .split("/")
+        .map(encodeURIComponent)
+        .join("/");
 
-    abrirModal(
-      "<h2>🎬 "+
-      escapar(titulo)+
-      "</h2>"+
+    document
+      .getElementById("tituloVideo")
+      .textContent =
+        item.title || "Película";
 
-      "<div class='player'>"+
-      "<video controls playsinline>"+
-      "<source src='"+
-      escaparAtributo(url)+
-      "'>"+
-      "Tu navegador no puede reproducir este vídeo."+
-      "</video>"+
-      "</div>"
-    );
+    const player =
+      document.getElementById(
+        "videoPlayer"
+      );
+
+    player.src = url;
+
+    document
+      .getElementById("modalVideo")
+      .classList.add("activo");
+
+    player.play().catch(()=>{});
 
   }catch(error){
 
-    abrirModal(
-      "<div class='notice'>"+
-      "No se pudo cargar el reproductor."+
-      "</div>"
+    alert(
+      "No se pudo abrir este vídeo."
     );
 
   }
+
+}
+
+
+function cerrarVideo(){
+
+  const player =
+    document.getElementById(
+      "videoPlayer"
+    );
+
+  player.pause();
+  player.removeAttribute("src");
+  player.load();
+
+  document
+    .getElementById("modalVideo")
+    .classList.remove("activo");
 
 }
 
 
 /* ================= SERIES ================= */
 
-function ponerSerie(nombre){
+async function buscarSerie(titulo){
 
-  document.getElementById(
-    "busquedaSerie"
-  ).value=nombre;
+  const contenedor =
+    document.getElementById(
+      "resultadosSeries"
+    );
 
-  buscarSeries();
-}
-
-
-async function buscarSeries(){
-
-  const texto=document
-    .getElementById("busquedaSerie")
-    .value
-    .trim();
-
-  const resultado=document
-    .getElementById("resultadosSeries");
-
-  if(!texto){
-
-    resultado.innerHTML=
-      "<div class='card'>Escribe una serie.</div>";
-
-    return;
-  }
-
-  resultado.innerHTML=
-    "<div class='card'>🔎 Buscando...</div>";
+  contenedor.innerHTML =
+    "<p>Buscando...</p>";
 
   try{
 
-    const respuesta=await fetch(
-      "https://archive.org/advancedsearch.php?q="+
-      encodeURIComponent(
-        "title:("+texto+")"
-      )+
-      "&fl[]=identifier,title,description&rows=12&page=1&output=json"
-    );
+    const url =
+      "https://archive.org/advancedsearch.php" +
+      "?q=title:(" +
+      encodeURIComponent(titulo) +
+      ")" +
+      "&fl[]=identifier" +
+      "&fl[]=title" +
+      "&rows=12" +
+      "&output=json";
 
-    const datos=await respuesta.json();
+    const respuesta =
+      await fetch(url);
 
-    resultado.innerHTML="";
+    const datos =
+      await respuesta.json();
 
-    if(
-      !datos.response ||
-      !datos.response.docs ||
-      !datos.response.docs.length
-    ){
+    const docs =
+      datos.response &&
+      datos.response.docs
+        ? datos.response.docs
+        : [];
 
-      resultado.innerHTML=
-        "<div class='card'>"+
-        "No hemos encontrado esa serie."+
-        "</div>";
+    contenedor.innerHTML="";
+
+    if(!docs.length){
+
+      contenedor.innerHTML =
+        "<p>No se encontraron resultados.</p>";
 
       return;
     }
 
-    datos.response.docs.forEach(item=>{
+    docs.forEach(item => {
 
-      const div=document.createElement("div");
+      const card =
+        document.createElement("div");
 
-      div.className="card";
+      card.className="card";
 
-      div.innerHTML=
-        "<h3>📺 "+
-        escapar(item.title || texto)+
-        "</h3>"+
+      card.innerHTML = `
+        <h3>${escapeHTML(item.title || titulo)}</h3>
+        <p>Busca episodios disponibles en la fuente autorizada.</p>
+        <button>🎬 Abrir</button>
+      `;
 
-        "<p>"+
-        escapar(
-          item.description
-          ? limpiarTexto(item.description)
-          : "Resultado disponible en el catálogo."
-        )+
-        "</p>"+
+      card
+        .querySelector("button")
+        .onclick =
+          () => cargarVideo(item);
 
-        "<button class='primary' onclick='verPeliculaArchivo(\""+
-        escaparAtributo(item.identifier || "")+
-        "\",\""+
-        escaparAtributo(item.title || texto)+
-        "\")'>"+
-        "▶ Abrir"+
-        "</button>";
-
-      resultado.appendChild(div);
+      contenedor.appendChild(card);
 
     });
 
   }catch(error){
 
-    resultado.innerHTML=
-      "<div class='card'>"+
-      "No se pudo realizar la búsqueda."+
-      "</div>";
+    contenedor.innerHTML =
+      "<p>No se pudo realizar la búsqueda.</p>";
 
   }
 
@@ -1124,171 +1014,199 @@ async function buscarSeries(){
 
 /* ================= LIBROS ================= */
 
-async function buscarLibro(){
+async function buscarLibros(){
 
-  const texto=document
-    .getElementById("busquedaLibro")
-    .value
-    .trim();
-
-  const resultado=document
-    .getElementById("resultadosLibro");
+  const texto =
+    document
+      .getElementById("busquedaLibro")
+      .value
+      .trim();
 
   if(!texto){
-
-    resultado.innerHTML=
-      "<div class='card'>Escribe un libro o autor.</div>";
-
     return;
   }
 
-  resultado.innerHTML=
-    "<div class='card'>🔎 Buscando libros...</div>";
+  const contenedor =
+    document.getElementById(
+      "resultadosLibros"
+    );
+
+  contenedor.innerHTML =
+    "<p>Buscando libros...</p>";
 
   try{
 
-    const respuesta=await fetch(
-      "https://gutendex.com/books/?search="+
-      encodeURIComponent(texto)
-    );
+    const respuesta =
+      await fetch(
+        "https://gutendex.com/books/?search=" +
+        encodeURIComponent(texto)
+      );
 
-    const datos=await respuesta.json();
+    const datos =
+      await respuesta.json();
 
-    resultado.innerHTML="";
+    const libros =
+      datos.results || [];
 
-    if(!datos.results.length){
+    contenedor.innerHTML="";
 
-      resultado.innerHTML=
-        "<div class='card'>No se encontraron libros.</div>";
+    if(!libros.length){
+
+      contenedor.innerHTML =
+        "<p>No se encontraron libros.</p>";
 
       return;
     }
 
-    datos.results.slice(0,12).forEach(libro=>{
+    libros.slice(0,20).forEach(libro => {
 
-      const div=document.createElement("div");
+      const card =
+        document.createElement("div");
 
-      div.className="card";
+      card.className="card";
 
-      const autor=libro.authors &&
-                  libro.authors.length
-        ? libro.authors.map(a=>a.name).join(", ")
-        : "Autor desconocido";
+      const autor =
+        libro.authors &&
+        libro.authors.length
+          ? libro.authors
+              .map(a => a.name)
+              .join(", ")
+          : "Autor desconocido";
 
-      const formatos=libro.formats || {};
+      card.innerHTML = `
+        <h3>${escapeHTML(libro.title)}</h3>
+        <p>${escapeHTML(autor)}</p>
+        <button>📖 Leer</button>
+      `;
 
-      const html=
-        formatos["text/html"] ||
-        formatos["text/html; charset=utf-8"];
+      card
+        .querySelector("button")
+        .onclick =
+          () => abrirLibro(libro);
 
-      div.innerHTML=
-        "<h3>📖 "+
-        escapar(libro.title)+
-        "</h3>"+
-
-        "<p>"+
-        escapar(autor)+
-        "</p>"+
-
-        (
-          html
-          ?
-          "<button class='primary' onclick='leerLibro(\""+
-          escaparAtributo(html)+
-          "\",\""+
-          escaparAtributo(libro.title)+
-          "\")'>"+
-          "📖 Leer dentro de DUCATTO"+
-          "</button>"
-          :
-          "<p class='small'>"+
-          "No hay edición HTML disponible."+
-          "</p>"
-        );
-
-      resultado.appendChild(div);
+      contenedor.appendChild(card);
 
     });
 
   }catch(error){
 
-    resultado.innerHTML=
-      "<div class='card'>"+
-      "No se pudo conectar con la biblioteca."+
-      "</div>";
+    contenedor.innerHTML =
+      "<p>No se pudo buscar la biblioteca.</p>";
 
   }
 
 }
 
 
-function leerLibro(url,titulo){
+function abrirLibro(libro){
 
-  abrirModal(
+  const formatos =
+    libro.formats || {};
 
-    "<h2>📖 "+
-    escapar(titulo)+
-    "</h2>"+
+  const html =
+    formatos["text/html"] ||
+    formatos["text/html; charset=utf-8"];
 
-    "<div class='reader'>"+
-    "<iframe src='"+
-    escaparAtributo(url)+
-    "' title='Lector'></iframe>"+
-    "</div>"
+  if(!html){
 
-  );
+    alert(
+      "Este libro no tiene una versión HTML disponible para leer dentro de DUCATTO."
+    );
+
+    return;
+  }
+
+  document
+    .getElementById("tituloLibro")
+    .textContent =
+      libro.title || "Libro";
+
+  document
+    .getElementById("lectorLibro")
+    .src = html;
+
+  document
+    .getElementById("modalLibro")
+    .classList.add("activo");
 
 }
 
 
-/* ================= MAPA ================= */
+function cerrarLibro(){
+
+  document
+    .getElementById("lectorLibro")
+    .src = "";
+
+  document
+    .getElementById("modalLibro")
+    .classList.remove("activo");
+
+}
+
+
+/* ================= UBICACIONES ================= */
 
 function buscarLugar(){
 
-  const lugar=document
-    .getElementById("lugar")
-    .value
-    .trim();
+  const lugar =
+    document
+      .getElementById("busquedaLugar")
+      .value
+      .trim();
 
-  if(!lugar) return;
+  if(!lugar){
+    return;
+  }
 
-  const url=
-    "https://www.openstreetmap.org/search?query="+
-    encodeURIComponent(lugar);
+  const mapa =
+    document.getElementById("mapa");
 
-  document.getElementById(
-    "resultadoLugar"
-  ).innerHTML=
+  mapa.innerHTML = `
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html?search=${encodeURIComponent(lugar)}"
+      style="width:100%;height:450px;border:0;border-radius:15px">
+    </iframe>
+  `;
 
-    "<div class='card'>"+
-    "<h3>📍 "+
-    escapar(lugar)+
-    "</h3>"+
-    "<a href='"+
-    escaparAtributo(url)+
-    "' target='_blank' rel='noopener' style='color:#e6b94e'>"+
-    "Abrir mapa →"+
-    "</a>"+
-    "</div>";
 }
 
 
 /* ================= AGENDA ================= */
 
-let agenda=JSON.parse(
-  localStorage.getItem("ducattoAgenda") || "[]"
-);
+function obtenerAgenda(){
+
+  return JSON.parse(
+    localStorage.getItem(
+      "ducattoAgenda"
+    ) || "[]"
+  );
+
+}
 
 
 function guardarEvento(){
 
-  const input=document.getElementById("evento");
+  const input =
+    document.getElementById(
+      "nuevoEvento"
+    );
 
-  const texto=input.value.trim();
+  const texto =
+    input.value.trim();
 
-  if(!texto) return;
+  if(!texto){
+    return;
+  }
 
-  agenda.push(texto);
+  const agenda =
+    obtenerAgenda();
+
+  agenda.push({
+    texto: texto,
+    fecha:
+      new Date().toLocaleString("es-ES")
+  });
 
   localStorage.setItem(
     "ducattoAgenda",
@@ -1298,44 +1216,57 @@ function guardarEvento(){
   input.value="";
 
   mostrarAgenda();
+
 }
 
 
 function mostrarAgenda(){
 
-  const lista=document.getElementById("listaAgenda");
+  const contenedor =
+    document.getElementById(
+      "listaAgenda"
+    );
 
-  lista.innerHTML="";
+  const agenda =
+    obtenerAgenda();
 
   if(!agenda.length){
 
-    lista.innerHTML=
-      "<div class='card'>"+
-      "No tienes eventos todavía."+
-      "</div>";
+    contenedor.innerHTML =
+      "No tienes eventos todavía.";
 
     return;
   }
 
-  agenda.forEach((evento,index)=>{
+  contenedor.innerHTML =
+    agenda
+      .map(
+        (evento,index) => `
+          <div class="card">
+            <strong>
+              ${escapeHTML(evento.texto)}
+            </strong>
+            <br>
+            <small>
+              ${escapeHTML(evento.fecha)}
+            </small>
+            <br>
+            <button
+              onclick="borrarEvento(${index})">
+              🗑️ Borrar
+            </button>
+          </div>
+        `
+      )
+      .join("");
 
-    lista.innerHTML+=
-      "<div class='card user'>"+
-      "<span>📅 "+
-      escapar(evento)+
-      "</span>"+
-      "<button class='secondary' onclick='borrarEvento("+
-      index+
-      ")'>"+
-      "Borrar"+
-      "</button>"+
-      "</div>";
-
-  });
 }
 
 
 function borrarEvento(index){
+
+  const agenda =
+    obtenerAgenda();
 
   agenda.splice(index,1);
 
@@ -1345,374 +1276,133 @@ function borrarEvento(index){
   );
 
   mostrarAgenda();
+
 }
 
 
-/* ================= USUARIOS ================= */
+/* ================= PREMIUM ================= */
 
-function crearUsuario(){
+function pedirPremium(){
 
-  const input=document.getElementById("nuevoUsuario");
+  const nombre =
+    document
+      .getElementById(
+        "nombrePremium"
+      )
+      .value;
 
-  const nombre=input.value.trim();
-
-  if(!nombre) return;
-
-  const lista=obtenerUsuarios();
-
-  if(
-    lista.some(
-      u=>u.nombre.toLowerCase()===nombre.toLowerCase()
-    )
-  ){
-
-    alert("Ese usuario ya existe.");
-
-    return;
-  }
-
-  lista.push({
-    nombre:nombre,
-    premium:false
-  });
-
-  guardarUsuarios(lista);
-
-  input.value="";
-
-  mostrarUsuarios();
-}
-
-
-function mostrarUsuarios(){
-
-  const contenedor=document.getElementById("usuarios");
-
-  const lista=obtenerUsuarios();
-
-  contenedor.innerHTML="<h3>👥 Usuarios</h3>";
-
-  if(!lista.length){
-
-    contenedor.innerHTML+=
-      "<div class='card'>"+
-      "Todavía no hay usuarios."+
-      "</div>";
-
-    return;
-  }
-
-  lista.forEach((usuario,index)=>{
-
-    contenedor.innerHTML+=
-
-      "<div class='card user'>"+
-
-      "<div>"+
-      "<strong>"+
-      escapar(usuario.nombre)+
-      "</strong>"+
-      "<br>"+
-
-      "<span class='status "+
-      (
-        usuario.premium
-        ? "active-status"
-        : "off-status"
-      )+
-      "'>"+
-      (
-        usuario.premium
-        ? "PREMIUM"
-        : "SIN PREMIUM"
-      )+
-      "</span>"+
-
-      "</div>"+
-
-      "<div>"+
-
-      "<button class='primary' onclick='cambiarPremium("+
-      index+
-      ")'>"+
-      (
-        usuario.premium
-        ? "Quitar Premium"
-        : "Dar Premium"
-      )+
-      "</button> "+
-
-      "<button class='danger' onclick='eliminarUsuario("+
-      index+
-      ")'>"+
-      "Eliminar"+
-      "</button>"+
-
-      "</div>"+
-
-      "</div>";
-
-  });
-}
-
-
-function cambiarPremium(index){
-
-  const lista=obtenerUsuarios();
-
-  if(!lista[index]) return;
-
-  if(lista[index].premium){
-
-    quitarPremium(lista[index].nombre);
-
-  }else{
-
-    activarPremium(lista[index].nombre);
-
-  }
-
-  mostrarUsuarios();
-}
-
-
-function eliminarUsuario(index){
-
-  const lista=obtenerUsuarios();
-
-  lista.splice(index,1);
-
-  guardarUsuarios(lista);
-
-  mostrarUsuarios();
-}
-
-
-/* ================= SOLICITUD PREMIUM ================= */
-
-function enviarSolicitudPremium(){
-
-  const input=document.getElementById("usuarioPremium");
-
-  const mensaje=document.getElementById("mensajePremium");
-
-  const nombre=input.value.trim();
-
-  if(typeof solicitarPremium!=="function"){
-
-    mensaje.textContent=
-      "No se ha cargado premium-users.js.";
-
-    return;
-  }
-
-  const resultado=
+  const resultado =
     solicitarPremium(nombre);
 
-  mensaje.textContent=
-    resultado.mensaje;
+  document
+    .getElementById(
+      "mensajePremium"
+    )
+    .textContent =
+      resultado.mensaje;
 
-  if(resultado.ok){
-
-    input.value="";
-
-    mostrarSolicitudesPremium();
-  }
 }
 
 
-function mostrarSolicitudesPremium(){
+function activarUsuario(){
 
-  const contenedor=
-    document.getElementById("solicitudesPremium");
+  const nombre =
+    document
+      .getElementById(
+        "usuarioAdmin"
+      )
+      .value
+      .trim();
 
-  if(typeof obtenerSolicitudesPremium!=="function"){
-
-    contenedor.innerHTML=
-      "<p class='small'>"+
-      "No se ha cargado premium-users.js."+
-      "</p>";
-
+  if(!nombre){
     return;
   }
 
-  const solicitudes=
-    obtenerSolicitudesPremium();
+  activarPremium(nombre);
 
-  contenedor.innerHTML="";
+  document
+    .getElementById(
+      "resultadoAdmin"
+    )
+    .textContent =
+      "✅ Premium activado para " +
+      nombre;
 
-  if(!solicitudes.length){
+}
 
-    contenedor.innerHTML=
-      "<p class='small'>"+
-      "No hay solicitudes pendientes."+
-      "</p>";
 
+function rechazarUsuario(){
+
+  const nombre =
+    document
+      .getElementById(
+        "usuarioAdmin"
+      )
+      .value
+      .trim();
+
+  if(!nombre){
     return;
   }
 
-  solicitudes.forEach(solicitud=>{
+  rechazarPremium(nombre);
 
-    let clase="pending-status";
+  document
+    .getElementById(
+      "resultadoAdmin"
+    )
+    .textContent =
+      "❌ Solicitud rechazada.";
 
-    if(solicitud.estado==="aprobada"){
-      clase="active-status";
-    }
-
-    if(solicitud.estado==="rechazada"){
-      clase="off-status";
-    }
-
-    contenedor.innerHTML+=
-
-      "<div class='card'>"+
-
-      "<strong>"+
-      escapar(solicitud.usuario)+
-      "</strong>"+
-
-      "<p>"+
-      "Importe: "+
-      escapar(solicitud.precio)+
-      " €"+
-      "</p>"+
-
-      "<span class='status "+
-      clase+
-      "'>"+
-      escapar(solicitud.estado)+
-      "</span>"+
-
-      (
-        solicitud.estado==="pendiente"
-
-        ?
-
-        "<div style='margin-top:12px'>"+
-
-        "<button class='primary' onclick='aprobarPremiumUsuario(\""+
-        escaparAtributo(solicitud.usuario)+
-        "\")'>"+
-        "✅ Activar"+
-        "</button> "+
-
-        "<button class='danger' onclick='rechazarPremiumUsuario(\""+
-        escaparAtributo(solicitud.usuario)+
-        "\")'>"+
-        "❌ Rechazar"+
-        "</button>"+
-
-        "</div>"
-
-        :
-
-        ""
-      )+
-
-      "</div>";
-
-  });
 }
 
 
-function aprobarPremiumUsuario(usuario){
+function quitarUsuario(){
 
-  const confirmar=confirm(
-    "Confirma que has comprobado el pago de 7,99 €."
-  );
+  const nombre =
+    document
+      .getElementById(
+        "usuarioAdmin"
+      )
+      .value
+      .trim();
 
-  if(!confirmar) return;
-
-  activarPremium(usuario);
-
-  mostrarSolicitudesPremium();
-
-  mostrarUsuarios();
-
-  alert(
-    "✅ Premium activado para "+usuario
-  );
-}
-
-
-function rechazarPremiumUsuario(usuario){
-
-  rechazarPremium(usuario);
-
-  mostrarSolicitudesPremium();
-}
-
-
-/* ================= MODAL ================= */
-
-function abrirModal(html){
-
-  document.getElementById(
-    "modalContenido"
-  ).innerHTML=html;
-
-  document.getElementById(
-    "modal"
-  ).classList.add("active");
-}
-
-
-function cerrarModal(){
-
-  document.getElementById(
-    "modalContenido"
-  ).innerHTML="";
-
-  document.getElementById(
-    "modal"
-  ).classList.remove("active");
-}
-
-
-document.getElementById("modal")
-.addEventListener("click",function(event){
-
-  if(event.target===this){
-    cerrarModal();
+  if(!nombre){
+    return;
   }
 
-});
+  const correcto =
+    quitarPremium(nombre);
 
+  document
+    .getElementById(
+      "resultadoAdmin"
+    )
+    .textContent =
+      correcto
+        ? "Premium quitado."
+        : "Usuario no encontrado.";
 
-/* ================= SEGURIDAD ================= */
-
-function escapar(texto){
-
-  return String(texto ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
 }
 
 
-function escaparAtributo(texto){
+/* ================= SEGURIDAD HTML ================= */
 
-  return String(texto ?? "")
-    .replaceAll("\\","\\\\")
-    .replaceAll("'","\\'");
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
 }
 
 
-function limpiarTexto(texto){
-
-  return String(texto)
-    .replace(/<[^>]*>/g,"")
-    .slice(0,500);
-}
-
-
-/* ================= ARRANQUE ================= */
+/* ================= INICIO ================= */
 
 mostrarAgenda();
-mostrarUsuarios();
-mostrarSolicitudesPremium();
 
 </script>
 
