@@ -1,18 +1,21 @@
 /*
   DUCATTO - GESTIÓN DE PREMIUM
-  Las activaciones se hacen MANUALMENTE después de comprobar el Bizum.
+  Las activaciones se hacen MANUALMENTE
+  después de comprobar el pago.
 */
 
 const PRECIO_PREMIUM = 7.99;
 
-/* Obtener usuarios guardados */
+
+/* ================= USUARIOS ================= */
+
 function obtenerUsuarios() {
   return JSON.parse(
     localStorage.getItem("ducattoUsuarios") || "[]"
   );
 }
 
-/* Guardar usuarios */
+
 function guardarUsuarios(usuarios) {
   localStorage.setItem(
     "ducattoUsuarios",
@@ -20,8 +23,11 @@ function guardarUsuarios(usuarios) {
   );
 }
 
-/* Crear solicitud Premium */
+
+/* ================= SOLICITUD PREMIUM ================= */
+
 function solicitarPremium(nombreUsuario) {
+
   const usuario = nombreUsuario.trim();
 
   if (!usuario) {
@@ -32,14 +38,21 @@ function solicitarPremium(nombreUsuario) {
   }
 
   const solicitudes = JSON.parse(
-    localStorage.getItem("ducattoSolicitudesPremium") || "[]"
+    localStorage.getItem(
+      "ducattoSolicitudesPremium"
+    ) || "[]"
   );
 
   const existe = solicitudes.find(
-    s => s.usuario.toLowerCase() === usuario.toLowerCase()
+    s =>
+      s.usuario.toLowerCase() ===
+      usuario.toLowerCase()
   );
 
-  if (existe && existe.estado === "pendiente") {
+  if (
+    existe &&
+    existe.estado === "pendiente"
+  ) {
     return {
       ok: false,
       mensaje: "Ya tienes una solicitud pendiente."
@@ -65,111 +78,190 @@ function solicitarPremium(nombreUsuario) {
   };
 }
 
-/* Obtener solicitudes */
+
+/* ================= SOLICITUDES ================= */
+
 function obtenerSolicitudesPremium() {
+
   return JSON.parse(
-    localStorage.getItem("ducattoSolicitudesPremium") || "[]"
+    localStorage.getItem(
+      "ducattoSolicitudesPremium"
+    ) || "[]"
   );
+
 }
 
-/* Guardar solicitudes */
-function guardarSolicitudesPremium(solicitudes) {
+
+function guardarSolicitudesPremium(
+  solicitudes
+) {
+
   localStorage.setItem(
     "ducattoSolicitudesPremium",
     JSON.stringify(solicitudes)
   );
+
 }
 
-/*
-  ACTIVAR PREMIUM
-  Úsalo solamente después de comprobar que el Bizum ha llegado.
-*/
-function activarPremium(usuarioBuscado) {
-  const usuarios = obtenerUsuarios();
 
-  let usuario = usuarios.find(
-    u =>
-      u.nombre.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
-  );
+/* ================= ACTIVAR PREMIUM ================= */
+
+function activarPremium(
+  usuarioBuscado
+) {
+
+  const usuarios =
+    obtenerUsuarios();
+
+  let usuario =
+    usuarios.find(
+      u =>
+        u.nombre.toLowerCase() ===
+        usuarioBuscado.toLowerCase()
+    );
 
   if (!usuario) {
+
     usuario = {
       nombre: usuarioBuscado,
       premium: false
     };
 
     usuarios.push(usuario);
+
   }
 
   usuario.premium = true;
 
-  guardarUsuarios(usuarios);
-
-  const solicitudes = obtenerSolicitudesPremium();
-
-  solicitudes.forEach(solicitud => {
-    if (
-      solicitud.usuario.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
-    ) {
-      solicitud.estado = "aprobada";
-    }
-  });
-
-  guardarSolicitudesPremium(solicitudes);
-
-  return true;
-}
-
-/* RECHAZAR / CANCELAR SOLICITUD */
-function rechazarPremium(usuarioBuscado) {
-  const solicitudes = obtenerSolicitudesPremium();
-
-  solicitudes.forEach(solicitud => {
-    if (
-      solicitud.usuario.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
-    ) {
-      solicitud.estado = "rechazada";
-    }
-  });
-
-  guardarSolicitudesPremium(solicitudes);
-
-  return true;
-}
-
-/* QUITAR PREMIUM */
-function quitarPremium(usuarioBuscado) {
-  const usuarios = obtenerUsuarios();
-
-  const usuario = usuarios.find(
-    u =>
-      u.nombre.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
+  guardarUsuarios(
+    usuarios
   );
+
+
+  const solicitudes =
+    obtenerSolicitudesPremium();
+
+
+  solicitudes.forEach(
+    solicitud => {
+
+      if (
+        solicitud.usuario.toLowerCase() ===
+        usuarioBuscado.toLowerCase()
+      ) {
+
+        solicitud.estado =
+          "aprobada";
+
+      }
+
+    }
+  );
+
+
+  guardarSolicitudesPremium(
+    solicitudes
+  );
+
+
+  return true;
+
+}
+
+
+/* ================= RECHAZAR PREMIUM ================= */
+
+function rechazarPremium(
+  usuarioBuscado
+) {
+
+  const solicitudes =
+    obtenerSolicitudesPremium();
+
+
+  solicitudes.forEach(
+    solicitud => {
+
+      if (
+        solicitud.usuario.toLowerCase() ===
+        usuarioBuscado.toLowerCase()
+      ) {
+
+        solicitud.estado =
+          "rechazada";
+
+      }
+
+    }
+  );
+
+
+  guardarSolicitudesPremium(
+    solicitudes
+  );
+
+
+  return true;
+
+}
+
+
+/* ================= QUITAR PREMIUM ================= */
+
+function quitarPremium(
+  usuarioBuscado
+) {
+
+  const usuarios =
+    obtenerUsuarios();
+
+
+  const usuario =
+    usuarios.find(
+      u =>
+        u.nombre.toLowerCase() ===
+        usuarioBuscado.toLowerCase()
+    );
+
 
   if (!usuario) {
     return false;
   }
 
+
   usuario.premium = false;
 
-  guardarUsuarios(usuarios);
 
-  return true;
-}
-
-/* Comprobar si un usuario tiene Premium */
-function tienePremium(usuarioBuscado) {
-  const usuarios = obtenerUsuarios();
-
-  const usuario = usuarios.find(
-    u =>
-      u.nombre.toLowerCase() ===
-      usuarioBuscado.toLowerCase()
+  guardarUsuarios(
+    usuarios
   );
 
-  return usuario ? usuario.premium === true : false;
+
+  return true;
+
+}
+
+
+/* ================= COMPROBAR PREMIUM ================= */
+
+function tienePremium(
+  usuarioBuscado
+) {
+
+  const usuarios =
+    obtenerUsuarios();
+
+
+  const usuario =
+    usuarios.find(
+      u =>
+        u.nombre.toLowerCase() ===
+        usuarioBuscado.toLowerCase()
+    );
+
+
+  return usuario
+    ? usuario.premium === true
+    : false;
+
 }
